@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+	* {margin:0px; padding:0px;}
+	#iframe_content {width:960px; border:1px solid green;}
+</style>
+<script type="text/javascript">
+window.onload = function (){
+	var oIframe = document.getElementsByTagName("iframe")[0];
+	
+	var aBtn = document.getElementsByTagName("input");
+	
+	aBtn[0].onclick = init = function(){
+		oIframe.src="page1.html";
+		changeSize();
+	};
+	init();
+
+	aBtn[1].onclick = function(){
+		oIframe.src="page2.html";
+		changeSize();
+	};
+	
+	aBtn[2].onclick = function(){
+		//
+		var oIframeWindow = oIframe.contentWindow;//获取iframe窗口对象
+		var oIframeDocument  = oIframeWindow.document; //iframe document对象
+		
+		var changeElement  = oIframeDocument.getElementById("title");
+		changeElement.style.color = "#0ff";
+		changeElement.style.fontSize = "56px";
+		
+	}
+	
+	function changeSize() {
+		setTimeout(function(){
+			var oIframeWindow = oIframe.contentWindow;
+			var contentHeight = oIframeWindow.document.body.offsetHeight;
+			var contentWidth = oIframeWindow.document.body.offsetWidth;
+
+			oIframe.height = contentHeight;	
+			oIframe.width = contentWidth;
+		},200);
+	}
+
+}
+</script>
+
+</head>
+
+<body>
+
+<input type="button" value="page1"/>
+<input type="button" value="page2"/>
+<input type="button" value="change inner iframe content"/>
+
+<div id="div_content">div content</div>
+<div id="iframe_content">
+	<iframe src="http://www.baidu.com" scrolling="no" width="100%" height="100%" frameborder="0"/>
+</div>
+</body>
+</html>

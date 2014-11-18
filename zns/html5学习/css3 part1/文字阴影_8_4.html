@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>css 动画-04</title>
+<style type="text/css">
+	*{
+		margin:0px; 
+		padding:0px;
+		background:#000;
+	}
+	span {
+		font-size:40pt;
+		font-weight:bolder;
+		color:rgba(255,255,255,0);
+		font-family:'微软雅黑';
+		color:rgba(255,255,255,0);
+		opacity:0;
+		text-shadow:0 0 100px rgba(255,255,255,1);
+		-webkit-transition:0.4s all ease;
+	}
+	
+	span.active{
+		text-shadow:0px 0px 0px rgba(255,255,255,1);
+		opacity:1;
+	}
+
+</style>
+<script type="text/javascript">
+	
+	window.onload = function(){
+		var msg = "智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。";
+	
+		var oDiv1 = document.getElementById("div1");
+		
+		for(var i = 0 ; i < msg.length ; i++) {
+			var os = document.createElement('span');
+			
+			os.innerHTML = msg.charAt(i);
+			
+			oDiv1.appendChild(os);
+			
+			(function(os) {
+				setTimeout(function(){
+					os.className = 'active';
+				},0)
+			})(os)
+		}
+	}
+</script>
+</head>
+
+<body>
+	
+	<div id="div1"></div>
+	
+</body>
+</html>

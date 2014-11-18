@@ -1,0 +1,128 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>FileSystem</title>
+	<style type="text/css">
+		body ,div{ margin:0; font-size:12px;}
+		input {padding:0;margin:0;}
+		textarea{resize:none; height:200px; width: 300px;}
+		html,body{
+			height:100%;
+			overflow:hidden;
+		}
+		#box {
+			border:1px solid green;
+			width:600px;
+			height:100%;
+			position:absolute;
+			margin-left:-300px;
+			left:50%;
+		}
+		
+		#box ul{ overflow:hidden; list-style:none;}
+		#box ul li{ width:64px; float:left; text-align:center; position:relative; }
+		#box ul li input{ position:absolute; right:0; bottom:0; display:none; }
+		#box ul.show li input{ display:block; }
+		
+		.o-btn {text-align:center;}
+	</style>
+	<script type="text/javascript" src="file-util2.js"></script>
+	<script type="text/javascript">
+
+		function error(e){
+			alert('错误:'+e.message);
+		};
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			
+			var oPathBox=document.getElementById('pathBox');
+			var oSpan=oPathBox.children[1];
+			var oUl=document.getElementById('list');
+			
+			var pathDir = '/';
+			
+			getFileList(pathDir, function(files){
+				alert(files.length);
+			});
+			
+		},false);
+
+		
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div id="pathBox">
+			<h3>文件管理</h3>
+			<span></span>
+		</div>
+		<ul id="list">
+			<li>
+				<img src="icon/ico_back.png" alt="" />
+				<span>返回</span>
+				<input type="checkbox" />
+			</li>
+			<li>
+				<img src="icon/ico_floder.png" alt="" />
+				<span>返回</span>
+				<input type="checkbox" />
+			</li>
+			<li>
+				<img src="icon/ico_floder.png" alt="" />
+				<span>返回</span>
+				<input type="checkbox" />
+			</li>
+			<li>
+				<img src="icon/ico_floder.png" alt="" />
+				<span>返回</span>
+				<input type="checkbox" />
+			</li>
+			<li>
+				<img src="icon/ico_floder.png" alt="" />
+				<span>返回</span>
+				<input type="checkbox" />
+			</li>
+			<li>
+				<img src="icon/ico_floder.png" alt="" />
+				<span>返回</span>
+				<input type="checkbox" />
+			</li>
+			<li>
+				<img src="icon/ico_floder.png" alt="" />
+				<span>返回</span>
+				<input type="checkbox" />
+			</li>
+			<li>
+				<img src="icon/ico_floder.png" alt="" />
+				<span>返回</span>
+				<input type="checkbox" />
+			</li>
+		</ul>
+		
+		<div class="o-btn">
+			<input type="button" value="增加" id="add"/>
+			<input type="button" value="删除" id="del"/>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

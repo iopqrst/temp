@@ -1,0 +1,146 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		* {margin:0px; padding:0px;}
+		body{  background:#000; overflow:hidden;}
+	</style>
+</head>
+<body>
+
+	<canvas id="c1" width="800" height="600">
+		您的浏览器不支持canvas！
+	</canvas>
+
+	<script type="text/javascript">
+		function rnd(n,m) {
+			return parseInt(Math.random() * (m - n) + n);
+		};
+		
+		
+		var oc = document.getElementById('c1');
+		var cxt = oc.getContext('2d'); //上下文环境
+		
+		var clientHeight = document.documentElement.clientHeight;
+		var clientWidth = document.documentElement.clientWidth; //浏览器屏幕的宽高
+		
+		oc.height = clientHeight;
+		oc.width = clientWidth;
+		
+		var N = 6; //总共点数
+		var aPoint = []; //位置数组
+		
+		var FPS = 60; //每秒帧数
+		
+		
+		for(var i = 0; i < N ; i++) {
+			aPoint.push({
+				x: rnd(0,clientHeight),
+				y: rnd(0,clientWidth),
+				speedX:rnd(-10,10),
+				speedY:rnd(-10,10)
+			});
+		};
+		
+		var FC = 20; //追随线条的个数
+		var aFllowPoint = [];//追随线条数组
+	
+		setInterval(function(){
+			cxt.clearRect(0,0,oc.width,oc.height);
+
+			//循环画点
+			for(var i = 0; i < N; i++) {
+				drawPoint(aPoint[i]);
+			};
+			
+			//让点动起来
+			for(var i = 0; i < N ; i++) {
+				aPoint[i].x += aPoint[i].speedX;
+				aPoint[i].y += aPoint[i].speedY;
+				
+				//限制点移动范围，防止点移出屏幕
+				if(aPoint[i].x < 0){
+					aPoint[i].x = 0;
+					aPoint[i].speedX *= -1;
+				} else if (aPoint[i].x > clientWidth) {
+					aPoint[i].x = clientWidth;
+					aPoint[i].speedX *= -1;
+				}
+				
+				if(aPoint[i].y < 0){
+					aPoint[i].y = 0;
+					aPoint[i].speedY *= -1;
+				} else if (aPoint[i].y > clientHeight) {
+					aPoint[i].y = clientHeight;
+					aPoint[i].speedY *= -1;
+				}
+				
+			};
+			
+			cxt.beginPath();
+			cxt.moveTo(aPoint[0].x, aPoint[0].y);
+			// 点连接线
+			for(var i = 1; i < N; i++) {
+				cxt.lineTo(aPoint[i].x, aPoint[i].y);
+			}
+			cxt.strokeStyle='#ff0';
+			
+			cxt.closePath();
+			cxt.stroke(); //顺序不能和closePath相反
+			
+			//save "追随者"
+			var arr = [];
+			
+			for(var i = 0; i < N; i++){
+				arr[i] = {x:aPoint[i].x, y:aPoint[i].y};
+			}
+			
+			aFllowPoint.push(arr);
+			
+			if(aFllowPoint.length > FC){
+				aFllowPoint.shift();
+			}
+			
+			// 画"追随者"
+			for(var i = 0; i < FC; i++){
+				//计算"追随者"的opacity
+				var opacity = i / (aFllowPoint.length - 1);
+				
+				cxt.beginPath();
+				cxt.moveTo(aFllowPoint[i][0].x, aFllowPoint[i][0].y);
+				
+				for(var j = 1; j < N; j++){
+					cxt.lineTo(aFllowPoint[i][j].x, aFllowPoint[i][j].y);
+				};
+				
+				cxt.strokeStyle='rgba(255,255,0,'+ opacity +')';
+				cxt.closePath();
+				cxt.stroke();
+			};
+			
+			
+			
+		}, 1000/FPS);
+		
+		//画点
+		function drawPoint(p) {
+			var pointWidth = 20, pointHeight = 20;
+			
+			cxt.strokeStyle='#fff';
+			cxt.strokeRect(p.x - pointWidth/2,p.y - pointHeight/2,pointWidth,pointHeight);
+		};
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,125 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	
+	<style type="text/css">
+	
+		* {margin:0px ;padding:0px;}
+		
+		body {
+			background:#000;
+		}
+		
+		ul li { list-style:none; height:100%; width:100%;}
+		
+		#box{ width:310px; height:310px;  position:absolute; left:50%; margin-left:-155px; top:100px;}
+		
+		#box ul li {
+			position:absolute;
+			top:0px;
+			left:0px;
+			opacity:0;
+			
+			-webkit-transition:1.5s all ease;
+			-webkit-transform:perspective(800px) rotate(0deg) translate(0px);
+		}
+		
+		#box li.l2 {
+			z-index:1;
+			opacity:0;
+			
+			-webkit-transform: perspective(800px) translateX(-250px) rotateY(45deg)  ;
+		}
+		
+		#box li.l1 {
+			z-index:2;
+			opacity:0.5;
+			-webkit-transform: perspective(800px) translateX(-200px) rotateY(45deg) ;
+		}
+		
+		#box li.cur {
+			opacity:1;
+			z-index:3;
+		}
+		
+		#box li.r2 {
+			z-index:2;
+			opacity:0.5;
+			
+			-webkit-transform: perspective(800px) translateX(200px) rotateY(-45deg) ;
+		}
+		
+		#box li.r1 {
+			z-index:1;
+			opacity:0;
+			
+			-webkit-transform: perspective(800px)  translateX(250px) rotateY(-45deg);
+		}
+		
+		#box span {
+			width:100%;
+			height:100%;
+			
+			position:absolute;
+			top:10px;
+			left:0px;
+			opacity:.4;
+			-webkit-transform-origin:bottom center;
+			-webkit-transform: scale(1,-1);
+			
+			-webkit-mask: -webkit-linear-gradient(rgba(255,255,255,0) 50%, rgba(255,255,255,0.8));
+			
+		}
+	</style>
+	
+	<script type="text/javascript">
+		window.onload = function () {
+			var obtn = document.querySelector('input');
+			var ali = document.querySelectorAll('#box ul li');
+			
+			var aspan = document.querySelectorAll('#box span');
+			
+			setInterval(changeImg,3500);
+			
+			obtn.onclick = changeImg();
+			
+			function changeImg() {
+				
+				var aclass = [];
+				for(var i = 0; i < ali.length; i++) {
+					aclass[i] = ali[i].className;
+					
+					aspan[i].style.background = 'url(img/m'+(i + 1) +'.jpg)';
+				}
+				
+				aclass.unshift(aclass.pop());
+				
+				for(var i = 0; i < ali.length; i++) {
+					ali[i].className = aclass[i];
+				}
+			};
+
+		};
+	</script>
+</head>
+<body>
+	<input type="button" value="next one" />
+	<div id="box">
+		<ul>
+			<li class="l2"><img src="img/m1.jpg" alt="" /><span></span></li>
+			<li class="l1"><img src="img/m2.jpg" alt="" /><span></span></li>
+			<li class="cur"><img src="img/m3.jpg" alt="" /><span></span></li>
+			<li class="r1"><img src="img/m4.jpg" alt="" /><span></span></li>
+			<li class="r2"><img src="img/m5.jpg" alt="" /><span></span></li>
+			<li><img src="img/m6.jpg" alt="" /><span></span></li>
+			<li><img src="img/m7.jpg" alt="" /><span></span></li>
+			<li><img src="img/m8.jpg" alt="" /><span></span></li>
+			<li><img src="img/m9.jpg" alt="" /><span></span></li>
+			<li><img src="img/m10.jpg" alt="" /><span></span></li>
+		</ul>
+	</div>
+	
+</body>
+</html>

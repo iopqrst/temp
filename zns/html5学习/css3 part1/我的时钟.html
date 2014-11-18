@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+*{ margin:0; padding:0;}
+#clock { width:300px; height:300px; background:#ccc; border:1px solid #000; position:absolute; left:50%; top:50%; margin-left:-150px; margin-top:-150px; border-radius:50%; box-shadow:2px 2px 5px #000, inset 0 0 10px #000;}
+
+#clock div {
+	-webkit-transform-origin:center bottom;
+}
+
+.hour {
+	position:absolute;
+	width:8px;
+	height:60px;
+	left:50%;
+	margin-left:-4px;
+	top:50%;
+	margin-top:-60px;
+	background:#000;
+}
+
+.min {
+	position:absolute;
+	width:6px;
+	height:80px;
+	left:50%;
+	margin-left:-3px;
+	top:50%;
+	margin-top:-80px;
+	background:#000;
+}
+
+.sec {
+	position:absolute;
+	width:4px;
+	height:100px;
+	left:50%;
+	top:50%;
+	margin-left:-2px;
+	margin-top:-100px;
+	background:#f00;
+}
+
+.dot {
+	position:absolute;
+	width:16px;
+	height:16px;
+	left:50%;
+	top:50%;
+	margin-left:-8px;
+	margin-top:-8px;
+	background:#000;
+	border-radius:50%;
+	background:-webkit-linear-gradient(#999,#000);
+}
+
+#clock span {
+	
+	-webkit-transform-origin:center 150px;
+
+	height:10px;
+	width:2px;
+	background:#000;
+	position:absolute;
+	left:50%;
+	margin-left:-1px;
+	
+	line-height:60px;
+}
+
+#clock span em {
+	font-style:normal;
+	text-align:center;
+	position:absolute;
+	left:0px;
+	top:10px;
+	width:80px;
+	height:30px;
+	line-height:30px;
+	margin-left:-40px;
+	border:1px solid green;
+}
+
+#clock span.bigScale{
+	height:15px;
+	border:1px solid #000;
+}
+</style>
+<script>
+	window.onload = function() {
+		var ohour = document.querySelector(".hour");
+		var omin = document.querySelector(".min");
+		var osecond = document.querySelector(".sec");
+		
+		var oclock = document.getElementById("clock");
+		
+		function setClock() {
+			var oDate = new Date();
+			var h = oDate.getHours();
+			var m = oDate.getMinutes();
+			var s = oDate.getSeconds();
+			
+			var ms = oDate.getMilliseconds();
+			
+			ohour.style.WebkitTransform='rotate('+(30 * h + m/60 * 30)+'deg)';
+			omin.style.WebkitTransform='rotate('+(6 * m + s/50 * 6)+'deg)';
+			osecond.style.WebkitTransform='rotate('+(6 * s + ms/1000 * 6)+'deg)';
+		}
+		
+		setClock();
+		setInterval(setClock,30);
+		
+		setScale();
+		
+		function setScale() {
+			for(var i = 1; i <= 60; i++) {
+				var ospan = document.createElement('span');
+				
+				if(i%5==0) {
+					ospan.className = 'bigScale';
+					
+					if(i == 0) {
+						ospan.innerHTML = '<em>12<\/em>';
+					} else {
+						ospan.innerHTML = '<em>'+i/5+'<\/em>';
+					}
+					ospan.children[0].style.WebkitTransform='rotate('+(-i*6)+'deg)';
+				}
+				
+				oclock.appendChild(ospan);
+				ospan.style.WebkitTransform = 'rotate('+(6*i)+'deg)';
+			}
+		}
+	};
+</script>
+</head>
+
+<body>
+
+	<div id="clock">
+		<div class="hour"></div>
+		<div class="min"></div>
+		<div class="sec"></div>
+		<div class="dot"></div>
+	</div>
+
+</body>
+</html>

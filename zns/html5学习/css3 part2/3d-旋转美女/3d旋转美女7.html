@@ -1,0 +1,168 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin:0px;
+			padding:0px;
+		}
+		
+		body {
+			background:#000;
+		}
+		#box {
+			height:200px;
+			width:133px;
+			-background:#ff0000;
+			
+			position:absolute;
+			left:50%;
+			top:50%;
+			margin-left:-65px;
+			margin-top:-100px;
+			
+			-webkit-transform-style:preserve-3d;
+			-webkit-transform: perspective(800px) rotateX(-30deg) rotateY(0deg);
+			
+		}
+		
+		#box div{
+			height:100%;
+			width:100%;
+			position:absolute;
+			top:0px;
+			left:0px;
+			border-radius:15px;
+			box-shadow:0px 0px 20px #fff;
+			
+			-webkit-transition:0.5s all ease;
+		}
+		
+		#box div span {
+			height:100%;
+			width:100%;
+			position:absolute;
+			top:0px;
+			left:0px;
+			
+			-webkit-transform-origin:bottom center;
+			-webkit-transform:scale(1,-1) translateY(-10px) ;
+			-webkit-mask:-webkit-linear-gradient(rgba(0,0,0,0) 40%, rgba(0,0,0,.8));
+			opacity:0.5;
+		}
+		
+		#box .plat{ 
+			position:absolute; 
+			left:50%; top:50%; 
+			width:2000px; 
+			height:2000px; 
+			background:-webkit-radial-gradient(center center, 500px 500px ,rgba(255,255,255,1), rgba(255,255,255,0)); 
+			opacity:0.3; 
+			margin-left:-1000px; 
+			margin-top:-1000px;
+			-webkit-transform: translateY(250px) rotateX(90deg);
+		}
+
+		
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var oBox = document.getElementById('box');
+			var aDiv = oBox.getElementsByTagName('div');
+			
+			for(var i = 0 ; i < 11; i++) {
+				var oDiv = document.createElement('div');
+				oDiv.style.background = 'url(3d-img/'+i+'.jpg)';
+				oBox.appendChild(oDiv);
+				
+				var oSpan = document.createElement('span');
+				oSpan.style.background = 'url(3d-img/'+i+'.jpg)';
+				oDiv.appendChild(oSpan);
+				
+				(function(oDiv,i) {
+					setTimeout(function(){
+						oDiv.style.WebkitTransform='rotateY('+(360/11*i)+'deg) translateZ(300px)';
+					},200 * (11-i));
+				})(oDiv,i)
+			}
+		
+			
+			var x = 0,y = 30*5;
+			
+			var speedX = 0, speedY = 0;//松开鼠标后div旋转的速度
+			var lastX = 0, lastY = 0;
+			
+			var timer = null;
+			document.onmousedown = function(ev) {
+			
+				clearInterval(timer);
+				for(var i=0; i<aDiv.length; i++){
+					aDiv[i].style.WebkitTransition='none';
+				}
+
+			
+				var disX = ev.clientX - x;
+				var disY = ev.clientY - y;
+				
+				document.onmousemove = function(ev) {
+					
+					x = ev.clientX - disX;
+					y = ev.clientY - disY;
+					
+					document.title = x + '|' + y;
+					
+					speedX = x - lastX;
+					speedY = y - lastY;
+					
+					lastX = x;
+					lastY = y;
+					
+					setPosition(x,y);
+				}
+				
+				document.onmouseup=function(){
+					document.onmousemove=null;
+					document.onmouseup=null;
+					
+					timer = setInterval(function(){
+						x += speedX;
+						y += speedY;
+						
+						speedX *= 0.95;
+						speedY *= 0.95;
+						
+						setPosition(x,y);
+					},30);
+				}
+				return false;	
+
+			};
+			
+			function setPosition(x,y) {
+				oBox.style.WebkitTransform = 'perspective(800px) rotateX('+(-y/5)+'deg) rotateY('+x/5+'deg)';
+					
+				//让背对的图片透明度变小
+				for(var i = 0; i < aDiv.length ; i++) {
+					var s = Math.abs(360/11*i + x/5)%360;
+					if(s > 180) s = 360 - s;
+					
+					var scale = ((180 - s)/180 + 0.2)/1.2;
+					//aDiv[i].innerHTML = scale;
+					aDiv[i].style.opacity = scale;
+				};
+			}
+			
+			
+		};
+	</script>	
+</head>
+<body>
+	
+	<div id="box">
+		<span class="plat"></span>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+
+.wrapper {
+    width: 50%;
+    float: left;
+}
+.cube {
+    font-size: 4em;
+    width: 2em;
+    margin: 1.5em auto;
+    transform-style: preserve-3d;
+    transform: rotateX(-40deg) rotateY(32deg);
+}
+.side {
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    background: rgba(255, 99, 71, 0.6);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    line-height: 2em;
+}
+.front {
+    transform: translateZ(1em);
+}
+.top {
+    transform: rotateX(90deg) translateZ(1em);
+}
+.right {
+    transform: rotateY(90deg) translateZ(1em);
+}
+.left {
+    transform: rotateY(-90deg) translateZ(1em);
+}
+.bottom {
+    transform: rotateX(-90deg) translateZ(1em);
+}
+
+.back {
+    transform: rotateY(-180deg) translateZ(1em);
+}
+.w1 {
+    perspective: 100px;
+}
+.w2{
+    perspective: 1000px;
+}
+
+</style>
+<script>
+
+</script>
+</head>
+
+<body>
+	<div class="wrapper w2">
+		<div class="cube">
+			<div class="side  front">1</div>
+			<div class="side   back">6</div>
+			<div class="side  right">4</div>
+			<div class="side   left">3</div>
+			<div class="side    top">5</div>
+			<div class="side bottom">2</div>
+		</div>
+	</div>
+	<div class="wrapper w1">
+		<div class="cube">
+			<div class="side  front">1</div>
+			<div class="side   back">6</div>
+			<div class="side  right">4</div>
+			<div class="side   left">3</div>
+			<div class="side    top">5</div>
+			<div class="side bottom">2</div>
+		</div>
+	</div>
+</body>
+</html>

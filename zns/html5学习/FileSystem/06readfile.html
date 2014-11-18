@@ -1,0 +1,56 @@
+﻿
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>FileSystem</title>
+	
+	<script type="text/javascript">
+		
+		function error(e){
+			alert('错误:'+e.message);
+		}
+
+	
+		document.addEventListener('DOMContentLoaded', function(){
+			webkitRequestFileSystem(PERSISTENT,2*1024,function(fs) {
+			
+				fs.root.getFile('a.txt', null , function(fileEntry){
+					
+					fileEntry.file(function(file){
+						
+						var reader = new FileReader();
+						reader.onerror = error;
+						
+						reader.onload = function(){
+							alert(this.result); //文件结果
+						};
+						
+						reader.readAsText(file);
+						
+					});
+					
+				},function(e){
+					alert('文件打开失败' + e.message);
+					//requestQuota();
+				});
+				
+			}, function(e){
+				
+			});
+		},false);
+		
+		
+		function requestQuota(){
+			window.webkitStorageInfo.requestQuota(PERSISTENT, 1024*1024, function(grantedBytes) {
+				window.requestFileSystem(PERSISTENT, grantedBytes, onInitFs, errorHandler);
+			}, function(e) {
+				console.log('Error', e);
+			});
+		};
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

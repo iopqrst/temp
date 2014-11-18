@@ -1,0 +1,78 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	
+	<style type="text/css">
+		body{
+			overflow:hidden;
+		}
+		
+		#div1 {
+			border:1px solid green;
+			height:300px;
+			width:300px;
+			background:#ccc;
+			margin:100px auto;
+			position:relative;
+			display:none;
+			opacity:0;
+			-webkit-transition:.43s all ease;
+			-webkit-transform:scale(5);
+		}
+		
+		#div1 span {
+			position:absolute;
+			top:0px;
+			right:0px;
+			cursor:pointer;
+		}
+	</style>
+	
+	<script type="text/javascript">
+		window.onload = function () {
+			
+			var obtn = document.querySelector('input');
+			var odiv = document.getElementById('div1');
+			
+			var ospan = document.querySelector('#div1 span');
+			
+			//var ali = document.querySelectorAll('li');
+
+			
+			obtn.onclick = function() {
+				odiv.style.display = 'block';
+				
+				setTimeout(function(){ //为了有时间渲染
+					odiv.style.opacity = 1;
+					odiv.style.WebkitTransform='scale(1)';
+				},0);
+				
+			};
+			
+			ospan.onclick = function() {
+				odiv.style.opacity = 0;
+				odiv.style.WebkitTransform='scale(5)';
+				
+				setTimeout(function(){
+					odiv.style.display = 'none';
+				},500);
+			};
+		};
+	</script>
+</head>
+<body>
+	<input type="button" value="click me"/>
+	<div id="div1">
+		<span>XXXXXX</span>
+	</div>
+	
+	<!-- <ul id="demo">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+	</ul> -->
+</body>
+</html>

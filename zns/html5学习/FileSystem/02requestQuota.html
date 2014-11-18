@@ -1,0 +1,51 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>FileSystem</title>
+	
+	<script type="text/javascript">
+		
+		/**
+		
+		首次在chrome浏览器上执行时，浏览器提示：the operation failed because it would cause the application to exceed its storage quota。
+		
+		换句话说就是没有空间，空间不足，需要进行分配，
+		
+		window.webkitStorageInfo.requestQuota(PERSISTENT, 1024*1024, function(grantedBytes) {
+				window.requestFileSystem(PERSISTENT, grantedBytes, onInitFs, errorHandler);
+			}, function(e) {
+				console.log('Error', e);
+		});
+		
+		参考文章：http://www.html5rocks.com/zh/tutorials/file/filesystem/
+		
+		*/
+		document.addEventListener('DOMContentLoaded', function(){
+			webkitRequestFileSystem(PERSISTENT,2*1024,function(fs) {
+				fs.root.getFile('a.txt', {create:true}, function(fileEntry){
+					alert('文件打开成功');
+				},function(e){
+					alert('文件打开失败' + e.message);
+					
+					requestQuota();
+				});
+			}, function(e){
+				
+			});
+		},false);
+		
+		
+		function requestQuota(){
+			window.webkitStorageInfo.requestQuota(PERSISTENT, 1024*1024, function(grantedBytes) {
+				window.requestFileSystem(PERSISTENT, grantedBytes, onInitFs, errorHandler);
+			}, function(e) {
+				console.log('Error', e);
+			});
+		};
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

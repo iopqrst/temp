@@ -1,0 +1,35 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>FileSystem</title>
+	
+	<script type="text/javascript">
+		/**
+			需要在服务器环境下执行
+		
+		 * 要使用 PERSISTENT 存储，您必须向用户取得存储持久数据的许可。由于浏览器可自行决定删除临时存储的数据，因此这一限制不适用于 TEMPORARY 存储。
+		 
+		 为了将 PERSISTENT 存储与 FileSystem API 配合使用，Chrome 浏览器使用基于 window.webkitStorageInfo 的新 API 以请求存储：
+
+			window.webkitStorageInfo.requestQuota(PERSISTENT, 1024*1024, function(grantedBytes) {
+			  window.requestFileSystem(PERSISTENT, grantedBytes, onInitFs, errorHandler);
+			}, function(e) {
+			  console.log('Error', e);
+			});
+			用户授予许可后，就不必再调用 requestQuota() 了。后续调用为无操作指令。
+				 */
+		document.addEventListener('DOMContentLoaded', function(){
+			// 1. 链接文件系统
+			webkitRequestFileSystem(PERSISTENT, 2 * 1024 * 1024 ,function(){
+				alert('请求成功');
+			}, function(e){
+				alert('失败' + e.message);
+			});
+		},false);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

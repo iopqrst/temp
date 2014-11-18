@@ -1,0 +1,72 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin:0px;
+			padding:0px;
+		}
+		
+		body {
+			background:#000;
+		}
+		#box {
+			height:200px;
+			width:133px;
+			background:#ff0000;
+			
+			position:absolute;
+			left:50%;
+			top:50%;
+			margin-left:-65px;
+			margin-top:-100px;
+			
+			-webkit-transform-style:preserve-3d;
+			-webkit-transform: perspective(800px) rotateX(-30deg);
+			
+		}
+		
+		#box div{
+			height:100%;
+			width:100%;
+			position:absolute;
+			top:0px;
+			left:0px;
+			border-radius:15px;
+			box-shadow:0px 0px 20px #fff;
+			
+			-webkit-transition:0.8s all ease;
+		}
+		
+		#box:active div {
+			-webkit-transform: translateZ(200px);
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var oBox = document.getElementById('box');
+			
+			for(var i = 0 ; i < 11; i++) {
+				var oDiv = document.createElement('div');
+				oDiv.style.background = 'url(3d-img/'+i+'.jpg)';
+				oBox.appendChild(oDiv);
+				
+				(function(oDiv,i) {
+					setInterval(function(){
+						oDiv.style.WebkitTransform='rotateY('+(360/11*i)+'deg) translateZ(300px)';
+					},200 * (11-i));
+				})(oDiv,i)
+			}
+		};
+	</script>	
+</head>
+<body>
+	
+	<div id="box">
+		
+	</div>
+	
+</body>
+</html>

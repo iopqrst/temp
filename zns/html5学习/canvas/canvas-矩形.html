@@ -1,0 +1,49 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		body{  background:#000;}
+		#c1{ background:#fff;}
+	</style>
+</head>
+<body>
+
+	<canvas id="c1" width="800" height="600">
+		您的浏览器不支持canvas！
+	</canvas>
+	
+	<script type="text/javascript">
+		var oc = document.getElementById('c1');
+		
+		var cxt = oc.getContext('2d');
+		
+		//红色填充
+		cxt.fillStyle='#ff0000';
+		cxt.fillRect(100,100,200,200);
+		
+		//黄色边框
+		cxt.lineWidth=20;
+		cxt.strokeStyle='#ffff00';
+		cxt.strokeRect(100,100,200,200);
+		
+		//标准线
+		cxt.lineWidth=1;
+		cxt.strokeStyle='#000';
+		cxt.strokeRect(100,100,200,200);
+		
+		cxt.stroke();
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

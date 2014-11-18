@@ -1,0 +1,59 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		body{  background:#000;}
+		#c1{ background:#fff;}
+	</style>
+</head>
+<body>
+
+	<canvas id="c1" width="800" height="600">
+		您的浏览器不支持canvas！
+	</canvas>
+	
+	<script type="text/javascript">
+		function rnd(n,m) {
+			return parseInt(Math.random() * (m - n) + n);
+		};
+		
+		
+		var oc = document.getElementById('c1');
+		var cxt = oc.getContext('2d'); //上下文环境
+		
+		var arr = [252,203,367,191,398,125,253,291]; //柱状图数据
+		var iMax = Math.max.apply(null, arr); //获取数据中最大的一个数据
+
+		//按照比例给每一个“柱子”计算高度
+		var aHeight = [];
+		for(var i = 0; i < arr.length ; i++) {
+			aHeight[i] = oc.height * (arr[i] / iMax);
+		};
+		
+		console.info(oc.height);
+		
+		var space = 20; //两个柱子之间的距离
+		var W = 50; //每个柱子的宽度
+		
+		for(var i = 0; i < aHeight.length; i++){
+			//cxt.moveTo(aHeight[0],aHeight[1]);
+			cxt.fillStyle = 'rgba('+ rnd(0,256) +','+ rnd(0,256) +','+ rnd(0,256) +',0.8)';
+			console.info('rgba('+ rnd(0,256) +','+ rnd(0,256) +','+ rnd(0,256) +',0.8)');
+			cxt.fillRect((i+1) * W + i * space, (oc.height - aHeight[i]), W, aHeight[i]);
+		};
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

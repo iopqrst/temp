@@ -1,0 +1,49 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	body{ background:#000; }
+	#c1{ background:#fff;}
+	div{ color:#fff;}
+	</style>
+<script>
+
+
+window.onload=function(){
+	function d2a(deg) {
+		return Math.PI * deg / 180;
+	};
+
+	function drawRect(cxt, x, y, w, h, rotate) {
+		cxt.save();
+		
+		cxt.translate(x, y + w/2);
+		cxt.rotate(d2a(rotate));
+		cxt.strokeRect(0,-w/2,w,h);
+		
+		cxt.restore();
+	};
+	
+	var oc = document.getElementById('c1');
+	var cxt = oc.getContext('2d');
+	
+	var r = 0;
+	setInterval(function(){
+		cxt.clearRect(0,0,oc.width,oc.height);
+		drawRect(cxt, 200, 200, 300,200, r++);
+	}, 30);
+	
+	
+	
+	
+}
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="800" height="600"></canvas>
+<div id="sdiv"><div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+
+.wrap {
+    width: 500px;
+    height: 300px;
+    margin: 30px auto;
+    position: relative;
+    background-size: 100% 100%;
+}
+
+/*设置动画*/
+@keyframes spin{
+    0%{
+        transform:rotateY(0deg);
+    }
+    100%{
+        transform:rotateY(360deg);
+    }
+}
+.spin {
+    width: 142px;
+    height: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -72px;
+    margin-top: -101px;
+    border: 1px dashed orange;
+    cursor: pointer;
+    transform-style: preserve-3d;
+}
+/*调用动画*/
+.spin:hover{
+    animation:spin 5s linear infinite;
+}
+.rotate {
+    background-size: 100% 100%;
+    border: 5px solid hsla(50,50%,50%,.9);
+    transform: perspective(200px) rotateY(45deg);
+}
+.rotate img{
+    border: 1px solid green;
+    transform: rotateX(15deg) translateZ(10px);
+    transform-origin: 0 0 40px;
+}
+/*改变transform-style的默认值*/
+.three-d {
+    transform-style: preserve-3d;
+}
+
+</style>
+<script>
+
+</script>
+</head>
+
+<body>
+	<div class="wrap">
+		<div class="spin">
+			<div class="rotate">
+				<img src="pukepai.jpg" alt="" width="142" height="200" />
+			</div>
+		</div>
+	</div>
+
+	<div class="wrap">
+		<div class="spin">
+			<div class="rotate three-d">
+				<img src="pukepai.jpg" alt="" width="142" height="200" />
+			</div>
+		</div>
+	</div>
+</body>
+</html>

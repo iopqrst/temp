@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>智能社视频播放器 - by 智能社 - www.zhinengshe.com</title>
+<link href="style/common.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript">
+	
+	window.onload = function(){
+		
+		var oV = document.getElementById('v1');
+	
+		var oPlay=document.getElementById('play');
+		var oPause=document.getElementById('pause');
+		var oStop=document.getElementById('stop');
+		
+		oV.src='http://images.sohu.com/ytv/SH/Coke/64036020120714021103.mp4?t='+Math.random();
+		
+		//播放
+		oPlay.onclick = function(){
+			oV.play();
+			oPause.style.display = 'block';
+			oPlay.style.display = 'none';
+		};
+		
+		//暂停播放
+		oPause.onclick = function(){
+			oV.pause();
+			oPause.style.display = 'none';
+			oPlay.style.display = 'block';
+		};
+		
+		
+		//停止播放(因为没有停止播放的方法，这里采用先让视频暂停，然后通过currentTime=0改变视频播放进度
+		oStop.onclick = function(){
+			oV.pause();
+			oV.currentTime = 0; //视频当天播放到的时间（进度）
+			
+			oPlay.style.display = 'block';
+			oPause.style.display = 'none';
+		};
+		
+		/*
+		 * duration 视频播放总时间
+		 * timeupdate 监听视频播放变化
+		 */
+		
+		var oSpeed_this =  document.querySelector('.speed_this');
+		oV.addEventListener('timeupdate',function(){
+			
+			var scale = oV.currentTime/oV.duration;
+			
+			oSpeed_this.style.width=100*scale + '%';
+			
+		},false);
+		
+		
+		/**
+		 * 视频拖动
+		 *
+		 */
+		(function(){
+			var oBtn = document.querySelector('.speed_this .button'); //视频播放节点
+			var oDiv = document.querySelector('.speed');
+			
+			oBtn.onmousedown = function(ev) {
+				var disX = ev.clientX - oBtn.offsetLeft - oBtn.offsetWidth/2;
+				
+				document.onmousemove = function(ev) {
+					var l = ev.clientX - disX + oBtn.offsetWidth / 2;
+					
+					var scale = l / oDiv.offsetWidth;
+					
+					if(scale > 1) {
+						scale = 1;
+					}
+					
+					if(scale < 0) {
+						scale = 0;
+					}
+					
+					oSpeed_this.style.width = 100 * scale + '%';
+					
+					//document.title = scale;
+					//console.info('oV.duration=' + oV.duration);
+					oV.currentTime = scale * oV.duration;
+				};
+				
+				document.onmouseup = function(){
+					document.onmousemove = null;
+					document.onmouseup = null;
+				};
+				
+				return false;
+			};
+		})();
+		
+		/*
+		 * 缓冲条
+		 * progress 进度体哦啊哦
+		 * buffered 
+		 */
+		(function(){
+			var oBuffer = document.querySelector('.speed_buffer');
+			
+			oV.addEventListener('progress',function(){
+				var scale = oV.buffered.end(0)/oV.duration;
+				
+				oBuffer.style.width = scale * 100 + '%';
+			},false);
+		})();
+		
+		//控制音量
+		(function(){
+			var oBox = document.querySelector('.volume_this');
+			var oBtn = document.querySelector('.button');
+			
+			var oParent=document.querySelector('.volume');
+			oBtn.onmousedown=function(ev){
+				var disX=ev.clientX-oBtn.offsetLeft;
+				document.onmousemove=function(ev){
+					var l=ev.clientX-disX+oBtn.offsetWidth;
+					var scale=l/oParent.offsetWidth;
+					if(scale<0)scale=0;
+					if(scale>1)scale=1;
+					oBox.style.width=scale*100+'%';	
+					document.title=scale;
+					
+					oV.volume=scale;
+				}
+				document.onmouseup=function(){
+					document.onmousemove=null;
+					document.onmouseup=null;	
+				}
+				return false;	
+			}	
+		})();
+		
+		//点击进度的进度条播放
+		(function(){
+			var oBtn = document.querySelector('.speed_this .button'); //视频播放节点
+			var oDiv = document.querySelector('.speed');
+			var oVideoPlay = document.querySelector('.videoBox');
+			
+			oDiv.onclick = function(ev){
+				var disX = ev.clientX - oVideoPlay.offsetLeft;
+				
+				var scale = disX/oVideoPlay.offsetWidth;
+				if(scale > 1) {
+					scale = 1;
+				}
+				
+				if(scale < 0) {
+					scale = 0;
+				}
+				
+				oSpeed_this.style.width = 100 * scale + '%';
+					
+				oV.currentTime = scale * oV.duration;
+			};
+		})();
+	};
+	
+	
+	
+</script>
+</head>
+
+<body>
+<div class="videoBox">
+	<div class="video_list" style="width:0%;">
+    	<dl class="list">
+        	<dt><span>智能社播放列表</span></dt>
+        	<dd><a href="#">智能社影片剪辑</a><span>20分15秒</span></dd>
+        </dl>
+        <a href="javascript:;" class="listBtnContraction">&nbsp;</a>
+        <a href="javascript:;" class="listBtnOpen">&nbsp;</a>
+    </div>
+    <div class="video_play" style="width:100%;">
+    	<div class="video">
+			<div id="video_open_div" style="display:none;">
+				<img src="img/loading.png" class="loading" alt="" style="display:none;" />
+				<input type="button" class="open" value="" />
+				<div class="openLink">
+					<input type="text" value="" class="input" />
+					<input type="button" value="" class="openBtn" />
+				</div>
+			</div>
+			<div id="video_div" style="display:block;">
+				<video id="v1" width="100%" height="100%" src="http://images.sohu.com/ytv/SH/Coke/64036020120714021103.mp4"></video>
+			</div>
+        </div>
+        <div class="videoBar">
+        	<!--播放 暂停 等操作部分-->
+            <div class="play">
+                <img id="stop" src="img/stop.png" alt="www.zhinengshe.com" />
+				<img id="prev" src="img/prev.jpg" alt="www.zhinengshe.com" />
+				<img id="play" src="img/play.jpg" alt="www.zhinengshe.com" />
+				<img id="pause" src="img/pause.jpg" alt="www.zhinengshe.com" style="display:none;" />
+				<img id="next" src="img/next.jpg" alt="www.zhinengshe.com" />
+            </div>
+            <!--声音-->
+            <div class="full">
+            	<div class="timer">
+                	<span class="timeThis" id="curTime">00:00</span>/<span id="totalTime">00:00</span>
+                </div>
+                
+                <div class="volume">
+                    <div class="volume_this" style="width:100%;"><div class="button"></div></div>
+                </div>
+                <img src="img/horn.png" style="float:right; margin-top:13px; margin-right:10px;" />
+            </div>
+        </div>
+        <!--进度条-->
+        <div class="speed">
+            <div class="speed_buffer" style="width:0%;"></div>
+            <div class="speed_this" style="width:0%;"><div class="button"></div></div>
+        </div>
+    </div>
+    
+</div>
+</body>
+</html>

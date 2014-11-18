@@ -1,0 +1,88 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		#box {
+			position:relative;
+			margin:100px auto;
+			height:358px;
+			width:520px;
+			background:url('img/0.jpg');
+		}
+		
+		#box div{
+			position:absolute;
+			top:0px;
+			left:0px;
+			width:100%;
+			height:100%;
+			-webkit-transform:perspective(800px) rotateX(0deg) rotateY(0deg) translateX(0px) translateY(0px) translateZ(0px);
+		}
+	
+	</style>
+	
+	<script type="text/javascript">
+		
+		function getRandom(m) {
+			return parseInt(Math.random() * m);
+		}
+		
+		window.onload = function(){
+			var oBox = document.getElementById('box');
+			
+			var C = 16;
+			var R = 14;
+			
+			var iNow = 0;
+			oBox.onclick = function(){
+				var count = 0;
+				for(var r = 0; r < R ; r++) {
+					for(var c = 0 ; c < C ; c++) {
+						var oDiv = document.createElement('div');
+						
+						oDiv.style.width = oBox.offsetWidth/C + 'px';
+						oDiv.style.height = oBox.offsetHeight/R + 'px';
+						
+						oBox.appendChild(oDiv);
+						
+						oDiv.style.left = oDiv.offsetWidth * c + 'px';
+						oDiv.style.top = oDiv.offsetHeight * r + 'px';
+						
+						oDiv.style.background = 'url(img/'+ iNow +'.jpg) '+-oDiv.offsetWidth * c +'px '+ -oDiv.offsetHeight * r +'px';
+						oBox.style.background = 'url(img/' + (iNow+1)%6 + '.jpg)';
+						
+						(function(oDiv) {
+							setTimeout(function(){
+								oDiv.style.WebkitTransition = '0.4s all ease';
+								
+								oDiv.style.WebkitTransform='perspective(800px) translateX(0px) translateY(0px) translateZ(500px) rotateX('+getRandom(180)+'deg) rotateY('+getRandom(180)+'deg) ';
+								oDiv.style.opacity=0;
+							},0);
+						})(oDiv);
+						
+						oDiv.addEventListener('transitionend',function(){
+							
+							count++;
+							if(count == C * R * 2) {
+								iNow++;
+								if(iNow%6==0) {
+									iNow = 0;
+								}
+								oBox.innerHTML = '';
+							}
+							
+						},false);
+						
+					}
+				}
+			};
+			
+		};
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>

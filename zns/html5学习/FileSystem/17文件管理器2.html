@@ -1,0 +1,108 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>FileSystem</title>
+	<meta name="viewport" content="width=320,user-scalable=0,initial-scale=1"/>
+	<style type="text/css">
+		*{ margin:0; padding:0; list-style:none; font-size:12px;}
+		input {padding:0;margin:0;}
+		textarea{resize:none; height:200px; width: 300px;}
+		html,body{
+			height:100%;
+			overflow:hidden;
+		}
+		#box {
+			border:1px solid green;
+			width:600px;
+			height:100%;
+			position:absolute;
+			margin-left:-300px;
+			left:50%;
+			box-sizing:border-box;
+		}
+		
+		#box ul{list-style:none; overflow:hidden; }
+		#box ul li{ width:65px; height:100px; float:left; text-align:center; position:relative; }
+		#box ul li:active{ top:2px; left:1px;}
+		#box ul li input{ position:absolute; right:0; bottom:0; display:none; }
+		#box ul.show li input{ display:block;  }
+		
+		.o-btn {text-align:center; }
+		
+	</style>
+	<script type="text/javascript" src="file-util2.js"></script>
+	<script type="text/javascript">
+
+		function error(e){
+			alert('错误:'+e.message);
+		};
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			
+			var oPathBox=document.getElementById('pathBox');
+			var oSpan=oPathBox.children[1];
+			var oUl=document.getElementById('list');
+			
+			var pathDir = '/';
+			
+			getFileList(pathDir, function(files){
+				//alert(files.length);
+				
+				var oLi = document.createElement('li');
+				oLi.innerHTML = '<img src="icon/ico_back.png">' 
+								+ '<span>返回</span>';
+								
+				oUl.appendChild(oLi);
+				
+				for(var i = 0; i < files.length; i++) {
+					var oLi = document.createElement('li');
+					var icon = files[i].isDirectory ? 'ico_floder.png' : 'ico_file.png';
+					oLi.innerHTML = '<img src="icon/' + icon + '">' 
+								+ '<span>'+ files[i].name +'</span>';
+								
+					oUl.appendChild(oLi);
+				};
+			});
+			
+		},false);
+
+		
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div id="pathBox">
+			<h3>文件管理</h3>
+			<span></span>
+		</div>
+		<ul id="list">
+			
+		</ul>
+		
+		<div class="o-btn clear">
+			<input type="button" value="增加" id="add"/>
+			<input type="button" value="删除" id="del"/>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

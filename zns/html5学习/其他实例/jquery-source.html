@@ -1,0 +1,159 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	
+	<style type="text/css">
+		* {margin:0px ; padding:0px; list-style:none;}
+		
+		#video {height:530px; width:470px; float:left;}
+		#lesson {float:left;}
+		ul{}
+		ul li {float:left; width:25%; border:2px solid green; box-sizing:border-box;}
+	</style>
+	
+	<script type="text/javascript">
+		window.onload = function(){
+			
+			var oembed = document.getElementsByTagName('embed')[0];
+			
+			var oLesson = document.getElementById('lesson');
+				
+			var arrVideo = [
+				
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjM5MTE0Nzc2/v.swf",
+						"text" : "jQuery源码框架组成 匿名函数自执行的优点 匿名函数对外接口设置 window下挂载$()与jQuery() jQuery.prototype 原型、jQuery 基于面向对象的程序 jQuery函数调用与jQuery对象调用方法 jQuery中继承方法：extend jQuery扩展工具方法：$.trim()、$.proxy()…… 静态方法和实例方法的关系和区别简要说明"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjM5MTE2Nzgw/v.swf",
+						"text" : "jQuery中近2000多行：Sizzle选择器 jQuery中的Sizzle：复杂选择器的实现 jQuery中的Callbacks：JQ中的回调对象（函数统一管理） jQuery中的Deferred：延迟对象(异步统一管理） jQuery中的support：浏览器功能检测"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjM5MTI4NTQ4/v.swf",
+						"text" : "jQuery中的data：数据缓存（避免大数据量的元素挂载、预防内存泄露） jQuery中的queue、dequeue：队列管理（入队、出队管理） jQuery中的attr、prop、val、addClass等：元素属性操作 jQuery中的on、trigger等：事件操作的相关方法 jQuery中的DOM操作：添加、删除、获取、包装、筛选…… jQuery中的CSS方法：样式的操作 jQuery中的数据提交与ajax：跨域、请求script、ajax…… jQuery中的animate：运动方法的实现 jQuery中的offset：位置与尺寸的方法 jQuery中的模块化：jQuery中支持模块化的模式"
+					},{
+						"url" : "http://player.youku.com/player.php/sid/XNjM5MTI4NDU2/v.swf",
+						"text" : "注释说明：v2.0.3版本、Sizzle选择器、MIT软件许可 注释中的#的信息索引、查询地址（英文版） 匿名函数自执行：window参数及undefined参数意义 'use strict' 严格模式：代码规范及其不推荐严格模式理由 rootjQuery根节点：document 获取及其声明意义 readyList DOM加载相关…… typeof undefined 字符串形式'undefined'的存放及其意义"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjM5MTMyMTky/v.swf",
+						"text" : "常见对象存储：location、document、docElem 变量名防止冲突：$()、jQuery() class2type 判断数据类型、预留检测方式 core_deletedIds 旧版本的ID删除、新版本只做为数组方法引用 core_version = '2.0.3' 版本号存储 一些新方法的存储……如：trim() jQuery函数：$()、jQuery() 返回对象 原生JS面向对象的写法示例 jQuery面向对象方式：省却初始化元素和创建对象、直接使用内置方法 对象引用实现共享方法：jQuery.fn.init.prototype = jQuery.fn;"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjM5MTMyNDYw/v.swf",
+						"text" : "core_pnum：正则数字匹配 core_rnotwhite：正则单词匹配 rquickExpr：正则标签匹配（防止XSS木马注入） rsingleTag：正则匹配空标签 rmsPrefix：正则匹配IE下转换ms rdashAlpha：正则匹配转换大写、数字 fcamelCase：转驼峰回调函数 completed：DOM触发成功时回调函数"
+					},{
+						"url" : "http://player.youku.com/player.php/sid/XNjQxODU4NTEy/v.swf",
+						"text" : "本集主要讲解 JQ 对coustructor的修正以及初始化构造函数的参数类型判断，主要包含以下几个知识点： 1，简述JQ的版本输出。 2，实例讲解原生js中coustructor的bug以及JQ中的coustructor指针修正。 3，JQ初始化构造函数init的参数类型分析：字符串，DOM对象，函数，其它。 4，init的不合法参数处理技巧：'',null,undefined,false。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjQxODYxODI0/v.swf",
+						"text" : "本集主要讲解 $() 中的参数为字符串时，是要创建元素还是要获取元素的判断处理，主要包含以下几个知识点： 1，实例讲解JQ中对象存储的奥秘。 2，字符串参数的各种形式：简单形式标签获取、复杂形式标签获取、单标签创建、多标签创建。 3，创建标签时的异常情况处理：&lt;li&gt;hello。 4，正则exec在参数匹配中的作用: 返回正则子项。 5，创建标签与ID获取的判断。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjQxODYyNjA4/v.swf",
+						"text" : "本集主要分析JQ中创建标签时各种参数形式的判断与实现方式，主要包含几下几个知识点: 1，创建标签中的执行上下文： document 、iframe。 2，JQ API 查询方法介绍。 3, 原生js对象与JQ对象的判断： instanceof。 4，实例说明 jQurey.parseHTML()的使用及参数说明。 5，jQurey.merge()对内使用与对外使用的区别。 6, 创建标签的同时添加属性和方法的实现原理: 单标签判断rsingleTag、对象字面量判断jQuery.isPlainObject()、自有方法判断、属性添加。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjQ1ODgxOTcy/v.swf",
+						"text" : "本集主要包含几下几个知识点: 1，回顾第九集知识点。 2，selector 字符串参数 判断是否是通过id方式获取元素。 3，id方式获取元素时。黑莓系统下bug的处理。 4，selector 字符串参数 复杂选择方式的实现原理简介。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjQ1ODgzMzY0/v.swf",
+						"text" : "本集主要包含几下几个知识点: 1，selector dom节点处理。 2，selector 函数参数的处理 $(function(){}) $(document).ready(function(){}) 3，selector 数组、json参数的处理，类数组转原生数组。 数组转jq特定的json格式。 4，selector 、length 属性设置。 5，各种方法的实现： 转数组 -- toArray() 转原生集合 -- get()"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjQ1ODg1NTY4/v.swf",
+						"text" : "本集主要包含几下几个知识点: 1，JQ对象的入栈 pushStack 实现原理。 2，end() 方法的实现原理与作用。 3，JQ 方法 slice() 。 4，first(), last(), eq() 的实现原理。 5，map() 方法的实现原理。 6，JQ内部方法 push \ sort \ splice。"
+					},{
+						"url" : "http://player.youku.com/player.php/sid/XNjQ5MDc2MTQw/v.swf",
+						"text" : "本集和第十四集都是讲解jq的extend方法的实现原理，本集主要介绍了以下知识点： 1，什么是扩展静态（工具）方法。 2，什么是扩展实例方法。 3，扩展工具方法与扩展实例方法的区别。 4，this的奥妙：工具方法与实例方法共用同一代码而实现不同功能的原理。 5，单个对象自变量与多个对象自变量的处理。 6，浅拷贝与深拷贝。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjQ5MDc3MzM2/v.swf",
+						"text" : "本集和第十三集都是讲解jq的extent方法的实现原理，本集主要知识有以下几点： 1，浅拷贝与深拷贝的判断与参数处理。 2，对象检测。 3，插件检测。 4，合并多个对象属性到一个对象。 5，循环引用的处理。 6，浅拷贝与深拷贝的判断与实现。 7，常见继承方式介绍：拷贝继承 、 类式继承 、原型继承。"
+					},{
+						"url" : "http://player.youku.com/player.php/sid/XNjUzNzk1MDIw/v.swf",
+						"text" : "本集还是分析的extend方法的内部结构与实现原理，本集主要知识有以下几点： 1，expando 实现及作用。 2，noConflict 方法的作用及实现原理。 3，$(document).ready() 与 window.onload 的关系与区别。 4，$().ready() 与 $.ready()。 5，readyList.resolveWith() 。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjUzODA2NjA0/v.swf",
+						"text" : "分析的extend方法的内部结构与实现原理。 1，document.readyState。 2, DOMContentloaded 与 load 。 3，completed 方法原理。 4，holdReady() 方法的作用与实现原理。 5，getScript() 作用及实现原理。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjU5MjM3MzA0/v.swf",
+						"text" : "本集包含以下几个方法的实现原理：1，isFunction():判断是否为function和原生typeOf判断函数的bug。2，isArray():判断是否为数组。3，isWindow():判断是否为window对象。4，isNumberic():判断一个值是否为数字或者是否可以转换为数字。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjU5MjM2MDY0/v.swf",
+						"text" : "typeOf详解： 原生的 typeOf 在判断数据类型的时候有很多不足之处，本集中指出了这些不足之处，并且详细分析了jq的 type() 方法的实现原理。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjcyNTc2NTQw/v.swf",
+						"text" : "程序员口中经常流传着一句话，'一切皆对象'，这句话说明了对象的难以捉摸。本集视频主要介绍什么是 对象自变量 以及 JQ中 isPlainObject 和 isEmptyObject() 方法是如何实现的。观看本节视频需要大家对 jq 的 core_hasOwn 和 原生的 constructor 及 prototype 、原型链 等有一定的了解。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjcyNTkyMzQ0/v.swf",
+						"text" : "本集主要分析 parseHTML() 方法的实现原理，同时也简单分析了 error() 方法的实用意义。parseHTML 是 jq 中解析节点的常用方法。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjc4NTc4MzA4/v.swf",
+						"text" : "本集包含两个常用数据格式转换方法：parseJSON:将字符串解析成json格式数据（该方法只支持ie8及以上浏览器，视频中对parseJSON与原生eval方法进行了对比并提供了低版本浏览器的解决思路）。parseXML:将字符串解析成xml格式数据（该方法只支持ie9及以上浏览器，视频中详细讲解了方法的实现原理处ie8以下浏览器的兼容处理方式）此外本集还包含了并不常用的noop方法介绍及说明实现该方法的意义。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjc4NTc4NTMy/v.swf",
+						"text" : "globalEval:将一个字符串解析成全局变量。该方法在严格模式js和非严格模式下处理方式有所不同。视频中作了详细讲解并分析了原生js中eval()与window.eval()的区别。camelCase:将有'-'的字符串转换成驼峰形式字符串。在转换css3的浏览器内核兼容字符串时ie与其它浏览器处理方式不一样，大家留心视频中处理方式的讲解。nodeName:判断是不是指定的节点元素。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjgyOTMzNjk2/v.swf",
+						"text" : "each : 强大的遍历方法，可以遍历任何数组及类数组对象。想要了解如何处理数组与类数组的朋友可以仔细看看该方法的实现原理。该方法作为内部使用时会有第二个参数。trim : 去除字符串前后不必要的空格。"
+					},
+					{
+						"url" : "http://player.youku.com/player.php/sid/XNjgyOTQwNzIw/v.swf",
+						"text" : "makeArray : 将类数组转换成真正的数组（你以为只是这样么？ 其实它可以将任何类型的值转换成数组，它甚至还有内部版）。inArray : 数组版的indexOf方法。（你一定不会想到它是怎么实现的。）merge : 合并数组。该方法在前面视频中已经出现不止一次了，你一定迫不及待想知道它的实现原理，更何况它还有内部和外部两个版本。"
+					}
+			];
+			
+			console.info(arrVideo.length);
+			
+			var ovideo = document.getElementById('video');
+			
+			for(var i = 0 ; i < arrVideo.length; i++) {
+				var oli = document.createElement('li');
+				var oahref = document.createElement('a');
+				oahref.href = arrVideo[i].url;
+				oahref.innerHTML = '【' + (i + 1) + '】' + arrVideo[i].text;
+				
+				oli.appendChild(oahref);
+				
+				oahref.onclick = function(){
+					
+					var vi = '<embed src="'+this.href+'" allowfullscreen="true" quality="high" width="530" height="470" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash">';
+					
+					ovideo.innerHTML = vi;
+					
+					return false;
+				};
+				oLesson.children[0].appendChild(oli);
+				
+				
+			};
+			
+			
+	
+		
+			
+			
+		};
+	</script>
+</head>
+<body>
+	<div id="video"></div>
+	
+	<div id="lesson">
+		<ul></ul>
+	</div>
+</body>
+</html>

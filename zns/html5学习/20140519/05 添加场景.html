@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body,
+        div,
+        canvas {
+            margin: 0;
+            padding
+        }
+        body {
+            background: #000;
+            text-align: center;
+        }
+        #c1 {
+            background: url(img/game_bg_2_hd.jpg);
+        }
+    </style>
+    <script src="js/ajax.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/scene.js"></script>
+    <script src="js/sprite.js"></script>
+    <script src="js/fish.js"></script>
+    <script src="js/bullet.js"></script>
+    <script src="js/cannon.js"></script>
+    <script src="js/turrent.js"></script>
+
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var oC = document.getElementById('c1');
+            var cxt = oC.getContext('2d');
+
+            loadRes(['js/fish.json', 'js/bottom.json', 'js/bullet.json', 'js/cannon.json'], succ);
+
+            function succ() {
+
+                var sense = new Scene('c1');
+
+                //加载炮台
+                var turrent = new Turrent();
+                turrent.left = sense.width / 2;
+                turrent.top = sense.height - turrent.height / 2 + 1;
+
+                sense.add(turrent);
+
+                //加载大炮
+                var cannon = new Cannon(1);
+                cannon.left = sense.width / 2 + 50;
+                cannon.top = sense.height - cannon.height / 2 + 10;
+
+                sense.add(cannon);
+
+                document.onmousemove = function (ev) {
+                    cannon.rotate = getAng({
+                        x: ev.clientX - oC.offsetLeft,
+                        y: ev.clientY - oC.offsetTop
+                    }, {
+                        x: cannon.left,
+                        y: cannon.top
+                    });
+                }
+
+                //点击桌面时发射炮弹
+
+                oC.onclick = function () {
+
+                    //限制子弹发射速度
+                    if (!cannon.isReady()) {
+
+                        return;
+                    }
+
+                    //大炮开始动 
+                    cannon.startFrame();
+
+                    //创建一个子弹
+                    var bullet = new Bullet(cannon.type);
+
+                    bullet.left = cannon.left;
+                    bullet.top = cannon.top;
+
+                    bullet.moveRotate = bullet.rotate = cannon.rotate;
+
+                    sense.add(bullet);
+                }
+
+
+
+                //加载各种鱼
+
+
+
+            }
+        };
+    </script>
+</head>
+
+<body>
+
+    <canvas id="c1" height="600" width="800"></canvas>
+
+</body>
+
+</html>

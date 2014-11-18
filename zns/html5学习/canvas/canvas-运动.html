@@ -1,0 +1,36 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		body{  background:#000;}
+		#c1{ background:#fff;}
+	</style>
+</head>
+<body>
+
+	<canvas id="c1" width="800" height="600">
+		您的浏览器不支持canvas！
+	</canvas>
+
+	<script type="text/javascript">
+		
+		var oc = document.getElementById('c1');
+		var cxt = oc.getContext('2d'); //上下文环境
+		
+		cxt.strokeRect(0,100,250,150);
+		
+		var FPS = 60;
+		
+		var t = 0;
+		setInterval(function(){
+			
+			cxt.clearRect(0,0,oc.width,oc.height);
+			cxt.strokeRect(t++, 100, 250, 150);
+			
+		}, 1000/60);
+		
+	</script>
+</body>
+</html>

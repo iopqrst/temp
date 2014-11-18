@@ -1,0 +1,43 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script src="json2.js"></script>
+	<script src="jstorage.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			alert('已经使用：' + $.jStorage.storageSize());
+			alert('是否可用：' + $.jStorage.storageAvailable());
+			/*
+			$.jStorage.set("name", "monkey");
+			
+			setTimeout(function(){
+				var p1 = {name:"monkey",age:27, mobile:"18701046848"};
+				$.jStorage.set("p1", JSON.stringify(p1));
+				$.jStorage.setTTL("p1", 3000); // expires in 3 seconds
+			}, 500);
+			
+			setTimeout(function(){
+				alert($.jStorage.get("name"));
+			},1000);
+			
+			setTimeout(function(){
+				var sp1 = $.jStorage.get("p1");
+				var op1 = JSON.parse(sp1);
+				alert('first == ' + op1.name + ',' + op1.mobile);
+			},1000);
+			
+			setTimeout(function(){
+				var sp = $.jStorage.get("p1");
+				var op = JSON.parse(sp);
+				alert('second == ' + op.name + ',' + op.mobile); //没验证到失效呀？！
+			},10000);
+			*/
+		};
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

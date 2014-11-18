@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body,
+        div,
+        canvas {
+            margin: 0;
+            padding
+        }
+        body {
+            background: #000;
+            text-align: center;
+        }
+        #c1 {
+            background: url(img/game_bg_2_hd.jpg);
+        }
+    </style>
+    <script src="js/ajax.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/sprite.js"></script>
+    <script src="js/fish.js"></script>
+
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var oC = document.getElementById('c1');
+            var cxt = oC.getContext('2d');
+
+            loadRes(['js/fish.json'], succ);
+
+            function succ() {
+                var fish = new Fish(1);
+
+                fish.left = 100;
+                fish.top = 100;
+
+                fish.draw(cxt);
+            }
+        };
+    </script>
+</head>
+
+<body>
+
+    <canvas id="c1" height="600" width="800"></canvas>
+
+</body>
+
+</html>

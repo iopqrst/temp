@@ -1,0 +1,27 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript">
+		window.onload = function(){
+			var btn = document.getElementsByTagName('input')[0]
+			
+			bindEvent(btn,'click',function(){
+				alert('a');
+			});
+		};
+		
+		function bindEvent(obj,event,fn) {
+			if(obj.attachEvent) {//兼容IE写法
+				obj.attachEvent('on'+event,fn);
+			} else {
+				obj.addEventListener(event, fn, false);
+			}
+		}
+	</script>
+</head>
+<body>
+	<input type="button" value="click me" />
+</body>
+</html>

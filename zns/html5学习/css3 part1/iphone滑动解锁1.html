@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>css 动画-04</title>
+<style type="text/css">
+	#div1 {
+		width:400px;
+		margin: 0 auto;
+	}
+	
+	#div1 h2 {
+		width:200%;
+		font-size:30pt;
+		font-family:'微软雅黑';
+		background: -webkit-linear-gradient(left top,#4d4d4d 0, #4d4d4d 30%, #fff 55% ,#4d4d4d 65%,#4d4d4d 100%); 
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		
+		-webkit-animation: test 3s infinite;
+	}
+	
+	@-webkit-keyframes test {
+		from {
+			background-position:-500px;
+		}
+		to {
+			background-position:0px;
+		}
+	}
+</style>
+<script type="text/javascript">
+	
+</script>
+</head>
+
+<body>
+	
+	<div id="div1">
+		<h2>iphone滑动解锁</h2>
+	</div>
+	
+
+</body>
+</html>
+

@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+
+@-webkit-keyframes move {
+	from {
+		left:0%;
+	}
+	to {
+		left:-100%;
+	}
+}
+
+#div1 {
+	border-radius:5px; 
+	width:200px; 
+	height:30px; 
+	margin:20px auto; 
+	position:relative;
+	overflow:hidden;
+}
+
+#div1 span{ 
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:200%;
+	height:100%;
+	background:-webkit-repeating-linear-gradient(45deg,red 0, red 10px, blue 10px,blue 20px);
+	-webkit-animation-name:move;
+	-webkit-animation-duration:4s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:linear;
+}
+
+#div1:hover span{
+	-webkit-animation-play-state:paused;
+}
+</style>
+<script>
+	window.onload = function() {
+		var oDiv = document.getElementById("div1");
+		var oSpan = document.getElementsByTagName("span")[0];
+		
+		var oColor = document.getElementsByTagName("input");
+		
+		var color1 = "#ff0000";
+		var color2 = "#0000ff";
+		oColor[0].onchange = function() {
+			color1 = this.value;
+			oSpan.style.background="-webkit-repeating-linear-gradient(45deg,"+ color1 +" 0, "+ color1 +" 10px, "+color2+" 10px,"+color2+" 20px)";
+		}
+		
+		oColor[1].onchange = function() {
+			color2 = this.value;
+			oSpan.style.background="-webkit-repeating-linear-gradient(45deg,"+ color1 +" 0, "+ color1 +" 10px, "+color2+" 10px,"+color2+" 20px)";
+		}
+	}
+</script>
+</head>
+
+<body>
+<input type="color" id="color1" value="#ff0000"/>
+<input type="color" id="color2" value="#0000ff"/>
+
+<div id="div1">
+	<span></span>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		#div1 {
+			height:300px; 
+			width:100px;
+			
+			-webkit-transition:1s all ease;
+			background:#ff0000;
+		}
+		
+		#div1:hover {
+			width:400px;
+		}
+	</style>
+	
+	<script type="text/javascript">
+		window.onload = function(){
+			
+			var odiv = document.querySelector('#div1');
+			
+			odiv.addEventListener('transitionend',function(){
+				alert('over');
+			},false);
+			
+		};
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>

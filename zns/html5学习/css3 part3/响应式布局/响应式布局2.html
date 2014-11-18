@@ -1,0 +1,67 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<title>响应式布局</title>
+		<style type="text/css">
+			* {
+				margin:0px;
+				padding:0px;
+			}
+			ul {
+			}
+			li {
+				list-style: none;
+				width: 12.5%;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				border: 1px solid green;
+				float:left;
+				
+				box-sizing:border-box;
+			}
+			
+			@media(max-width:800px){
+				li {
+					width:25%;
+				}
+			}
+			
+			@media(max-width:400px){
+				li {
+					width:50%;
+				}
+			}
+
+		</style>
+	</head>
+	<body>
+		<ul>
+			<li>
+				1
+			</li>
+			<li>
+				2
+			</li>
+			<li>
+				3
+			</li>
+			<li>
+				4
+			</li>
+			<li>
+				5
+			</li>
+			<li>
+				6
+			</li>
+			<li>
+				7
+			</li>
+			<li>
+				8
+			</li>
+		</ul>
+	</body>
+</html>

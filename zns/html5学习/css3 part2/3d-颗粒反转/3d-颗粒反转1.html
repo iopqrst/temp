@@ -1,0 +1,80 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+
+	<style type="text/css">
+		*{ margin:0; padding:0; list-style:none;}
+
+		#box {
+			width:520px;
+			height:358px;
+			margin:20px auto; 
+			position:relative;
+			background:url(img/1.jpg);
+		}
+		
+		#box div{
+			position:absolute;
+			-webkit-transform:rotateY(0deg);
+			-webkit-transform-style:preserve-3d;
+		}
+		
+		#box div span {
+			position:absolute;
+			top:0px;
+			left:0px;
+			height:100%;
+			width:100%;
+		}
+		
+		#box span.front {
+			-webkit-transform:translateZ(1px);
+		}
+		
+		#box span.back {
+			-webkit-transform:translateZ(0px) scale(-1,1);
+		}
+
+	</style>
+	
+	<script type="text/javascript">
+		window.onload = function(){
+			var oBox=document.getElementById('box');
+			
+			var C = 10;
+			var R = 8;
+			
+			for(var r = 0; r < R; r++) {
+				for(var c = 0 ; c < C ; c++) {
+					var oDiv = document.createElement('div');
+					oDiv.style.width = oBox.offsetWidth/C + 'px';
+					oDiv.style.height = oBox.offsetHeight/R + 'px';
+					
+					oBox.appendChild(oDiv);
+					
+					oDiv.style.top = r * oDiv.offsetHeight + 'px';
+					oDiv.style.left = c * oDiv.offsetWidth + 'px';
+					
+					oDiv.innerHTML = '<span class="front"></span><span class="back"></span>';
+					
+					oDiv.children[0].style.background = 'url(img/1.jpg) '+ (-oDiv.offsetWidth * c)+'px '+ (-oDiv.offsetHeight * r)+'px ';
+					oDiv.children[1].style.background = 'url(img/2.jpg) '+ (-oDiv.offsetWidth * c)+'px '+ (-oDiv.offsetHeight * r)+'px ';
+					
+					oDiv.style.WebkitTransition = '1s all ease';
+					oDiv.style.WebkitTransform = 'rotateY(180deg)';
+					
+				}
+			};
+		};
+	</script>
+	
+
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>手机端淘宝轮播图</title>
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img {
+            width: 320px;
+        }
+        #box {
+            width: 320px;
+            height: 148px;
+            position: relative;
+            overflow: hidden;
+            margin: 60px auto;
+        }
+        #box ul {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #box ul li {
+            width: 320px;
+            height: 148px;
+            float: left;
+        }
+        #box ol {
+            width: 64px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: -32px;
+        }
+        #box ol li {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            background: #f00;
+            float: left;
+            margin: 3px;
+            text-indent: 9999em;
+        }
+        #box li.active {
+            background: #000;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            var oBox = document.getElementById('box');
+            var oUl = oBox.children[0];
+            var aLi = oUl.children;
+
+            var aBtn = document.querySelectorAll('#box ol li');
+
+            oUl.innerHTML += oUl.innerHTML;
+
+            oUl.style.width = aLi[0].offsetWidth * aLi.length + 'px';
+
+            var translateX = 0;
+
+            oUl.addEventListener('touchstart', function(ev) {
+                var disX = ev.targetTouches[0].pageX - translateX;
+
+                function fnMove(ev) {
+                    translateX = ev.targetTouches[0].pageX - disX;
+
+                    oUl.style.WebkitTransform = 'translateX(' + translateX + 'px)';
+                };
+
+                function fnEnd(ev) {
+                    oUl.removeEventListener('touchmove', fnMove, false);
+                    oUl.removeEventListener('touchend', fnEnd, false);
+                };
+
+                oUl.addEventListener('touchmove', fnMove, false);
+                oUl.addEventListener('touchend', fnEnd, false);
+
+            }, false);
+        }, false);
+    </script>
+</head>
+
+<body>
+    <div id="box">
+
+        <ul>
+            <li>
+                <img src="img/1.jpg" />
+            </li>
+            <li>
+                <img src="img/2.jpg" />
+            </li>
+            <li>
+                <img src="img/3.jpg" />
+            </li>
+            <li>
+                <img src="img/4.png" />
+            </li>
+        </ul>
+        <ol>
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ol>
+
+    </div>
+</body>
+
+</html>

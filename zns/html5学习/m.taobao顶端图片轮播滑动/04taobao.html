@@ -1,0 +1,183 @@
+﻿<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>手机端淘宝轮播图</title>
+    <meta name="viewport" content="width=device-width, user-scalable=0, initial-scale=1">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+		
+		body {
+			overflow:-hidden;
+		}
+		
+        img {
+            width: 320px;
+        }
+        #box {
+            width: 320px;
+            height: 148px;
+            position: relative;
+            overflow: hidden;
+            margin: 60px auto;
+        }
+        #box ul {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #box ul li {
+            width: 320px;
+            height: 148px;
+            float: left;
+        }
+        #box ol {
+            width: 64px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: -32px;
+        }
+        #box ol li {
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            background: -#f00;
+            float: left;
+            margin: 3px;
+            text-indent: 9999em;
+			border:1px solid #ccc;
+        }
+        #box li.active {
+            background: #f00;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            var oBox = document.getElementById('box');
+            var oUl = oBox.children[0];
+            var aLi = oUl.children;
+
+            var aBtn = document.querySelectorAll('#box ol li');
+
+            oUl.innerHTML += oUl.innerHTML;
+
+            oUl.style.width = aLi[0].offsetWidth * aLi.length + 'px';
+
+            var translateX = 0;
+			var W = oUl.offsetWidth / 2;
+
+			var iNow = 0;
+            oUl.addEventListener('touchstart', function(ev) {
+			
+				clearInterval(oUl.timer); //要先清除元素的定时器，否则会出现抖动
+			
+                var disX = ev.targetTouches[0].pageX - translateX;
+				var downX = ev.targetTouches[0].pageX;//首次触摸时x坐标
+				
+                function fnMove(ev) {
+                    translateX = ev.targetTouches[0].pageX - disX;
+                    oUl.style.WebkitTransform = 'translateX(' + translateX%W + 'px)';
+                };
+
+                function fnEnd(ev) {
+                    oUl.removeEventListener('touchmove', fnMove, false);
+                    oUl.removeEventListener('touchend', fnEnd, false);
+					
+					//oUl.style.WebkitTransition='.5s all ease';
+					if(Math.abs(ev.changedTouches[0].pageX - downX) > 50) {
+						//移动
+						if(downX > ev.changedTouches[0].pageX) {
+							// 向左移动 
+							iNow++;
+							
+							startMove(oUl, -iNow * aLi[0].offsetWidth);
+							
+							tab();
+						} else {
+							// 向右移动
+							iNow--;
+							startMove(oUl, -iNow * aLi[0].offsetWidth);
+							
+							tab();
+						}
+					} else {
+						//还原回去
+						startMove(oUl, -iNow * aLi[0].offsetWidth);
+					}
+                };
+
+                oUl.addEventListener('touchmove', fnMove, false);
+                oUl.addEventListener('touchend', fnEnd, false);
+
+            }, false);
+			
+			function tab() {
+				for(var i = 0; i < aBtn.length; i++) {
+					aBtn[i].className='';
+				};
+				
+				if(iNow > 0){
+					aBtn[iNow%aBtn.length].className = 'active';
+				} else {
+					aBtn[(iNow%aBtn.length + aBtn.length)% aBtn.length].className = 'active';
+				}
+			};
+			
+			function startMove(obj, iTarget){
+				clearInterval(obj.timer);
+				
+				obj.timer = setInterval(function(){
+					var iSpeed = (iTarget - translateX)/8;
+					
+					iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+					translateX += iSpeed;
+					
+					if(translateX < 0 ){
+						obj.style.WebkitTransform='translateX('+ translateX%W + 'px)';
+					} else {
+						obj.style.WebkitTransform='translateX('+ (translateX%W - W)%W + 'px)';
+					}
+					
+				},30);
+				
+			};
+        }, false);
+    </script>
+</head>
+
+<body>
+    <div id="box">
+
+        <ul>
+            <li>
+                <img src="img/1.jpg" />
+            </li>
+            <li>
+                <img src="img/2.jpg" />
+            </li>
+            <li>
+                <img src="img/3.jpg" />
+            </li>
+            <li>
+                <img src="img/4.png" />
+            </li>
+        </ul>
+        <ol>
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ol>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	body{ background:#000; text-align:center;}
+	#c1{ background:#fff;}
+	</style>
+<script>
+window.onload=function(){
+	function d2a(deg) {
+		return Math.PI * deg / 180;
+	};
+
+	var oc = document.getElementById('c1');
+	var cxt = oc.getContext('2d');
+	
+	var cx = 200, cy = 200, r = 100;
+	
+	cxt.arc(cx,cy,r,d2a(0),d2a(360),false);
+	cxt.fill();
+	
+	oc.onclick = function(ev){
+		var x=ev.clientX - oc.offsetLeft;
+		var y=ev.clientY - oc.offsetTop;
+		
+		var a=x-cx;
+		var b=y-cy;
+		
+		var dis=Math.sqrt(a*a+b*b);
+		
+		if(dis<r){
+			alert(1);	
+		}	
+	}
+
+}
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="800" height="600"></canvas>
+</body>
+</html>

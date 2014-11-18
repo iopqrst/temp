@@ -1,0 +1,78 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	body{ background:#000; text-align:center;}
+	#c1{ background:#fff;}
+	</style>
+<script>
+window.onload=function(){
+
+	function d2a(degree) {
+		return Math.PI * degree / 180;
+	}
+	
+	function rnd(n,m) {
+		return Math.random() * (m-n) + n;
+	}
+
+	var oc = document.getElementById('c1');
+	var cxt = oc.getContext('2d');
+	
+	var adata = [];
+	//随机生成一组数据
+	for(var i = 0; i < rnd(2,10); i++) {
+		adata.push(rnd(50,100));
+	};
+	//计算总值
+	var itotal = 0;
+	for(var i = 0 ; i < adata.length; i++) {
+		itotal += adata[i];
+	};
+	//计算每个数字百分比
+	var adeg = [];
+	for(var i = 0; i < adata.length; i++) {
+		adeg[i] = 360 * adata[i] / itotal;
+	};
+	
+	var istart = 0; //从那个角度开始
+	//开始画
+	var cx=300,cy=300,r=200;
+
+	var currentDeg = 0; //当前角度
+	var iStartDeg = 0;
+	var iEndDeg = 0;
+	
+	for(var i = 0; i < adeg.length; i++) {
+		cxt.beginPath();
+		cxt.moveTo(cx, cy);
+		
+		cxt.fillStyle='rgba('+ parseInt(rnd(0,255)) +','+ parseInt(rnd(0,255)) +','+ parseInt(rnd(0,255)) +',0.4)';
+		//console.info(currentDeg + ',' + (adeg[i] + currentDeg));
+		cxt.arc(cx, cy, r, d2a(currentDeg), d2a(adeg[i] + currentDeg), false);
+		cxt.closePath();
+		cxt.stroke();
+		cxt.fill();
+		
+		currentDeg += adeg[i]; 
+		//console.info(currentDeg + ',' + adeg[i]);
+	};
+
+	cxt.beginPath();
+	cxt.fillStyle='rgba('+ parseInt(rnd(0,255)) +','+ parseInt(rnd(0,255)) +','+ parseInt(rnd(0,255)) +',0.4)';
+	
+	cxt.moveTo(500,400);
+	cxt.arc(500,400,100, d2a(0), d2a(80), false);
+	cxt.closePath();//自动闭合，不用lineTo连接
+	cxt.stroke(); 
+
+}
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="800" height="600"></canvas>
+</body>
+</html>

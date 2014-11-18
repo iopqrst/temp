@@ -1,0 +1,50 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="viewport" content="width=320, user-scalable=0,initial-scale=1">
+	
+	<link rel="stylesheet" href="jquery.mobile-1.4.2.min.css" />
+	<script src="jquery-1.9.1.min.js"></script>
+	<script src="jquery.mobile-1.4.2.min.js"></script>
+</head>
+<body>
+	<div data-role="header">
+    	<a href="javascript:;" data-icon="refresh">刷新</a>
+    	<h4>标题</h4>
+    	<a href="javascript:;" data-icon="grid">菜单</a>
+    </div>
+    <div data-role="content">
+		
+		<h3>
+			data-min=true 设置为小图标
+			data-inline=true设置为同一行
+		</h3>
+		
+    	<input type="button" value="aaa" data-icon="info" data-inline="true" data-min="true"/>
+    	<input type="button" value="aaa" data-icon="home" data-inline="true" data-min="true"/>
+    	<input type="button" value="aaa" data-icon="arrow-l" data-inline="true" data-min="true"/>
+    	<input type="button" value="aaa" data-icon="arrow-r" data-inline="true" data-min="true"/>
+    	<input type="button" value="aaa" data-icon="plus" data-inline="true" data-min="true"/>
+    	<input type="button" value="aaa" data-icon="minus" data-inline="true" data-min="true"/>
+    	<input type="button" value="aaa" data-icon="grid" data-inline="true" data-min="true"/>
+    	<input type="button" value="aaa" data-icon="back" data-inline="true" data-min="true"/>
+    	<input type="button" value="aaa" data-icon="forward" data-inline="true" data-min="true"/>
+    	<input type="button" value="aaa" data-icon="refresh" data-inline="true" data-min="true"/>
+    	<input type="button" value="aaa" data-icon="star" data-inline="true" data-min="true"/>
+    	<input type="button" value="aaa" data-icon="alert" data-inline="true" data-min="true"/>
+    	<input type="button" value="aaa" data-icon="check" data-inline="true" data-min="true"/>
+		
+		<h3>图标位置：data-iconpos="notext top bottom left right"</h3>
+		<input type="button" value="aaa" data-icon="gear" data-iconpos="right">
+        <input type="button" value="aaa" data-icon="search" data-iconpos="top">
+        <input type="button" value="aaa" data-icon="star" data-iconpos="bottom">
+		<br/>
+		<input type="button" value="aaa" data-icon="delete" data-iconpos="notext" data-inline="true"/><br/>
+    	不用文本替换：<input type="button" value="aaa" data-icon="gear" data-iconpos="notext" data-inline="true" data-min="true"/><br/>
+    	如果value为空：<input type="button" value="" data-icon="search" data-inline="true" data-min="true"/><br/>
+
+    </div>
+</body>
+</html>

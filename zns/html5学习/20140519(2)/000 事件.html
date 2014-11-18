@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>cavas事件</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        #c1 {
+            background: rgba(230, 80, 33, 0.4)
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oC = document.getElementById('c1');
+
+            var cxt = oC.getContext('2d');
+
+            cxt.beginPath();
+            cxt.strokeRect(100, 100, 150, 100);
+
+            oC.onclick = function (ev) {
+                var l = 100;
+                var t = 100;
+                var r = 250;
+                var b = 200;
+
+                var x = ev.clientX - oC.offsetLeft;
+                var y = ev.clientY - oC.offsetTop;
+
+                console.info(x, y);
+
+                if (l < x && x < r && y > t && y < b) {
+                    alert('a');
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <canvas id="c1" height="500" width="600"></canvas>
+</body>
+
+</html>

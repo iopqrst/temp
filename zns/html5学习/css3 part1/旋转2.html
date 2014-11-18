@@ -1,0 +1,49 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	
+	<style type="text/css">
+		
+		#div1 {
+			border:1px solid green;
+			width:300px;
+			height:300px;
+			
+			position:absolute;
+			left:50%;
+			margin-left:-150px;
+			top:50%;
+			margin-top:-150px;
+			
+			background:#ff0000;
+			
+			-webkit-transition:1s all ease;
+			
+			
+		}
+	
+		#div1:hover {
+			-webkit-transform:perspective(800px) rotateY(45deg);
+			/** perspective 视深 */
+		}
+		
+		
+	</style>
+	
+	<script type="text/javascript">
+		window.onload = function () {
+			
+
+		};
+	</script>
+</head>
+<body>
+	
+	<div id="div1">
+		我们可以发现当鼠标放上去的时候，画面出现了抖动，下一个例子将说明为什么出现这种情况。
+	</div>
+	
+</body>
+</html>

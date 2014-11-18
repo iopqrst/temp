@@ -1,0 +1,56 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		div{
+			width:100px;
+			height:100px;
+			background:red;
+			
+			left:0;
+			top:0;
+			position:absolute;
+			
+			-moz-animation:myfirst 5s;
+			-webkit-animation:myfirst 5s;
+			-o-animation:myfirst 5s;
+			animation:myfirst 5s;
+		}
+		
+		
+		@keyframes myfrist {
+			from {left:0}
+			to{left:200px}
+		}
+		
+		@-moz-keyframes myfirst /* Firefox */
+		{
+			from {left:0}
+			to{left:200px}
+		}
+
+		@-webkit-keyframes myfirst /* Safari and Chrome */
+		{
+			from {left:0}
+			to{left:200px}
+		}
+
+		@-o-keyframes myfirst /* Opera */
+		{
+			from {left:0}
+			to{left:200px}
+		}
+
+		</style>
+		</head>
+		<body>
+	</style>
+	
+
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>

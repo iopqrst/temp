@@ -1,0 +1,174 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>FileSystem</title>
+	<meta name="viewport" content="width=320,user-scalable=0,initial-scale=1"/>
+	<style type="text/css">
+		*{ margin:0; padding:0; list-style:none; font-size:12px;}
+		input {padding:0;margin:0;}
+		textarea{resize:none; height:200px; width: 300px;}
+		html,body{
+			height:100%;
+			overflow:hidden;
+		}
+		#box {
+			border:1px solid green;
+			width:600px;
+			height:100%;
+			position:absolute;
+			margin-left:-300px;
+			left:50%;
+			box-sizing:border-box;
+		}
+		
+		#box ul{list-style:none; overflow:hidden; }
+		#box ul li{ width:65px; height:100px; float:left; text-align:center; position:relative; }
+		#box ul li:active{ top:2px; left:1px;}
+		#box ul li input{ position:absolute; right:0; bottom:0; display:none; }
+		#box ul.show li input{ display:block; }
+		#box ul li span {display:block; width:65px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+		.o-btn {text-align:center; }
+		
+	</style>
+	<script type="text/javascript" src="file-util2.js"></script>
+	<script type="text/javascript">
+
+		function error(e){
+			alert('错误:'+e.message);
+		};
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			
+			var oPathBox=document.getElementById('pathBox');
+			var oSpan=oPathBox.children[1];
+			var oUl=document.getElementById('list');
+			
+			var pathDir = '/';
+			var timer = null;
+			var bClick = false;//防止在没有长按的情况下点击文件选中的情况
+			
+			oUl.onclick = function(ev) {
+				ev.cancelBubble = true;
+			};
+			
+			function reFreshList() {
+				
+				oUl.innerHTML = ''; //清空，防止元素叠加
+			
+				getFileList(pathDir, function(files){
+					//alert(files.length);
+					
+					var oLi = document.createElement('li');
+					oLi.innerHTML = '<img src="icon/ico_back.png">' 
+									+ '<span>返回</span>';
+									
+					oUl.appendChild(oLi);
+					
+					for(var i = 0; i < files.length; i++) {
+						var oLi = document.createElement('li');
+						oLi.innerHTML = '<img src="">' 
+									+ '<span>'+ files[i].name +'</span>'
+									+ '<input type="checkbox"/>';
+									
+						oUl.appendChild(oLi);
+						
+						oLi.children[2].onclick = function(ev) {
+							ev.cancelBubble = true;
+						};
+						
+						oLi.children[2].isDirectory = files[i].isDirectory;
+						
+						if(files[i].isDirectory) {
+							oLi.children[0].src='icon/ico_floder.png';
+						} else {
+							oLi.children[0].src='icon/ico_file.png';
+							
+							//点击文件
+							oLi.onclick = function() {
+								if(bClick) {
+									var oInput = this.getElementsByTagName('input')[0];
+									oInput.checked = !oInput.checked;
+								}
+							}
+						}
+						
+						
+						oLi.onmousedown = function() {
+							clearInterval(timer);
+							timer = setTimeout(function(){
+								oUl.className = 'show';
+								bClick = true;
+							},1000);
+						};
+						
+						oLi.onmouseup = function(){
+							clearTimeout(timer);
+						};
+					};
+				});
+			};
+			
+			reFreshList();
+			
+			//TAG001
+			document.onclick = function(){
+				oUl.className = '';
+				bClick = false;
+				
+				reFreshList();//防止存在之前的选中
+			};
+			
+			//删除
+			var oDelBtn = document.getElementById('del');
+			
+			oDelBtn.onclick = function(ev){
+				var aInput = oUl.getElementsByTagName('input');
+				
+				var deled = 0; //已经删除的数量
+				var total = 0; //要删除文件总数
+				
+				for(var i = 0; i < aInput.length; i++) {
+					if(aInput[i].checked) {
+						
+						total++;
+						
+						var fName = aInput[i].parentNode.getElementsByTagName('span')[0].innerHTML;
+						
+						if(aInput[i].isDirectory) {
+							
+						} else {
+							
+							delFile(pathDir + fName, function(){
+								debugger;
+								deled++;
+								if(deled == total) {
+									reFreshList();
+								}
+							});
+						}
+					};
+				};
+				stopPropagation(ev); //TAG001处在document绑定了点击事件，该事件会刷新列表。如果不阻止会出现重复加载文件的问题
+			};
+		},false);
+		
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div id="pathBox">
+			<h3>文件管理</h3>
+			<span></span>
+		</div>
+		<ul id="list">
+			
+		</ul>
+		
+		<div class="o-btn">
+			<input type="button" value="增加" id="add"/>
+			<input type="button" value="删除" id="del"/>
+		</div>
+	</div>
+</body>
+</html>

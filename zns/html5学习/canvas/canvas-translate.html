@@ -1,0 +1,35 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	body{ background:#000; }
+	#c1{ background:#fff;}
+	div{ color:#fff;}
+	</style>
+<script>
+window.onload=function(){
+	function d2a(deg) {
+		return Math.PI * deg / 180;
+	};
+
+	var oc = document.getElementById('c1');
+	var cxt = oc.getContext('2d');
+	
+	cxt.strokeRect(100,100,200,150);
+	
+	cxt.translate(100,100);
+	cxt.fillRect(100,100,200,150);
+	
+	cxt.fillStyle='rgba(255,0,0,0.5)';
+	cxt.fillRect(0,0,oc.width,oc.height);
+}
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="800" height="600"></canvas>
+<div id="sdiv"><div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+{
+	"shark1":	{"src": "img/shark1.png", "x": 0, "y": 0, "w": 509, "h": 270},
+	"shark2":	{"src": "img/shark2.png", "x": 0, "y": 0, "w": 516, "h": 273}
+}

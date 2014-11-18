@@ -1,0 +1,69 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=320,user-scalable=0,initial-scale=1">
+	<title>手机拖动1个div</title>
+	<style type="text/css">
+		div{
+			width:100px;
+			height:100px;
+			position:absolute;
+			top:0;
+		}
+			
+		#div1 {
+			background:#ff0000;
+			left:0;
+		}
+		
+		#div2 {
+			background:#0000ff;
+			right:0px;
+		}
+	</style>
+	<script type="text/javascript">
+		function drag(oDiv) {
+			oDiv.addEventListener('touchstart',function(ev){
+				
+				var disX = ev.targetTouches[0].pageX - oDiv.offsetLeft;
+				var disY = ev.targetTouches[0].pageY - oDiv.offsetTop;
+				
+				var id = ev.targetTouches[0].identifier;
+				
+				function fnMove(ev) {
+					if(ev.targetTouches[0].identifier == id) {
+						oDiv.style.left = ev.targetTouches[0].pageX - disX + 'px';
+						oDiv.style.top = ev.targetTouches[0].pageY - disY + 'px';
+					}
+				};
+				
+				function fnEnd(ev) {
+					if(ev.changedTouches[0].identifier == id) {
+						document.removeEventListener('touchmove', fnMove, false);
+						document.removeEventListener('touchend', fnEnd, false);
+					}
+				};
+				
+				document.addEventListener('touchmove',fnMove,false);
+				
+				ev.preventDefault(); //防止在手机上拖动时元素不跟随手指移动和元素叠加
+				
+			},false);
+		}
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			
+			var aDiv = document.querySelectorAll('div');
+			for(var i = 0; i < aDiv.length; i++) {
+				drag(aDiv[i]);	
+			}
+			
+		},false);
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+	<div id="div2"></div>
+</body>
+</html>

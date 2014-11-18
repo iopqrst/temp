@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>css 动画-04</title>
+<style type="text/css">
+	*{
+		margin:0px; 
+		padding:0px;
+	}
+	#div1 {
+		margin:100px auto;
+		width:520px;
+		height:359px; 
+		position:relative;
+		border:1px solid green;
+		overflow:hidden;
+		
+	}
+	
+	#div1:hover #layout{
+		bottom:0px;
+	}
+	
+	img{
+		height:359px; 
+		width:520px;
+	}
+	
+	#layout {
+		position:absolute;
+		left:0px;
+		bottom:-60px;
+		width:520px;
+		height:60px;
+		background:#ff0;
+		
+		-webkit-transition:.5s all ease;
+		-moz-transition:.5s all ease;
+		-o-transition:.5s all ease;
+		-ms-transition:.5s all ease;
+		transition:.5s all ease;
+	}
+
+</style>
+<script type="text/javascript">
+	
+</script>
+</head>
+
+<body>
+	
+	<div id="div1">
+		<img src="mao.jpg"/>
+		<div id="layout">这里是我要填写的内容！！</div>
+	</div>
+	
+</body>
+</html>

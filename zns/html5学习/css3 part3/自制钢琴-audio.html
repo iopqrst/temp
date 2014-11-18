@@ -1,0 +1,71 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin:0px;
+			padding:0px;
+			
+			list-style:none;
+		}
+		
+		ul {}
+		ul li {
+			height:150px;
+			line-height:150px;
+			
+			width:12.5%;
+			border:1px solid green;
+			
+			box-sizing: border-box;
+			
+			float:left;
+			text-align:center;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			
+		};
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			//alert('123456');
+			
+			var akeys = document.querySelectorAll('li');
+			
+			alert(akeys[0].innerHTML);
+			
+			for(var i = 0; i < akeys.length; i++) {
+				(function(i){
+					akeys[i].onmousedown = function(){
+						var oAudio = new Audio();
+						oAudio.src="ogg/" + akeys[i].innerHTML + ".ogg";
+						oAudio.play();
+						
+						akeys[i].style.background = '#ccc';
+					};
+					
+					akeys[i].onmouseup = function(){
+						akeys[i].style.background = '';
+					};
+				})(i)
+			}
+			
+		},false);
+	</script>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+	</ul>
+</body>
+</html>

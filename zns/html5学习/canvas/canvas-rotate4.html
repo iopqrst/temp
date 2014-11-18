@@ -1,0 +1,28 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	body{ background:#000; text-align:center;}
+	#c1{ background:#fff;}
+	</style>
+<script>
+window.onload=function(){
+	function d2a(deg) {
+		return Math.PI * deg / 180;
+	};
+
+	var oc = document.getElementById('c1');
+	var cxt = oc.getContext('2d');
+	
+	//cxt.rotate(d2a(10));
+	cxt.strokeRect(200, 200, 300, 200);
+}
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="800" height="600"></canvas>
+</body>
+</html>

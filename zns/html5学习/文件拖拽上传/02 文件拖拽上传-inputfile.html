@@ -1,0 +1,26 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		#div1 {height:300px; width:300px; border:1px dashed #000; position:absolute; left:50%; top:50%; margin-left:-150px; margin-top:-150px; display:none; }
+		#list{ width:300px; border:1px solid #000;}
+		#list li{ height:30px; line-height:30px; border-bottom:1px dashed #000;}
+	</style>
+	
+	<script type="text/javascript">
+		window.onload = function(){
+			var oFile = document.getElmentById('fill');
+			
+			oFill.onchange = function(){
+				alert(ev.srcElement.files[0].name);
+			};
+		};
+	</script>
+</head>
+<body>
+	<div id="div1">将文件拖放到此区域</div>
+	<ul id="list"></ul>
+</body>
+</html>

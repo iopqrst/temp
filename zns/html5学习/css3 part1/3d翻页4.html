@@ -1,0 +1,109 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	
+	<style type="text/css">
+		#box {
+			width:600px;
+			height:300px;
+			
+			background:red;
+			margin:100px auto;
+			position:relative;
+			-webkit-transform-style:preserve-3d;
+		}
+		
+		#box .page {
+			width:300px; 
+			height:300px; 
+			position:absolute; 
+			right:0; 
+			top:0; 
+			-webkit-transform:perspective(1200px) rotateY(0deg);
+			-webkit-transition:1s all ease;
+			-webkit-transform-style:preserve-3d;
+			-webkit-transform-origin: left center;
+			
+			z-index:2;
+		}
+		
+		#box .page div{
+			position:absolute;
+			top:0;
+			right:0;
+			width:100%;
+			height:100%;
+		}
+		
+		#box .page div.front {
+			background:red; 
+			z-index:2; 
+			-webkit-backface-visibility:hidden;
+		}
+		
+		#box .page div.back{ background:green;}
+		
+		#box .newPage {
+			width:300px;
+			height:300px;
+			background:green;
+			position:absolute;
+			top:0;
+			right:0;
+			z-index:1;
+		}
+		
+	</style>
+	
+	<script type="text/javascript">
+		window.onload = function () {
+			var arr = ['red','green','blue'];
+			
+			var oBox=document.getElementById('box');
+			var oPage = document.querySelector('#box .page');
+			var oFront = document.querySelector('#box .front');
+			var oBack = document.querySelector('#box .back');
+			var oNewPage = document.querySelector('#box .newPage');
+			
+			var now = 0;
+			oBox.onclick = function(){
+				
+				oPage.style.WebkitTransition='2s all ease';
+				oPage.style.WebkitTransform = 'perspective(1200px) rotateY(-180deg)';
+				
+				
+				
+				
+				setTimeout(function(){
+					oPage.style.WebkitTransition = 'none';
+					oPage.style.WebkitTransform = 'perspective(1200px) rotateY(0deg)';
+					
+					now++;
+					if(now == 3) now = 0;
+					
+					oBox.style.background=arr[now];
+					oFront.style.background = arr[now];
+					oBack.style.background = arr[(now+1)%3];
+					oNewPage.style.background = arr[(now+1)%3];
+					
+					
+					
+				},1000);
+				
+			};
+			
+		};
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div class="page">
+			<div class="front"><!-- front --></div>
+			<div class="back"><!-- back --></div>
+		</div>
+		<div class="newPage"><!-- 我在底下呢 --></div>
+	</div>
+</body>
+</html>

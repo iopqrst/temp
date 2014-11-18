@@ -1,0 +1,47 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>FileSystem</title>
+	
+	<script type="text/javascript">
+
+		document.addEventListener('DOMContentLoaded', function(){
+			webkitRequestFileSystem(PERSISTENT,2*1024,function(fs) {
+				fs.root.getFile('a.txt', {create:true}, function(fileEntry){
+					fileEntry.createWriter(function(writer){
+						
+						writer.onwriteend = function(){
+							alert('写入成功！！');
+						};
+						
+						//writer.write('aaaaaaa'); //直接写字符串系统会出现问题
+						
+						writer.write(new Blob(['abc']));
+						
+					},function(){
+						alert('创建失败!');
+					});
+				},function(e){
+					alert('文件打开失败' + e.message);
+					//requestQuota();
+				});
+			}, function(e){
+				
+			});
+		},false);
+		
+		
+		function requestQuota(){
+			window.webkitStorageInfo.requestQuota(PERSISTENT, 1024*1024, function(grantedBytes) {
+				window.requestFileSystem(PERSISTENT, grantedBytes, onInitFs, errorHandler);
+			}, function(e) {
+				console.log('Error', e);
+			});
+		};
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

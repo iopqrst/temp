@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body,
+        div,
+        canvas {
+            margin: 0;
+            padding
+        }
+        body {
+            background: #000;
+            text-align: center;
+        }
+        #c1 {
+            background: url(img/game_bg_2_hd.jpg);
+        }
+    </style>
+    <script src="js/ajax.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/scene.js"></script>
+    <script src="js/sprite.js"></script>
+    <script src="js/fish.js"></script>
+    <script src="js/bullet.js"></script>
+    <script src="js/cannon.js"></script>
+    <script src="js/turrent.js"></script>
+    <script src="js/button.js"></script>
+    <script src="js/coin.js"></script>
+
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var oC = document.getElementById('c1');
+            var cxt = oC.getContext('2d');
+
+            loadRes(['js/fish.json', 'js/bottom.json', 'js/bullet.json', 'js/cannon.json', 'js/coin.json'], succ);
+
+            function succ() {
+
+                var scene = new Scene('c1');
+
+                var aFish = []; //鱼数组
+                var aBullet = []; //炮弹数组
+
+                //加载炮台
+                var turrent = new Turrent(scene);
+                turrent.left = scene.width / 2;
+                turrent.top = scene.height - turrent.height / 2 + 1;
+
+                scene.add(turrent);
+
+                //加载大炮
+                var cannon = new Cannon(1);
+                cannon.left = scene.width / 2 + 50;
+                cannon.top = scene.height - cannon.height / 2 + 10;
+
+                scene.add(cannon);
+
+                scene.addEvent(null, {
+                    ev: 'move',
+                    fn: function (myEv) {
+                        cannon.rotate = getAng(myEv, {
+                            x: cannon.left,
+                            y: cannon.top
+                        });
+                    }
+                });
+
+                //创建炮弹
+                scene.addEvent(null, {
+                    ev: 'click',
+                    fn: function () {
+                        if (!cannon.isReady()) {
+                            return;
+                        }
+
+                        var total = turrent.getScore();
+
+                        var sum = 0;
+                        sum += cannon.getType();
+
+                        if (total < sum) {
+                            return; //剩余的金币不足
+                        }
+
+                        turrent.setScore(total - sum);
+
+                        cannon.startFrame();
+                        //创建炮弹
+                        var b = new Bullet(cannon.getType());
+
+                        b.left = cannon.left;
+                        b.top = cannon.top;
+
+                        b.moveRotate = b.rotate = cannon.rotate;
+
+                        scene.add(b);
+
+                        aBullet.push(b);
+                    }
+                });
+
+                // 按钮
+                var btnPlus = new Button(
+                    _g_res['btn_plus_up'],
+                    _g_res['btn_plus_down'],
+                    scene
+                );
+                scene.add(btnPlus);
+
+                btnPlus.left = cannon.left + 60;
+                btnPlus.top = cannon.top + 10;
+
+                btnPlus.onclick = function () {
+                    var t = cannon.getType() + 1;
+                    if (t == 8) t = 1;
+                    cannon.setType(t);
+                }
+
+                var btnMinus = new Button(
+                    _g_res['btn_minus_up'],
+                    _g_res['btn_minus_down'],
+                    scene
+                );
+                scene.add(btnMinus);
+                btnMinus.left = cannon.left - 60;
+                btnMinus.top = cannon.top + 10;
+
+                btnMinus.onclick = function () {
+                    var t = cannon.getType() - 1;
+                    if (t == 0) t = 7;
+                    cannon.setType(t);
+                };
+
+                //加载各种鱼
+                scene.onenterframe = function () {
+                    if (Math.random() < 0.05) {
+
+                        var fish = new Fish(rnd(1, 5));
+                        if (Math.random() < 0.5) {
+                            //从左边出来
+                            //从右边出来
+                            fish.left = -100;
+                            fish.top = rnd(100, scene.height - 100);
+
+                            fish.rotate = rnd(-30, 30);
+
+                            fish.moveRotate = fish.rotate + 90;
+                            scene.add(fish);
+
+                            aFish.push(fish);
+                        } else {
+                            //从右边出来
+                            fish.left = scene.width + 100;
+                            fish.top = rnd(100, scene.height - 100);
+
+                            fish.rotate = rnd(180 - 30, 180 + 30);
+
+                            fish.moveRotate = fish.rotate + 90;
+                            fish.scaleY = -1;
+                            scene.add(fish);
+
+                        }
+                        aFish.push(fish);
+
+                    }
+
+                    //走出场景的范围后，从场景中删除
+                    for (var i = 0; i < aFish.length; i++) {
+                        if (aFish[i].left < -200 || aFish[i].left > scene.width + 200 || aFish[i].top < -200 || aFish[i].top > scene.height + 200) {
+                            scene.remove(aFish[i]);
+                            aFish.splice(i, 1);
+                        }
+                    }
+
+                    for (var i = 0; i < aBullet.length; i++) {
+                        if (aBullet[i].left < -200 || aBullet[i].left > scene.width + 200 || aBullet[i].top < -200 || aBullet[i].top > scene.height + 200) {
+                            scene.remove(aBullet[i]);
+                            aBullet.splice(i, 1);
+                        }
+                    }
+
+                    //console.info(aFish.length, aBullet.length);
+
+                    //碰撞检测
+                    for (var i = 0; i < aFish.length; i++) {
+                        for (var j = 0; j < aBullet.length; j++) {
+                            if (aBullet[j].collTestCC(aFish[i])) {
+
+                                aFish[i].hp -= aBullet[j].attack;
+
+                                console.log(aFish[i].hp, '------------');
+
+                                scene.remove(aBullet[j]);
+                                aBullet.splice(j, 1);
+
+                                if (aFish[i].hp <= 0) {
+                                    console.info('hp ----0 这条鱼应该消失' + i);
+
+                                    //创建金币
+                                    var money = Math.pow(2, aFish[i].type);
+                                    var g = parseInt(money / 10); //金币数量
+                                    var s = money % 10; //银币数量
+
+                                    //在鱼消失附近出现金币
+                                    var left = aFish[i].left + rnd(1, 8);
+                                    var top = aFish[i].top + rnd(9, 16);
+
+                                    var timer = setInterval(function () {
+                                        if (!s && !g) {
+                                            clearInterval(timer);
+                                            return;
+                                        }
+
+                                        if (s) {
+                                            var c = new Coin(1);
+                                            s--;
+                                        } else {
+                                            var c = new Coin(2);
+                                            g--;
+                                        }
+
+                                        c.left = left;
+                                        c.top = top;
+
+                                        (function (c) {
+                                            c.onmoveend = function () {
+                                                scene.remove(c);
+
+                                                turrent.setScore(turrent.getScore() + (c.type == 1 ? 1 : 10));
+                                            };
+                                        })(c);
+
+
+
+                                        scene.add(c);
+                                    });
+
+                                    scene.remove(aFish[i]);
+                                    aFish.splice(i, 1);
+                                }
+                                continue;
+                            }
+                        }
+                    }
+                }
+
+
+            }
+        };
+    </script>
+</head>
+
+<body>
+
+    <canvas id="c1" height="600" width="800"></canvas>
+
+</body>
+
+</html>

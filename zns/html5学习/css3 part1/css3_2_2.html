@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>js学习笔记-04</title>
+<style type="text/css">
+	#div1 {
+		width:300px;
+		height:300px;
+		background:#f00;
+		margin:100px auto;
+	}
+	
+	
+</style>
+<script type="text/javascript">
+	window.onload = function (){
+		var oBtn = document.querySelector('input');
+		var oDiv = document.querySelector('#div1');
+		
+		
+		var i = 1;
+		oBtn.onclick = function(){
+			var v = i * 30;
+			
+			oDiv.style.WebkitTransform = 'rotate('+ v +'deg)';
+			oDiv.style.MozTransform = 'rotate('+ v +'deg)';
+			oDiv.style.msTransform = 'rotate('+ v +'deg)'; //只有微软不是按照标准，首字母为小写，其他都为大写
+			oDiv.style.OkiteTransform = 'rotate('+ v +'deg)';
+			oDiv.style.transform = 'rotate('+ v +'deg)';
+			
+			i++;
+		};
+	}
+</script>
+</head>
+
+<body>
+	<input type="button" value="旋转"/>
+	<div id="div1">3R45TY67U9IO</div>
+</body>
+</html>

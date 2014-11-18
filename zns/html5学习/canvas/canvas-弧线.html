@@ -1,0 +1,37 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	body{ background:#000; text-align:center;}
+	#c1{ background:#fff;}
+	</style>
+<script>
+window.onload=function(){
+	function d2a(degree) {
+		return Math.PI * degree / 180;
+	}
+
+	var oc = document.getElementById('c1');
+	var cxt = oc.getContext('2d');
+	
+	cxt.beginPath();
+	//x,y,半径，开始角度，结束角度，是否是逆时针
+	cxt.arc(200,200,100,d2a(0),d2a(90),true);
+	cxt.stroke();
+	
+	cxt.beginPath();
+	cxt.strokeStyle='#f00';
+	cxt.arc(200,200,50,d2a(0),d2a(90),false);
+
+	cxt.stroke();
+
+}
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="800" height="600"></canvas>
+</body>
+</html>

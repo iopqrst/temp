@@ -1,0 +1,48 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	
+	<style type="text/css">
+		
+		
+		div{
+			border:1px solid green;
+			height:300px;
+			width:300px;
+			background:#ccc;
+			margin:100px auto;
+			-webkit-transition:.43s all ease;
+		}
+		
+		#div1:hover {
+			-webkit-transform: scale(2,1) rotate(30deg);
+		}
+		
+		#div2:hover {
+			-webkit-transform: rotate(30deg)  scale(2,1);
+		}
+		
+		
+	</style>
+	
+	<script type="text/javascript">
+		window.onload = function () {
+			
+
+		};
+	</script>
+</head>
+<body>
+	实验说明：在CSS中是由后先前读的
+	<div id="div1">
+		style:-webkit-transform: scale(2,1) rotate(45deg);  先旋转然后在拉伸
+	</div>
+	<div id="div2">
+		style:-webkit-transform: rotate(45deg)  scale(2,1); 先拉伸后旋转
+	</div>
+	
+	
+</body>
+</html>

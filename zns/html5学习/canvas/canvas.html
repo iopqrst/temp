@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		body{  background:#000;}
+		#c1{ background:#fff;}
+	</style>
+</head>
+<body>
+
+	<canvas id="c1" width="800" height="600">
+		您的浏览器不支持canvas！
+	</canvas>
+	
+	<script type="text/javascript">
+		var oc = document.getElementById('c1');
+		
+		var cxt = oc.getContext('2d');
+		
+		//开始绘图
+		//cxt.beginPath();
+		
+		cxt.moveTo(59,180); //将描点移动到某一个坐标
+		cxt.lineTo(309,67);
+		cxt.lineTo(377,218);
+		cxt.lineTo(283,333);
+		cxt.lineTo(59,180);
+
+		cxt.stroke();
+	</script>
+</body>
+</html>

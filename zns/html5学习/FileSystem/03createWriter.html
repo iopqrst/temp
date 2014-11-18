@@ -1,0 +1,41 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>FileSystem</title>
+	
+	<script type="text/javascript">
+
+		document.addEventListener('DOMContentLoaded', function(){
+			webkitRequestFileSystem(PERSISTENT,2*1024,function(fs) {
+			
+				//{} , {create:true } ,exclusive:true/false (必须把create:true)  独占
+				fs.root.getFile('a.txt', {create:true}, function(fileEntry){
+					fileEntry.createWriter(function(writer){
+						alert('写文件对象创建成功! + ' + writer);
+					},function(){
+						alert('创建失败!');
+					});
+				},function(e){
+					alert('文件打开失败' + e.message);
+					//requestQuota();
+				});
+			}, function(e){
+				
+			});
+		},false);
+		
+		
+		function requestQuota(){
+			window.webkitStorageInfo.requestQuota(PERSISTENT, 1024*1024, function(grantedBytes) {
+				window.requestFileSystem(PERSISTENT, grantedBytes, onInitFs, errorHandler);
+			}, function(e) {
+				console.log('Error', e);
+			});
+		};
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

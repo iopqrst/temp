@@ -1,0 +1,55 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	body{ background:#000; text-align:center;}
+	#c1{ background:#fff;}
+	</style>
+<script>
+window.onload=function(){
+	var oC=document.getElementById('c1');
+	var gd=oC.getContext('2d');
+	
+	//1.
+	gd.beginPath();
+	gd.lineWidth=20;
+	
+	gd.lineJoin='bevel';
+	gd.moveTo(100,100);
+	gd.lineTo(100,300);
+	gd.lineTo(300,300);
+	gd.lineTo(300,100);
+	
+	gd.lineTo(200,200);
+	
+	gd.lineTo(100,100);
+	
+	gd.stroke();
+	
+	//2.
+	gd.beginPath();
+	gd.lineWidth=20;
+	
+	gd.lineJoin='bevel';
+	gd.moveTo(100,400);
+	gd.lineTo(100,600);
+	gd.lineTo(300,600);
+	gd.lineTo(300,400);
+	
+	gd.lineTo(200,500);
+	
+	gd.closePath();
+	
+	gd.stroke();
+
+
+}
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="800" height="1200"></canvas>
+</body>
+</html>

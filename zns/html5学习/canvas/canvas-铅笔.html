@@ -1,0 +1,51 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+	body{ background:#000; text-align:center;}
+	#c1{ background:#fff;}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			var oc = document.getElementById('c1');
+			var cxt= oc.getContext('2d');
+			
+			var lastX=0;
+			var lastY=0;
+			
+			oc.onmousedown=function(ev){
+				cxt.beginPath();
+				
+				var x = ev.clientX-oc.offsetLeft;
+				var y = ev.clientY-oc.offsetTop;
+				
+				lastX = x;
+				lastY = y;
+				
+				cxt.moveTo(ev.clientX, ev.clientY);
+				oc.onmousemove=function(ev){
+					var x=ev.clientX-oc.offsetLeft;
+					var y=ev.clientY-oc.offsetTop;
+					
+					cxt.beginPath();
+					cxt.moveTo(lastX,lastY);
+					cxt.lineTo(x,y);
+					lastX=x;
+					lastY=y;
+					cxt.stroke();
+				}
+				
+				oc.onmouseup=function(){
+					oc.onmousemove=null;
+					oc.onmouseup=null;
+				}	
+			}
+		};
+	</script>
+</head>
+<body>
+	<canvas id="c1" width="800" height="600"></canvas>
+</body>
+</html>

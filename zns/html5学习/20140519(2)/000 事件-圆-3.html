@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>cavas事件</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        #c1 {
+            background: rgba(230, 80, 33, 0.4)
+        }
+    </style>
+    <script>
+        function d2a(n) {
+            return n * Math.PI / 180;
+        }
+
+        window.onload = function () {
+            var oC = document.getElementById('c1');
+
+            var cxt = oC.getContext('2d');
+
+            cxt.beginPath();
+
+            oC.onmousemove = function (ev) {
+
+                var x = ev.clientX - oC.offsetLeft;
+                var y = ev.clientY - oC.offsetTop;
+
+                var a = x - 100;
+                var b = y - 200;
+
+                var c = Math.sqrt(a * a + b * b);
+                cxt.clearRect(0, 0, oC.width, oC.height);
+                cxt.arc(100, 200, 50, d2a(0), d2a(360), false);
+
+                if (c <= 50) {
+                    //在圆里
+                    cxt.fillStyle = '#ff0000';
+                    cxt.fill();
+                } else {
+                    cxt.fillStyle = '#00fff0';
+                    cxt.fill();
+                }
+
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <canvas id="c1" height="500" width="600"></canvas>
+</body>
+
+</html>

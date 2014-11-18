@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+	*{margin:0px; padding:0px;}
+	body{background:#00f;}
+	div{margin:0px auto; border:1px solid green; background:#ff0; height:1000px; width:900px;}
+</style>
+<script type="text/javascript">
+	window.onload = function (){
+		var oBtn = document.getElementsByTagName("input");
+	
+		oBtn[0].onclick = function () {
+
+			var parentElement  = window.parent.document.getElementById("div_content");
+			
+			parentElement.style.color = "#9f0";
+			parentElement.style.fontSize = "30px";
+
+		}
+
+	}
+</script>
+</head>
+
+<body>
+<div>
+	<h1 id="title">HELLO PAGE1</h1>
+	
+	<input type="button" value="change parent content"/>
+</div>
+</body>
+</html>

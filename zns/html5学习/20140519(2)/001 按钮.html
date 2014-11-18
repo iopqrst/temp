@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body,
+        div,
+        canvas {
+            margin: 0;
+            padding
+        }
+        body {
+            background: #000;
+            text-align: center;
+        }
+        #c1 {
+            background: url(img/game_bg_2_hd.jpg);
+        }
+    </style>
+    <script src="js/ajax.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/scene.js"></script>
+    <script src="js/sprite.js"></script>
+    <script src="js/fish.js"></script>
+    <script src="js/bullet.js"></script>
+    <script src="js/cannon.js"></script>
+    <script src="js/turrent.js"></script>
+
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var oC = document.getElementById('c1');
+            var cxt = oC.getContext('2d');
+
+            loadRes(['js/fish.json', 'js/bottom.json', 'js/bullet.json', 'js/cannon.json'], succ);
+
+            function succ() {
+
+                var scene = new Scene('c1');
+                var btn = new Sprite(_g_res['btn_minus_up']);
+
+                setInterval(function () {
+                    console.info(btn.data);
+                }, 300)
+
+                scene.add(btn);
+                btn.left = 100;
+                btn.top = 100;
+
+                var oC = document.getElementById('c1');
+
+                oC.onmousedown = function (ev) {
+                    var x = ev.clientX - oC.offsetLeft;
+                    var y = ev.clientY - oC.offsetTop;
+
+                    if (btn.pointInRect(x, y)) {
+                        //  btn.setData(_g_res['btn_minus_down']);
+                        btn.data = _g_res['btn_minus_down'];
+                    }
+                };
+
+                oC.onmouseup = function () {
+                    //btn.setData(_g_res['btn_minus_up']);
+                    btn.data = _g_res['btn_minus_up'];
+                }
+
+            }
+        };
+    </script>
+</head>
+
+<body>
+
+    <canvas id="c1" height="600" width="800"></canvas>
+
+</body>
+
+</html>

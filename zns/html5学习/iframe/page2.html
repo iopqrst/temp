@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<style>
+	*{margin:0px; padding:0px;}
+	div{margin:0px auto; background:#eee; height:500px; width:600px;}
+	#app_content {
+		width:200px; 
+		height:200px;
+		border:1px solid green;
+		background:#0FF;
+	}
+</style>
+
+<script type="text/javascript">
+window.onload = function () {
+	var oBtn = document.getElementsByTagName("input");
+	
+	oBtn[0].onclick = function () {
+
+		var parentElement  = window.parent.document.getElementById("div_content");
+		
+		parentElement.style.color = "#f00";
+		parentElement.style.fontSize = "50px";
+		
+	}
+	
+	oBtn[1].onclick = function() {
+		
+		//document.body.append("<div id=\"app_content\">append content</div>");
+		var oDiv = document.createElement('div');
+		oDiv.id = "app_content";
+		oDiv.innerHTML = "app_content";
+		document.getElementsByTagName("body")[0].appendChild(oDiv);
+		
+		resize();
+	}
+	
+	function resize() {
+		var parentDocument = window.parent.document;
+		var oIframe = parentDocument.getElementsByTagName("iframe")[0];
+	
+		setTimeout(function(){
+			var oIframeWindow = oIframe.contentWindow;
+			var contentHeight = oIframeWindow.document.body.offsetHeight;
+			var contentWidth = oIframeWindow.document.body.offsetWidth;
+
+			oIframe.height = contentHeight;	
+			oIframe.width = contentWidth;
+		},50);
+	}
+}
+</script>
+</head>
+
+<body>
+<div>
+	<h1 id="title">HELLO PAGE2</h1>
+	
+	<input type="button" value="change parent content"/>
+	<input type="button" value="append content"/>
+</div>
+</body>
+</html>

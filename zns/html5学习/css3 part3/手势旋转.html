@@ -1,0 +1,62 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=320,user-scalable=0,initial-scale=1">
+	<title>手机拖动1个div</title>
+	<style type="text/css">
+		#div1 {
+			height:200px;
+			width:200px;
+			background:#ccc;
+			position:absolute;
+			left:50%;
+			top:50%;
+			margin-left:-100px;
+			margin-top:-100px;
+		}
+	</style>
+	<script type="text/javascript">
+		//弧度转角度
+		function arc2Deg(n) {
+			return n * (180/Math.PI);
+		};
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			
+			var oDiv = document.querySelector('#div1');
+			
+			
+			var divRotate = 0;
+			function getRotate(ev) {
+				var x1 = ev.targetTouches[0].pageX;
+				var y1 = ev.targetTouches[0].pageY;
+				
+				var x2 = ev.targetTouches[1].pageX;
+				var y2 = ev.targetTouches[1].pageY;
+				
+				var disX = x2 - x1;
+				var dixY = y1 - y2;
+				
+				oDiv.innerHTML = 'disX=' + disX + ', disY='+disY;
+				
+				return arc2Deg(Math.atan2(disY,disX));
+			};
+			
+			if(ev.targetTouches.length == 2) {
+				var oldRotate = getRotate(ev);
+			}
+			
+			oDiv.addEventListener('touchmove',function(ev) {
+				if(ev.targetTouches.length == 2) {
+					div
+				}
+			});
+			
+		},false);
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>FileSystem</title>
+	<style type="text/css">
+		body ,div{ margin:0px; font-size:12px;}
+		input {padding:0px;}
+		textarea{resize:none; height:200px; width: 300px;}
+		html,body{
+			height:100%;
+		}
+		#box {
+			border:1px solid green;
+			width:600px;
+			height:100%;
+			position:absolute;
+			margin-left:-300px;
+			left:50%;
+		}
+		
+		.left {
+			background: rgba(200,100,50,0.5);
+			width:250px;
+			height:100%;
+			float:left;
+		}
+		
+		.right {
+			background:rgba(50,100,150,0.5);
+			width:350px;
+			height:100%;
+			float:right;
+		}
+		
+		#t2 {
+			resize:none ;//或者使用max-height都可以
+		}
+		
+		#tpl_ui{ display:none;}
+	</style>
+	<script type="text/javascript" src="file-util.js"></script>
+	<script type="text/javascript">
+
+		function error(e){
+			alert('错误:'+e.message);
+		};
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			
+			var oT = document.getElementById('t1'); //文件名输入框
+			var oT2 = document.getElementById('t2'); //文件内容输入框
+			
+			var oBtn = document.getElementById('btn1');
+			var tplObj = document.getElementById('tpl_ui');
+			var oDl = document.getElementById('dl1');
+			
+			tplObj.parentNode.removeChild(tplObj);
+			
+			var dd = myTpl(tplObj, {
+				'fileName' : 'abc.txt',
+				'img' : 1
+			});
+			
+			oDl.appendChild(dd);
+			
+		},false);
+
+		
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div class="left">
+			<dl id="dl1">
+				<dt>文件列表</dt>
+				<dd id="tpl_ui">
+					<img src="icon/{$img}.png" alt="" />
+					<a href="javascript:;">{$fileName}</a>
+				</dd>
+			</dl>
+		</div>
+		<div class="right">
+			<label for="t1">文件名：</label>
+			<input type="text" id="t1" />
+			<input type="button" value="保存" id="btn1"/><br/>
+			
+			<textarea id="t2"></textarea>
+		</div>
+	</div>
+</body>
+</html>

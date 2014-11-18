@@ -1,0 +1,46 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	body{ background:#000; text-align:center;}
+	#c1{ background:#fff;}
+	</style>
+<script>
+window.onload=function(){
+	function d2a(deg) {
+		return Math.PI * deg / 180;
+	};
+
+	var oc = document.getElementById('c1');
+	var cxt = oc.getContext('2d');
+	
+	cxt.beginPath();
+	cxt.strokeRect(200,100,300,200);
+	
+	
+	cxt.beginPath();
+	cxt.fillStyle='rgba(87,182,201,0.4)';
+	cxt.rotate(d2a(15));
+	cxt.fillRect(200,100,300,200);
+	
+	cxt.beginPath();
+	cxt.fillStyle='rgba(87,128,188,0.4)';
+	cxt.rotate(d2a(30));
+	cxt.fillRect(200,100,300,200);
+	
+	//旋转以后的画布
+	cxt.fillStyle='rgba(255,0,0,0.5)';
+	cxt.fillRect(0,0,oc.width,oc.height);
+	
+	//重新找一点可以发现整个画布都已经移动，位置关系也已经移动
+	cxt.strokeRect(300,50, 200, 200);
+}
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="800" height="600"></canvas>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+#div1 {
+	height:400px;
+	width:400px;	
+	margin:0px auto;
+	background:#ccc;
+	border:1px solid #000;
+	position:relative;	
+	opacity:0px;
+	display:none;
+	
+	-webkit-transform:scale(5);
+	-webkit-transition: 0.5s all ease;
+	
+}
+
+#div2 {
+	position:absolute;
+	right:0px; 
+	top:0px;
+	
+}
+
+</style>
+<script>
+window.onload = function() {
+	var oDiv1 = document.getElementById("div1");
+	var obtn = document.getElementById("btn");
+	var oclose = document.querySelector("#div2");
+	
+	obtn.onclick = function() {
+		oDiv1.style.display =  'block';
+		
+		setTimeout(function(){
+			oDiv1.style.opacity = 1;
+			oDiv1.style.WebkitTransform='scale(1)';
+		},0);
+	};
+	
+	oclose.onclick = function() {
+		oDiv1.style.WebkitTransform='scale(5)';
+		oDiv1.style.opacity = 0;
+		
+		setTimeout(function(){	
+			oDiv1.style.display =  'none';
+		},500);
+	};
+	
+};
+</script>
+</head>
+
+<body>
+	<input type="button" id="btn" value="btn"/>
+	<div id="div1">
+		<div id="div2">X</div>
+	</div>
+</body>
+</html>

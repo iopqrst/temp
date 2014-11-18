@@ -1,0 +1,32 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>FileSystem</title>
+	
+	<script type="text/javascript">
+
+		function error(e){
+			alert('错误:'+e.message);
+		}
+		document.addEventListener('DOMContentLoaded',function(){
+			webkitRequestFileSystem(PERSISTENT, 2*1024*1024, function(fs){
+				var reader=fs.root.createReader();
+			
+				reader.readEntries(function(arr){
+					for(var i = 0 ; i < arr.length ; i++) {
+						alert(arr[i].name);
+						console.info(arr[i]); //查看对象属性
+					};
+				},error);
+				
+			},error);
+		},false);
+
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

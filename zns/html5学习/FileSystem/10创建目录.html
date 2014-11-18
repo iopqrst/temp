@@ -1,0 +1,31 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>FileSystem</title>
+	
+	<script type="text/javascript">
+
+		function error(e){
+			alert('错误:'+e.message);
+		};
+		
+		document.addEventListener('DOMContentLoaded',function(){
+			
+			window.webkitRequestFileSystem(PERSISTENT, 1024 * 1024, function(fs) {
+				
+				fs.root.getDirectory('dir1', {create:true}, function(){
+					alert('dir create success!!');
+				});
+				
+			}, error);
+			
+		},false);
+
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

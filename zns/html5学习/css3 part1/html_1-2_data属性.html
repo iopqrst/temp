@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>js学习笔记-04</title>
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+	window.onload = function (){
+		var oBtn = document.querySelector('input');
+		
+		alert(oBtn.getAttribute('abc'));
+		
+		oBtn.setAttribute("myName","houzhiqing");
+		
+		oBtn.age  = 25;
+		
+		oBtn.onclick = function(){
+			alert(this.age);
+		};
+	}
+</script>
+</head>
+
+<body>
+	<input type="button" value="aaa" abc="abc"/>
+</body>
+</html>

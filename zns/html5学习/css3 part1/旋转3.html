@@ -1,0 +1,50 @@
+﻿<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	
+	<style type="text/css">
+		
+		#div1 {
+			border:1px solid green;
+			width:300px;
+			height:300px;
+			
+			position:absolute;
+			left:50%;
+			margin-left:-150px;
+			top:50%;
+			margin-top:-150px;
+			
+			background:#ff0000;
+			
+			-webkit-transition:1s all ease;
+			
+			-webkit-transform:perspective(800px) rotateY(0deg);
+			
+		}
+	
+		#div1:hover {
+			-webkit-transform:perspective(800px) rotateY(45deg);
+			/** perspective 视深 */
+		}
+		
+		
+	</style>
+	
+	<script type="text/javascript">
+		window.onload = function () {
+			
+
+		};
+	</script>
+</head>
+<body>
+	
+	<div id="div1">
+		没有给div初始值，如果给div指定了初始值，则不在出现抖动的现象。
+	</div>
+	
+</body>
+</html>
