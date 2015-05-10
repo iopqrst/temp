@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+	<head>
+		<title>摇啊摇</title>
+		<style>
+			.activity-img{
+				position:absolute;
+				top:45px;
+				right:200px;
+				z-index:100;
+				width:156px;
+				height:220px;
+				background:url(./yao-a-yao.png) 0 0 no-repeat
+			}
+			.activity-img a{display:block;width:156px;height:220px;}
+			@-moz-keyframes sign-sway {
+			    0% {
+			        -moz-transform: translateX(-15%) rotate(3deg);
+			        transform: translateX(-15%) rotate(3deg);
+			    }
+			    50% {
+			        -moz-transform: translateX(15%) rotate(-3deg);
+			        transform: translateX(15%) rotate(-3deg);
+			    }
+			    100% {
+			        -moz-transform: translateX(-15%) rotate(3deg);
+			        transform: translateX(-15%) rotate(3deg);
+			    }
+			}
+			@-webkit-keyframes sign-sway {
+			    0% {
+			        -webkit-transform: translateX(-15%) rotate(20deg);
+			        transform: translateX(-15%) rotate(20deg);
+			    }
+			    50% {
+			        -webkit-transform: translateX(15%) rotate(-20deg);
+			        transform: translateX(15%) rotate(-20deg);
+			    }
+			    100% {
+			        -webkit-transform: translateX(-15%) rotate(20deg);
+			        transform: translateX(-15%) rotate(20deg);
+			    }
+			}
+			@keyframes sign-sway {
+			    0% {
+			        -moz-transform: translateX(-15%) rotate(3deg);
+			        -ms-transform: translateX(-15%) rotate(3deg);
+			        -webkit-transform: translateX(-15%) rotate(3deg);
+			        transform: translateX(-15%) rotate(3deg);
+			    }
+			    50% {
+			        -moz-transform: translateX(15%) rotate(-3deg);
+			        -ms-transform: translateX(15%) rotate(-3deg);
+			        -webkit-transform: translateX(15%) rotate(-3deg);
+			        transform: translateX(15%) rotate(-3deg);
+			    }
+			    100% {
+			        -moz-transform: translateX(-15%) rotate(3deg);
+			        -ms-transform: translateX(-15%) rotate(3deg);
+			        -webkit-transform: translateX(-15%) rotate(3deg);
+			        transform: translateX(-15%) rotate(3deg);
+			    }
+			}
+			.activity-img {
+			    -moz-animation: sign-sway 5s infinite;
+			    -webkit-animation: sign-sway 5s infinite;
+			    animation: sign-sway 5s infinite;
+			    -moz-animation-timing-function: ease;
+			    -webkit-animation-timing-function: ease;
+			    animation-timing-function: ease;
+				-webkit-transform-origin:center 68px;
+				transform-origin:center 68px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="activity-img" id="actimg">
+			<a href="http://www.henmimang.com" target="_blank"></a>
+		</div>
+	</body>
+</html>
