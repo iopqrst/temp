@@ -8,7 +8,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.apache.log4j.Logger;
 
 /**
- * 血糖高管 sign utils
+ * **** sign utils
  */
 public class XtggSignUtils {
 
@@ -17,7 +17,7 @@ public class XtggSignUtils {
 	private static final String XTGG_MIXED_KEY = "abcde.....";
 
 	/**
-	 * 获取血糖高管签名
+	 * 获取****签名
 	 * 
 	 * @param paramMap
 	 *            要计算的map
@@ -28,7 +28,7 @@ public class XtggSignUtils {
 	}
 
 	/**
-	 * 获取血糖高管签名
+	 * 获取****签名
 	 * 
 	 * @param paramMap
 	 *            要计算的map
@@ -39,7 +39,7 @@ public class XtggSignUtils {
 	}
 
 	/**
-	 * 获取血糖高管签名
+	 * 获取****签名
 	 * 
 	 * @param paramMap
 	 *            要计算的map
