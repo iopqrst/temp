@@ -7,7 +7,7 @@ public boolean validateSign(HttpServletRequest request) {
 	String appKey = request.getParameter("appKey");
 	String paramSign = request.getParameter("sign");
 
-	String secret = "db16adf193f2448ba0ec0260e0c968f3"; // 根据appKey获取secret
+	String secret = "asfdasjfasdfasdfj;asjfqpwuerpqwurpqweirq"; // 根据appKey获取secret
 
 	Enumeration tmp = request.getParameterNames();
 

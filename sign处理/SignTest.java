@@ -1,20 +1,20 @@
-package com.bskcare.ch.util.jpush;
+package com.bk.ch.util.jpush;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.bskcare.ch.util.CrmResponse;
-import com.bskcare.ch.util.HttpClientUtils;
+import com.bk.ch.util.CrmResponse;
+import com.bk.ch.util.HttpClientUtils;
 
 public class SignTest {
 
 	public static void main(String[] args) throws Exception {
 
-		String apiUrl = "http://localhost:8080/ofacade/sms_sendSMS.do";
+		String apiUrl = "http://localhost:8080/xxxxxx/xxxxx.do";
 
-		String appKey = "5589931241";
-		String secret = "db16adf193f2448ba0ec0260e0c968f3";
+		String appKey = "1234asdf";
+		String secret = "jfasfjaksfdjasfdas";
 		// 请替换为自己的 App Key 和 App secret
 
 		Map<String, String> paramMap = new HashMap<String, String>();
