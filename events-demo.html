@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			(function(global) {
+				var seajs = global.seajs = {}
+				
+				var data = global.seajs.data = {};
+				
+				var events = data.events = {
+					"name": "just a demo"
+				};
+				
+				
+				alert('events.name = ' + events.name);
+				alert('data.events.name = ' + data.events.name);
+				alert('seajs.data.events.name = ' + seajs.data.events.name);
+			})(this);
+		</script>
+	</head>
+
+	<body>
+	</body>
+
+</html>
