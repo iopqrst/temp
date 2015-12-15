@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+
+	<body>
+
+		<div id="divParent" style="padding: 8px; background-color: #aaa; position: relative;">
+			<div id="divDisplay" style="background-color: #0f0; margin: 30px; padding: 10px;
+            height: 200px; width: 200px; border: solid 3px #f00;">
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			var printInfo = function() {
+				var div = document.getElementById('divDisplay');
+				div.innerHTML = '';
+				var clientHeight = div.clientHeight;
+				var clientWidth = div.clientWidth;
+				div.innerHTML += 'clientHeight: ' + clientHeight + '<br/>';
+				div.innerHTML += 'clientWidth: ' + clientWidth + '<br/>';
+				var clientLeft = div.clientLeft;
+				var clientTop = div.clientTop;
+				div.innerHTML += 'clientLeft: ' + clientLeft + '<br/>';
+				div.innerHTML += 'clientTop: ' + clientTop + '<br/>';
+				var offsetHeight = div.offsetHeight;
+				var offsetWidth = div.offsetWidth;
+				div.innerHTML += 'offsetHeight: ' + offsetHeight + '<br/>';
+				div.innerHTML += 'offsetWidth: ' + offsetWidth + '<br/>';
+				var offsetLeft = div.offsetLeft;
+				var offsetTop = div.offsetTop;
+				div.innerHTML += 'offsetLeft: ' + offsetLeft + '<br/>';
+				div.innerHTML += 'offsetTop: ' + offsetTop + '<br/>';
+				var offsetParent = div.offsetParent;
+				div.innerHTML += 'offsetParent: ' + offsetParent.id + '<br/>';
+			};
+			
+			window.onresize = function() {
+				printInfo();
+			}
+			
+			printInfo();
+		</script>
+	</body>
+
+</html>
