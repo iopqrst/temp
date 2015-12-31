@@ -1,0 +1,339 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<style>
+			html,
+			body {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				height: 100%;
+			}
+			
+			.container {
+				margin: 0;
+				padding: 0;
+				width: 100%;
+				height: 100%;
+				background: url('images/1.jpg');
+				overflow: hidden;
+			}
+			
+			#snow_ctnr {
+				height: 100%;
+				width: 100%;
+				top: 0;
+				left: 0;
+				position: absolute;
+				overflow: hidden;
+				opacity: 0;
+				visibility: hidden
+			}
+			
+			.snow_dom_slice {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 600px
+			}
+			
+			.snow_fall {
+				-webkit-transform-origin: 0% 0%;
+				-webkit-animation-timing-function: linear;
+				-webkit-animation-iteration-count: infinite;
+				transform-origin: 0% 0%;
+				animation-timing-function: linear;
+				animation-iteration-count: infinite
+			}
+			
+			.snow_01 {
+				-webkit-animation-delay: 0s;
+				animation-delay: 0s;
+				-webkit-animation-duration: 50s;
+				animation-duration: 50s;
+				height: 100%;
+				-webkit-animation-name: snow_falling_fore;
+				animation-name: snow_falling_fore;
+				top: -100%
+			}
+			
+			.snow_02 {
+				-webkit-animation-delay: 25s;
+				animation-delay: 25s;
+				-webkit-animation-duration: 50s;
+				animation-duration: 50s;
+				-webkit-animation-name: snow_falling_fore;
+				animation-name: snow_falling_fore;
+				top: -100%;
+				height: 100%
+			}
+			
+			.snow_03 {
+				-webkit-animation-delay: 0s;
+				-webkit-animation-duration: 70s;
+				animation-delay: 0s;
+				animation-duration: 70s;
+				opacity: .5;
+				-webkit-animation-name: snow_falling_mid;
+				animation-name: snow_falling_mid;
+				top: -100%;
+				height: 100%
+			}
+			
+			.snow_04 {
+				-webkit-animation-delay: 35s;
+				-webkit-animation-duration: 70s;
+				animation-delay: 35s;
+				animation-duration: 70s;
+				opacity: .5;
+				-webkit-animation-name: snow_falling_mid;
+				animation-name: snow_falling_mid;
+				top: -100%;
+				height: 100%
+			}
+			
+			.snow_drifter {
+				width: 100%;
+				height: 100%;
+				background-repeat: repeat
+			}
+			
+			.snow_drifter {
+				background-image: url(images/ed86aac6.png)
+			}
+			
+			.drift_01 {
+				background-position: 10% 20%
+			}
+			
+			.drift_02 {
+				background-position: 40% 60%
+			}
+			
+			.drift_03 {
+				background-position: 90% 10%
+			}
+			
+			.drift_04 {
+				background-position: 50% 15%
+			}
+			
+			@-webkit-keyframes snow_falling_fore {
+				0% {
+					top: -100%;
+					opacity: 0
+				}
+				1% {
+					top: -100%;
+					opacity: 1
+				}
+				99.8% {
+					top: 100%;
+					opacity: 1
+				}
+				99.9% {
+					opacity: 0
+				}
+				100% {
+					top: -100%;
+					opacity: 0
+				}
+			}
+			
+			@keyframes snow_falling_fore {
+				0% {
+					top: -100%;
+					opacity: 0
+				}
+				1% {
+					top: -100%;
+					opacity: 1
+				}
+				99.8% {
+					top: 100%;
+					opacity: 1
+				}
+				99.9% {
+					opacity: 0
+				}
+				100% {
+					top: -100%;
+					opacity: 0
+				}
+			}
+			
+			@-webkit-keyframes snow_falling_mid {
+				0% {
+					top: -100%;
+					opacity: 0
+				}
+				1% {
+					top: -100%;
+					opacity: 1
+				}
+				99.8% {
+					top: 100%;
+					opacity: 1
+				}
+				99.9% {
+					opacity: 0
+				}
+				100% {
+					top: -100%;
+					opacity: 0
+				}
+			}
+			
+			@keyframes snow_falling_mid {
+				0% {
+					top: -100%;
+					opacity: 0
+				}
+				1% {
+					top: -100%;
+					opacity: 1
+				}
+				99.8% {
+					top: 100%;
+					opacity: 1
+				}
+				99.9% {
+					opacity: 0
+				}
+				100% {
+					top: -100%;
+					opacity: 0
+				}
+			}
+			
+			#lights_ctnr {
+				height: 100%;
+				width: 100%;
+				top: 0;
+				left: 0;
+				position: absolute;
+				overflow: hidden;
+				opacity: 0
+			}
+			
+			.lights_sprite {
+				position: absolute;
+				height: 133px;
+				background-image: url(images/c873957a.png)
+			}
+			
+			.frost_sprite {
+				position: absolute;
+				height: 133px;
+				background-image: url(images/42b3c682.png)
+			}
+			
+			.frame_top {
+				opacity: 0;
+				-ms-transform: rotate(180deg);
+				-webkit-transform: rotate(180deg);
+				transform: rotate(180deg)
+			}
+			
+			.frame_bottom {
+				opacity: 0;
+				bottom: 0;
+				left: 0
+			}
+			
+			.frame_left {
+				top: -133px;
+				left: 0;
+				-ms-transform: rotate(90deg);
+				-webkit-transform: rotate(90deg);
+				transform: rotate(90deg);
+				-ms-transform-origin: 0 133px;
+				-webkit-transform-origin: 0 133px;
+				transform-origin: 0 133px
+			}
+			
+			.frame_right {
+				top: 100%;
+				left: calc(100% - 133px);
+				-ms-transform: rotate(-90deg);
+				-webkit-transform: rotate(-90deg);
+				transform: rotate(-90deg);
+				-ms-transform-origin: 0 0;
+				-webkit-transform-origin: 0 0;
+				transform-origin: 0 0
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			
+			<div id="snow_ctnr" class="fader" data-bm="64" style="visibility: visible; opacity: 1;">
+				<div class="snow_dom_slice snow_fall snow_01">
+					<div class="snow_drifter drift_01"></div>
+				</div>
+				<div class="snow_dom_slice snow_fall snow_02">
+					<div class="snow_drifter drift_02"></div>
+				</div>
+
+				<div class="snow_dom_slice snow_fall snow_03">
+					<div class="snow_drifter drift_03"></div>
+				</div>
+				<div class="snow_dom_slice snow_fall snow_04">
+					<div class="snow_drifter drift_04"></div>
+				</div>
+			</div>
+			
+			<div class="lights_sprite frame_top fader" style="width: 1920px; opacity: 1;"></div>
+			
+			<div class="frost_sprite frame_top fader" style="width: 1920px; opacity: 1;"></div>
+
+			<div id="lights_ctnr" class="fader" style="opacity: 1;">
+				<div class="lights_sprite frame_left "></div>
+				<div class="lights_sprite frame_right "></div>
+			</div>
+
+			<div id="frost_ctnr" class="fader" style="opacity: 1;">
+				<div class="frost_sprite frame_left"></div>
+				<div class="frost_sprite frame_right "></div>
+			</div>
+			
+			<div class="lights_sprite frame_bottom fader" style="width: 1920px; opacity: 1;"></div>
+			<div class="frost_sprite frame_bottom fader" style="width: 1920px; opacity: 1;"></div>
+		</div>
+		
+		<script type="text/javascript">
+			function calPosition() {
+				var aFrameLeft = document.querySelectorAll('.frame_left');
+				var aFrameRight = document.querySelectorAll('.frame_right');
+				var aFrameTop = document.querySelectorAll('.frame_top');
+				var aFrameBottom = document.querySelectorAll('.frame_bottom');
+				
+				var clientWidth = document.documentElement.clientWidth;
+				var clientHeight = document.documentElement.clientHeight;
+				
+				for(var i = 0, len = aFrameLeft.length; i < len ; i++) {
+					aFrameLeft[i].style.width = clientHeight + 'px';
+				}
+				
+				for(var i = 0, len = aFrameRight.length; i < len ; i++) {
+					aFrameRight[i].style.width = clientHeight + 'px';
+				}
+				
+				for(var i = 0, len = aFrameTop.length; i < len ; i++) {
+					aFrameTop[i].style.width = clientWidth + 'px';
+				}
+				
+				for(var i = 0, len = aFrameBottom.length; i < len ; i++) {
+					aFrameBottom[i].style.width = clientWidth + 'px';
+				}
+			}
+			
+			window.onresize = calPosition;
+		</script>
+	</body>
+
+</html>
