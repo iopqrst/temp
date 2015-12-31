@@ -265,6 +265,20 @@
 				-webkit-transform-origin: 0 0;
 				transform-origin: 0 0
 			}
+			
+			#holGreeting {
+				position: absolute;
+				font-family: 'Rockwell','Plantagenet Cherokee','Garamond','Times New Roman',serif;
+				top: 34%;
+				left: calc(8% + 153px);
+				right: 8%;
+				display: none;
+				color: #f0ffff;
+				font-size: 60px;
+				font-weight: 300;
+				text-shadow: 3px 3px 6px rgba(0,0,0,.5);
+				line-height: 100%;				
+			}
 		</style>
 	</head>
 
@@ -287,9 +301,9 @@
 				</div>
 			</div>
 			
-			<div class="lights_sprite frame_top fader" style="width: 1920px; opacity: 1;"></div>
+			<div class="lights_sprite frame_top fader" style="opacity:1"></div>
 			
-			<div class="frost_sprite frame_top fader" style="width: 1920px; opacity: 1;"></div>
+			<div class="frost_sprite frame_top fader" style="opacity:1"></div>
 
 			<div id="lights_ctnr" class="fader" style="opacity: 1;">
 				<div class="lights_sprite frame_left "></div>
@@ -301,8 +315,10 @@
 				<div class="frost_sprite frame_right "></div>
 			</div>
 			
-			<div class="lights_sprite frame_bottom fader" style="width: 1920px; opacity: 1;"></div>
-			<div class="frost_sprite frame_bottom fader" style="width: 1920px; opacity: 1;"></div>
+			<div class="lights_sprite frame_bottom fader" style=""></div>
+			<div class="frost_sprite frame_bottom fader" style=""></div>
+			
+			<div id="holGreeting" style="display: block;">Happy New Year!</div>
 		</div>
 		
 		<script type="text/javascript">
@@ -331,7 +347,7 @@
 					aFrameBottom[i].style.width = clientWidth + 'px';
 				}
 			}
-			
+			calPosition();
 			window.onresize = calPosition;
 		</script>
 	</body>
