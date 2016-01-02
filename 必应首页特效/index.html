@@ -283,6 +283,7 @@
 	</head>
 
 	<body>
+		
 		<div class="container">
 			
 			<div id="snow_ctnr" class="fader" data-bm="64" style="visibility: visible; opacity: 1;">
@@ -315,13 +316,19 @@
 				<div class="frost_sprite frame_right "></div>
 			</div>
 			
-			<div class="lights_sprite frame_bottom fader" style=""></div>
-			<div class="frost_sprite frame_bottom fader" style=""></div>
+			<div class="lights_sprite frame_bottom fader" style="opacity: 1;"></div>
+			<div class="frost_sprite frame_bottom fader" style="opacity: 1;"></div>
 			
 			<div id="holGreeting" style="display: block;">Happy New Year!</div>
 		</div>
 		
 		<script type="text/javascript">
+		
+			function changeContainerBg() {
+				var oContainer =document.querySelector(".container");
+				oContainer.style.background = 'url(images/' + Math.floor(Math.random() * 6 + 1) + '.jpg)';
+			}
+		
 			function calPosition() {
 				var aFrameLeft = document.querySelectorAll('.frame_left');
 				var aFrameRight = document.querySelectorAll('.frame_right');
@@ -347,6 +354,8 @@
 					aFrameBottom[i].style.width = clientWidth + 'px';
 				}
 			}
+			
+			changeContainerBg();
 			calPosition();
 			window.onresize = calPosition;
 		</script>
