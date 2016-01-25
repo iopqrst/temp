@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="three.js"></script>
+<script>
+function a2d(n)
+{
+	return n*180/Math.PI;
+}
+
+function d2a(n)
+{
+	return n*Math.PI/180;
+}
+
+window.onload=function ()
+{
+	var W=800;
+	var H=600;
+	
+	//1.场景
+	var scene=new THREE.Scene();
+	
+	//2.灯光
+	//DirectionalLight(颜色, 强度);
+	var light1=new THREE.DirectionalLight(0xff0000, 1);
+	
+	light1.position.set(300,100,200);
+	light1.lookAt(new THREE.Vector3(0,0,0));
+	
+	scene.add(light1);
+	
+	
+	
+	var light2=new THREE.DirectionalLight(0x00ff00, 1);
+	
+	light2.position.set(-300,100,200);
+	light2.lookAt(new THREE.Vector3(0,0,0));
+	
+	scene.add(light2);
+	
+	//3.摄像机
+	//PerspectiveCamera(取景角度, 宽高比
+	var camera=new THREE.PerspectiveCamera(45, W/H, 0.1, 10000);
+	
+	camera.position.set(300,300,500);
+	camera.lookAt(new THREE.Vector3(0,0,0));
+	
+	scene.add(camera);
+	
+	//4.物体
+	var 形状=new THREE.CubeGeometry(200,200,200,1,1,1);
+	var 材质=new THREE.MeshLambertMaterial({color: 0xffffff});
+	var 物体=new THREE.Mesh(形状, 材质);
+	scene.add(物体);
+	
+	//5.渲染器
+	var render=new THREE.WebGLRenderer();
+	render.setSize(W, H);
+	
+	
+	//最重要
+	document.body.appendChild(render.domElement);
+	
+	render.render(scene, camera);
+	
+	setInterval(function (){
+		//物体.position.z++;
+		物体.rotation.y+=d2a(1);
+		render.render(scene, camera);
+	}, 30);
+};
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

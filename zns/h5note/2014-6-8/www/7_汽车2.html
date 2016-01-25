@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="three.js"></script>
+<script>
+function a2d(n)
+{
+	return n*180/Math.PI;
+}
+
+function d2a(n)
+{
+	return n*Math.PI/180;
+}
+
+window.onload=function ()
+{
+	var W=800;
+	var H=600;
+	
+	//1.场景
+	var scene=new THREE.Scene();
+	
+	//2.灯光
+	//DirectionalLight(颜色, 强度);
+	var light=new THREE.DirectionalLight(0xffffff, 1);
+	
+	light.position.set(200,600,200);
+	light.lookAt(new THREE.Vector3(0,0,0));
+	light.castShadow=true;
+	
+	scene.add(light);
+	
+	//3.摄像机
+	//PerspectiveCamera(取景角度, 宽高比
+	var camera=new THREE.PerspectiveCamera(45, W/H, 0.1, 10000);
+	
+	camera.position.set(300,300,500);
+	camera.lookAt(new THREE.Vector3(0,0,0));
+	
+	scene.add(camera);
+	
+	//4.物体
+	var wheelRadius=30;
+	
+	//1.车体
+	var car=new THREE.Mesh(
+		new THREE.CubeGeometry(300,150,150,1,1,1),
+		new THREE.MeshLambertMaterial({color: 0xffffff, wireframe: 1})
+	);
+	//车身高度/2+地板高度/2+轮子半径
+	car.position.y=75+5+wheelRadius;
+	scene.add(car);
+	
+	car.castShadow=true;
+	
+	//20
+	//2.4个轮子
+	var wheels=[];
+	function addWheel(x, y)
+	{
+		var wheel=new THREE.Mesh(
+			new THREE.CylinderGeometry(wheelRadius, wheelRadius, 20, 10, 1, false),
+			new THREE.MeshLambertMaterial({color: 0xcccccc, wireframe: 0})
+		);
+		scene.add(wheel);
+		wheels.push(wheel);
+		
+		wheel.rotation.x=d2a(90);
+		wheel.position.y=wheelRadius+5;
+		wheel.position.x=x;
+		wheel.position.z=y;
+	}
+	
+	addWheel(-100, 75);
+	addWheel(-100, -75);
+	addWheel(100, 75);
+	addWheel(100, -75);
+	
+	//地板
+	var ground=new THREE.Mesh(
+		new THREE.CubeGeometry(3000,10,3000,1,1,1),
+		new THREE.MeshLambertMaterial({color: 0xffffff})
+	);
+	ground.receiveShadow=true;
+	scene.add(ground);
+	
+	//5.渲染器
+	var render=new THREE.WebGLRenderer({antialias: true, precision: 'lowp'});
+	render.setSize(W, H);
+	
+	
+	//最重要
+	document.body.appendChild(render.domElement);
+	
+	render.shadowMapEnabled=true;
+	render.render(scene, camera);
+	
+	setInterval(function (){
+		//物体.position.z++;
+		物体.rotation.y+=d2a(1);
+		render.render(scene, camera);
+	}, 30);
+};
+</script>
+</head>
+
+<body>
+
+</body>
+</html>

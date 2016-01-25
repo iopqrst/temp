@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<meta name="viewport" content="width=320, user-scalable=0, initial-scale=1">
+<style>
+*{ margin:0; padding:0;}
+#div1{ width:200px; height:200px; background:#ccc; position:absolute; left:50%; margin-left:-100px; top:50%; margin-top:-100px;}
+</style>
+<script>
+function a2d(n){
+	return n*180/Math.PI;
+}
+document.addEventListener('DOMContentLoaded',function(){
+	var oDiv=document.querySelector('#div1');
+	
+	var divRotate=0;
+	oDiv.addEventListener('touchstart',function(ev){
+		var lastRotate=divRotate;
+		function getRotate(ev){
+			var x1=ev.targetTouches[0].pageX;
+			var y1=ev.targetTouches[0].pageY;
+			
+			var x2=ev.targetTouches[1].pageX;
+			var y2=ev.targetTouches[1].pageY;
+			
+			var a=x2-x1;
+			var b=y1-y2;
+			
+			var d=a2d(Math.atan2(b,a));
+			return d;
+		}
+		
+		if(ev.targetTouches.length==2){
+			var oldRotate=getRotate(ev);
+			oDiv.innerHTML=oldRotate.toFixed(0);	
+		}
+		
+		oDiv.addEventListener('touchmove',function(ev){
+			if(ev.targetTouches.length==2){
+				divRotate=lastRotate+oldRotate-getRotate(ev);
+				oDiv.style.WebkitTransform='rotate('+divRotate+'deg)';	
+			}
+		},false);
+		
+		ev.preventDefault();
+	},false);
+},false);
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

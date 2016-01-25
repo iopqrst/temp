@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<meta name="viewport" content="width=320, user-scalable=0, initial-scale=1">
+<style>
+*{ margin:0; padding:0;}
+#div1{ width:100px; height:100px; position:absolute; left:0; top:0; background:red;}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oDiv=document.getElementById('div1');
+
+
+	var lastX=0;
+	var lastY=0;
+	var speedX=0;
+	var speedY=0;
+	var timer=null;
+	oDiv.addEventListener('touchstart',function(ev){
+		clearInterval(timer);
+		//alert(ev.targetTouches[0].pageX);
+		var disX=ev.targetTouches[0].pageX-oDiv.offsetLeft;
+		var disY=ev.targetTouches[0].pageY-oDiv.offsetTop;
+		
+		function fnMove(ev){
+			var l=ev.targetTouches[0].pageX-disX;
+			var t=ev.targetTouches[0].pageY-disY;
+			if(l<0)l=0;
+			if(l>document.documentElement.clientWidth-oDiv.offsetWidth){
+				l=document.documentElement.clientWidth-oDiv.offsetWidth;	
+			}
+			oDiv.style.left=l+'px';
+			oDiv.style.top=t+'px';
+			
+			speedX=l-lastX;
+			speedY=t-lastY;
+			
+			lastX=l;
+			lastY=t;
+		}
+		function fnEnd(){
+			document.removeEventListener('touchmove',fnMove,false);
+		
+			document.removeEventListener('touchend',fnEnd,false);	
+			
+			timer=setInterval(function(){
+				speedY+=3;
+				var l=oDiv.offsetLeft+speedX;
+				var t=oDiv.offsetTop+speedY;
+				if(t>=document.documentElement.clientHeight-oDiv.offsetHeight){
+					t=document.documentElement.clientHeight-oDiv.offsetHeight;
+					speedY*=-0.8;
+					speedX*=0.8;	
+				}
+				if(t<=0){
+					t=0;
+					speedY*=-0.8;
+					speedX*=0.8;	
+				}
+				if(l>=document.documentElement.clientWidth-oDiv.offsetWidth){
+					l=document.documentElement.clientWidth-oDiv.offsetWidth;
+					speedX*=-0.8;
+					speedY*=0.8;	
+				}
+				if(l<=0){
+					l=0;
+					speedX*=-0.8;
+					speedY*=0.8;	
+				}
+				if(Math.abs(speedX)<1)speedX=0;
+				if(Math.abs(speedY)<1)speedY=0;
+				
+				if(speedX==0 && speedY==0 && oDiv.offsetTop==document.documentElement.clientHeight-oDiv.offsetHeight){
+					clearInterval(timer);	
+				}
+				
+				oDiv.style.left=l+'px';
+				oDiv.style.top=t+'px';
+				
+			},30);
+		}
+		document.addEventListener('touchmove',fnMove,false);
+		
+		document.addEventListener('touchend',fnEnd,false);
+		
+		ev.preventDefault();
+	},false);
+},false);
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

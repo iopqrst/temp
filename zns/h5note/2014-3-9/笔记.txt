@@ -1,0 +1,159 @@
+nodeJs:
+
+var http=require('http');
+
+var fs=require('fs');
+
+
+exports.show=function(){
+
+}
+
+var com=require('./com');
+============================================================
+
+websocket:交互  ,推送
+
+ajax：浏览器->服务器   拉
+websocket：浏览器<->服务器
+
+后台交互：ajax
+
+	ajax 		websocket
+流量	高-浪费		低-节省
+性能	低		高
+实时性	低		高
+跨域	不能		不能
+
+http://socket.io/
+
+nodeJS
+=====================================
+
+npm install socket.io
+
+var sock=require('socket.io');
+
+* 需要配合http，websocket没法独立，必须基于http
+
+服务器：
+1. 首先需要http
+2. var ws=sock.listen(httpObj);
+3. ws.on('connection',function(sock){
+
+});
+
+客户端：
+1. <script src="/socket.io/socket.io.js"></script>
+2. var sock=io.connect('ws://localhost:8080');
+
+
+通信：
+sock.emit(消息名字,消息的内容);
+
+sock.on(消息名字,function(data){
+	
+});
+=============================================================================
+
+
+webworker:js里面的多线程，  必须工作在服务器环境
+做游戏 计算
+
+
+单线程：前一个操作如果没有完成，后一个操作没法开始
+	·一个庞大的运算，页面卡
+	·不能充分利用cpu的资源
+多线程：可以同时进行多个操作，充分利用cpu的资源
+
+主线程：平时写的js之类都在主线程，占用渲染
+子线程：由webworker创建出来，不占用渲染
+
+通信：
+oW.postMessage(12)
+
+this.onmessage=function(ev){
+	ev.data
+}
+
+
+子线程：
+	·不能用DOM BOM
+	·子线程里面不能再创建子线程
+
+
+终止进程：
+oW.terminate()
+
+oW.close();
+
+========================================================================
+
+webSql：js可以写sql  5M
+
+openDatabase(数据库名字，数据库版本，数据库说明，大小);
+
+事物处理：原子性
+
+db.transaction(function(tx){
+	//创建一张表
+	tx.executeSql('CREATE table user(username TEXT, password TEXT)');
+});
+
+executeSql(sql语句,数据，成功，失败);  数据->防注入
+
+tx.executeSql('INSERT INTO user VALUES("张三","abc")');
+
+tx.executeSql('SELECT * FROM user');
+
+============================================================
+
+transition:1s all ease;
+
+animation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

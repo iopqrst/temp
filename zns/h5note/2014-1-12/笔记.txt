@@ -1,0 +1,97 @@
+perspective(0px)
+
+
+-webkit-transform-style:preserve-3d;   flat
+
+
+空间
+
+路由器：
+
+
+
+盒子模型=width+padding+border
+
+盒子模型=width
+
+弹性布局：
+父级： display:-webkit-box;
+子集： -webkit-box-flex:1;
+-webkit-box-orient:horizontal; 水平  vertical  垂直
+
+
+左侧固定宽(200px),右侧自适应？
+
+性能：平时写代码注意
+
+css表达式
+
+<meta name="viewport" content="width=320, user-scalable=0, initial-scale=1">
+
+
+touchstart     onmousedown
+touchmove      onmousemove
+touchend       onmouseup
+
+
+touchstart   ev.targetTouches[0].pageX   identifiter
+touchmove    ev.targetTouches[0].pageX   identifiter
+touchend     ev.changedTouches[0].pageX   identifiter
+
+
+苹果专用属性
+作为App运行
+<meta name="apple-mobile-web-app-capable" content="yes" />
+标题栏样式
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+default
+black
+black-translucent
+图标
+<link rel="apple-touch-icon-precomposed" href="a.png" />
+启动画面(不太好使)
+<link rel="apple-touch-startup-image" href="/startup.png" />
+
+
+媒体查询==响应式布局
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

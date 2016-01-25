@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+*{ margin:0; padding:0; list-style:none;}
+html,body{ height:100%;}
+body{ background:#ccc;}
+#box{ width:320px; margin:0 auto; background:#fff; height:100%; position:relative;}
+#box .left{ position:absolute; left:0; top:0; width:40%; height:100%; border:1px solid #f00; box-sizing:border-box;}
+#box .left dl{ height:100%; overflow:auto;}
+#box .left dl dt{ font-weight:bold;}
+#box .left dl dd{ height:30px; line-height:30px; text-align:center; border-bottom:1px dashed #ccc;}
+
+
+#box .right{ position:absolute; right:0; top:0; width:60%; height:100%; border:1px solid blue; box-sizing:border-box;}
+#t2{ width:100%; height:150px; max-height:150px;}
+#tpl_ui{ display:none;}
+</style>
+<script src="file.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oT=document.getElementById('t1');
+	var oT2=document.getElementById('t2');
+	var oBtn=document.getElementById('btn1');
+	var tplObj=document.getElementById('tpl_ui');
+	var oDl=document.getElementById('dl1');
+	
+	tplObj.parentNode.removeChild(tplObj);
+	
+	getList(function(arr){
+		arr.sort(function(f1,f2){
+			return f2.isDirectory-f1.isDirectory;
+		});
+		
+		for(var i=0; i<arr.length; i++){
+			if(arr[i].isDirectory){
+				var dd=myTpl(tplObj,{
+					fileName:arr[i].name+'/',
+					img:2	
+				});	
+				oDl.appendChild(dd);
+			}else{
+				var dd=myTpl(tplObj,{
+					fileName:arr[i].name,
+					img:1	
+				});	
+				oDl.appendChild(dd);
+				
+				dd.onclick=function(){
+					alert(arr[i].name);
+				}
+			}
+		}
+	});
+});
+</script>
+</head>
+
+<body>
+<div id="box">
+	<div class="left">
+    	<dl id="dl1">
+        	<dt>文件列表</dt>
+            <dd id="tpl_ui"><img src="icon/{$img}.png"><a href="javascript:;">{$fileName}</a></dd>
+        </dl>
+    </div>
+    
+    <div class="right">
+    	<input type="text" id="t1" readonly><input type="button" value="保存" id="btn1">
+        <textarea id="t2"></textarea>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

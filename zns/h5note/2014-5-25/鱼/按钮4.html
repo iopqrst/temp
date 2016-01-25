@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+* {margin:0; padding:0; list-style:none;}
+
+body {text-align:center; background:black;}
+
+#c1 {background:url(img/game_bg_2_hd.jpg);}
+</style>
+<script src="js/common.js"></script>
+<script src="js/ajax.js"></script>
+<script src="js/scene.js"></script>
+<script src="js/sprite.js"></script>
+<script src="js/fish.js"></script>
+<script src="js/cannon.js"></script>
+<script src="js/bullet.js"></script>
+<script src="js/turret.js"></script>
+<script src="js/button.js"></script>
+<script>
+window.onload=function ()
+{
+	var oC=document.getElementById('c1');
+	
+	loadRes([
+		'js/bottom.json'
+	], succ);
+	
+	function succ()
+	{
+		var scene=new Scene('c1');
+		
+		var btn=new Button(
+			_g_res['btn_minus_up'],
+			_g_res['btn_minus_down'],
+			scene
+		);
+		
+		scene.add(btn);
+		
+		btn.left=100;
+		btn.top=100;
+		
+		btn.onclick=function ()
+		{
+			console.log('a');
+		};
+	}
+};
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="800" height="600"></canvas>
+</body>
+</html>

@@ -1,0 +1,65 @@
+响应式布局：
+
+
+if(){}
+
+
+@media(){
+
+}
+
+min-width:400px   max-width:800px
+
+
+Aural(助听器), braille(盲人点读), handleld, print, projection, screen, tty, tv
+
+
+audio
+video
+
+
+图片预加载： new Image();
+
+ondurationchange  当视频总时长发生变化的时候
+
+
+
+oV.currentTime  播放当前时间
+oV.duration     视频总时间
+
+oV.muted   是否静音
+oV.volume  0---1
+
+oncanplay  检测视频是否能播放
+onerror    发生错误
+onemptied   到一半就出错
+
+
+
+var reader=new FileReader();
+
+减少请求
+
+base64
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

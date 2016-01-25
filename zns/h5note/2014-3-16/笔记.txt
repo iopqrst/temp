@@ -1,0 +1,162 @@
+websocket:
+
+npm install socket.io
+
+客户端：
+1. /socket.io/socket.io.js
+2. var sock=io.connect('ws://localhost:8080');
+
+
+sock.emit('abc',{})
+
+sock.on('abc',function(json){
+
+})
+
+------------------------------------------------
+
+
+
+jqueryMobile:
+	ajax
+
+好处：只写html
+
+header
+	h1-h6
+	<a href='#'></a>  按钮
+
+html5里面规定自定义属性：
+<input type="text" index="0">
+
+data-
+
+<input type="text" data-index="0">
+
+
+oBtn.dataset.index
+
+1. 向后兼容
+2. dataset.xxx
+3. 遍历自定义属性
+
+
+缺点：
+1. 不兼容
+2. 性能是个鸡肋
+----------------------------------------
+
+data-role  
+
+按钮：
+1. input  type  button
+2. <a data-role="button"
+3. <button></button>
+
+	data-inline="true"
+	data-mini="true";
+
+	data-icon="back, refresh,gear,grid,star"
+	data-iconpos='left right top bottom'
+
+		notext  没有文字
+--------------------------------------------
+多屏切换：
+1. 锚点
+2. window.open(url,'_self');
+3. window.location
+
+--------------------------------------------
+转场效果：
+data-transition:
+fade,flip, pop,slide
+slidedown
+slideup
+slidefade
+turn
+flow
+
+data-direction="reverse"
+
+data-rel="back"
+
+----------------------------------------
+
+footer
+	<div data-role="navbar"
+
+		图标必须要加给a
+		而且data-iconpos不能调
+
+----------------------------------------
+
+页面加载：
+预加载：
+1. data-prefecth='true'
+2. $.mobile.loadPage();
+
+
+window.location.history
+----------------------------------------
+
+表单，跟普通用法一样
+
+data-role="none"
+
+按钮组：
+data-role="controlgroup"
+
+方向：
+	data-type="vertical"  horizontal
+
+	单选
+	多选
+	方向不一样效果也不一样
+----------------------------------------
+
+列表：
+ul ol 
+dl不能用
+
+分隔符：
+	<li  data-role="list-divider">
+
+自动分隔：
+	<ul data-autodividers="true">
+
+筛选：
+	data-filter="true"
+
+data-filter-placeholder
+data-filter-reveal  默认是否隐藏
+
+
+
+折叠：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

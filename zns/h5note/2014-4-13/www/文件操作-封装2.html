@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+</style>
+<script>
+function error(e){
+	alert('错误:'+e.message);
+}
+
+function writeFile(name,content,fnSucc){
+	webkitRequestFileSystem(PERSISTENT,2*1024*1024, requestSucc,error);
+	
+	function requestSucc(fs){
+		fs.root.getFile(name,{create:true},openFileSucc,error);
+	}
+	
+	function openFileSucc(fileEntry){
+		fileEntry.createWriter(writerSucc,error);
+	}
+	
+	function writerSucc(writer){
+		writer.onwriteend=function(){
+			fnSucc && fnSucc();	
+		}
+		writer.onerror=error;
+		
+		writer.write(new Blob([content]));
+	}
+}
+
+function getFile(name,fnSucc){
+	webkitRequestFileSystem(PERSISTENT,2*1024*1024,requestSucc,error);
+	
+	function requestSucc(fs){
+		fs.root.getFile(name,null,openFileSucc,error);
+	}
+	
+	function openFileSucc(fileEntry){
+		fileEntry.file(function(file){
+			var reader=new FileReader();
+			
+			reader.onload=function(){
+				fnSucc && fnSucc(this.result);	
+			}
+			
+			reader.onerror=error;
+			
+			reader.readAsText(file);
+		});
+	}
+}
+document.addEventListener('DOMContentLoaded',function(){
+	getFile('a.txt',function(str){
+		alert(str);
+	});
+},false);
+</script>
+</head>
+
+<body>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

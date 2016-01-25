@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+body {background:black; text-align:center;}
+#c1 {background:white;}
+</style>
+<script>
+function d2a(n)
+{
+	return n*Math.PI/180;
+}
+
+window.onload=function ()
+{
+	var oC=document.getElementById('c1');
+	var gd=oC.getContext('2d');
+	
+	var cx=200,cy=200,r=100;
+	
+	oC.onmousemove=function (ev)
+	{
+		gd.clearRect(0,0,oC.width,oC.height);
+		
+		var x=ev.clientX-oC.offsetLeft;
+		var y=ev.clientY-oC.offsetTop;
+		
+		//求距离
+		var a=x-cx;
+		var b=y-cy;
+		
+		var dis=Math.sqrt(a*a+b*b);
+		
+		gd.beginPath();
+		gd.arc(cx, cy, r, d2a(0), d2a(360), true);
+		gd.closePath();
+		
+		if(dis<=r)	//在里面
+		{
+			gd.fillStyle='red';
+			gd.fill();
+		}
+		else
+		{
+			gd.fillStyle='#CCC';
+			gd.fill();
+		}
+	};
+	
+	
+};
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="800" height="600"></canvas>
+</body>
+</>
+
+
+
+
+
+

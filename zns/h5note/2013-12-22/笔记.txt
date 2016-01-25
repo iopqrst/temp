@@ -1,0 +1,317 @@
+陈潇冰  (消肿)
+
+手机：18701249511
+      18310293637
+
+QQ: 707181108
+
+基础
+移动开发
+图形
+游戏
+cc
+
+侯志清  js
+柯维新  
+温昊
+胡竹山    js
+张树垚    
+高飞
+李明
+李泽希    
+王宇     
+石亚明  
+周明
+吴键
+刘金伟 
+成春娟  js
+魏杰    js
+陈芝桦  
+马建    js
+卢明慧  
+刘少华 
+田士贞
+梁子标  js
+陈健  
+
+html css js
+
+html5
+
+什么是html5+css3?
+移动开发，跨平台
+
+html4
+	标签 属性
+css2
+	样式
+
+html5
+	新标签、新属性
+css3
+	新样式
+
+新标签：
+header  footer content aside nav等
+
+有用：
+canvas  video
+
+'没用'
+header  footer nav ....
+	语义化  ->SEO
+		  有利于人观看
+
+css3：圆角、阴影、渐变、动画
+
+前端：css html js
+
+js里面也多很多新东西？
+
+jquery  获取元素   #div1 ul li 
+
+querySelectorAll（）  获取出来一组
+querySelector();   一个元素
+
+oBtn.dataset.abc
+
+oBtn.dataset
+
+html5:
+兼容： IE10
+chrome FF
+
+
+flash 
+
+手机
+
+移动开发: 手机
+
+app：原生  
+	oc 
+	java
+	至少两个
+
+	运行速度快，性能高
+
+webApp: 性能一般
+	html+js
+
+	开发快、跨平台
+	省钱
+
+
+多线程: 一次可以干很多事
+单线程: js单线程   一次只能干一件事
+
+
+定时器
+
+
+
+document.cookie='name='+value
+
+cookie:
+	不安全
+	4K
+
+
+ajax
+jsonp
+
+
+webSocket 数据推送
+
+
+type  
+
+type='email'
+
+
+webGL
+
+http://helloracer.com/webgl/
+http://threejs.org/
+
+
+SVG
+VML
+
+width
+===============================
+-webkit-
+-moz-
+-ms-
+-o-   兼容低版本红蛋
+
+
+setStyle3(obj,name,value);
+
+-webkit-transition:1s all ease;   ms
+
+1s:	时间 
+all：    属性
+ease:   缓冲
+linear:  匀速
+ease-in: 加速
+ease-out: 减速
+ease-in-out: 先快在慢
+
+方便，性能高
+
+
+js可以做动画，transition到处都是bug
+
+
+margin:10px;
+margin:10px 20px;
+margin:10px 20px 30px;
+margin:10px 20px 30px 40px;
+
+
+rgb(255,0,0);
+
+rgba();     a  0 --1
+
+分步：
+setInterval
+
+
+盒子模型：width+padding+border
+
+
+QQ群:
+327193089
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

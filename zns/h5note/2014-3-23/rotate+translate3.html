@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+body{  background:#000;}
+#c1{ background:#fff;}
+
+</style>
+<script>
+function d2a(n){
+	return Math.PI*n/180;
+}
+window.onload=function(){
+	var oC=document.getElementById('c1');
+	var gd=oC.getContext('2d');
+	
+	//3.移动
+	gd.translate(250,200);
+	//2.转
+	gd.rotate(d2a(30));
+	//1、画
+	gd.fillRect(-150,-100,300,200);
+	
+}
+</script>
+</head>
+
+<body>
+<canvas id="c1" width="800" height="600">
+	您的浏览器不支持canvas！
+</canvas>
+</body>
+</html>

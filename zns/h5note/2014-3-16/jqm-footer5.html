@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<meta name="viewport" content="width=320, user-scalable=0, initial-scale=1">
+<link rel="stylesheet" href="jquery.mobile-1.4.2.min.css" />
+<script src="jquery-1.9.1.min.js"></script>
+<script src="jquery.mobile-1.4.2.min.js"></script>
+</head>
+
+<body>
+<div id="page1" data-role="page">
+	<div data-role="header">
+    	<a href="javascript:;" data-icon="refresh">刷新</a>
+    	<h4>标题</h4>
+    	<a href="javascript:;" data-icon="grid" data-iconpos="right">菜单</a>
+    </div>
+    <div data-role="content">
+    	<a href="#page2" data-transition="slidefade" data-role="button">调到第二页</a>
+    </div>
+    <div data-role="footer" data-position="fixed">
+    	<div data-role="navbar">
+        	<ul>
+            	<li><a href="javascript:;" data-iconpos="notext" data-icon="alert">按钮一</a></li>
+                <li><a  style="background:red;" href="javascript:;" data-icon="arrow-d">按钮二</a></li>
+                <li><a href="javascript:;" data-icon="delete">按钮三</a></li>
+                <li><a href="javascript:;" data-icon="minus">按钮四</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="page2" data-role="page">
+	<div data-role="header">
+    	<a href="#" data-rel="back" data-icon="back">返回</a>
+    	<h4>第二页</h4>
+    	<a href="javascript:;" data-icon="grid">菜单</a>
+    </div>
+    <div data-role="content">
+    	<a href="#page3" data-role="button" data-transition="flow">调到第三页</a>
+    </div>
+</div>
+
+<div id="page3" data-role="page">
+	<div data-role="header">
+    	<a href="#" data-rel="back" data-icon="back">返回</a>
+    	<h4>第三页</h4>
+    </div>
+</div>
+</body>
+</html>

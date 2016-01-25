@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<meta name="viewport" content="width=320, user-scalable=0, initial-scale=1">
+<style>
+*{ margin:0; padding:0;}
+html,body{ height:100%;}
+#page{ display:-webkit-box; -webkit-box-orient:vertical; height:100%;}
+#page header, #page footer{ height:50px; line-height:50px; text-align:center; border:1px solid #000;}
+#page section{ -webkit-box-flex:1; border:1px solid #000; overflow:hidden;}
+
+.news{ width:400%;}
+.news dl{ float:left; width:25%;}
+.news dl dt{ border-bottom:1px dashed #000; height:30px; line-height:30px; text-align:center; font-weight:bold;}
+.news dl dd{ border-bottom:1px dashed #ccc; height:30px; line-height:30px; text-align:center;}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+	var oDiv=document.querySelector('#page .news');
+	var aDl=document.querySelectorAll('#page .news dl');
+	
+	var x=0;
+	var bDir='';
+	oDiv.addEventListener('touchstart',function(ev){
+		oDiv.style.WebkitTransition='none';
+		var disX=ev.targetTouches[0].pageX-x;
+		var downX=ev.targetTouches[0].pageX;
+		
+		function fnMove(ev){
+			if(bDir){
+				if(bDir=='l'){
+					x=ev.targetTouches[0].pageX-disX;
+					
+					oDiv.style.WebkitTransform='translateX('+x+'px)';	
+				}
+			}else{
+				if(Math.abs(ev.targetTouches[0].pageX-downX)>10){
+					bDir='l';	
+				}else if(1){
+					
+				}	
+			}
+			
+		}
+		
+		function fnEnd(){
+			oDiv.removeEventListener('touchmove',fnMove,false);
+			oDiv.removeEventListener('touchend',fnEnd,false);
+			if(bDir=='l'){
+				if(x>0)x=0;
+				
+				var n=-Math.round(x/aDl[0].offsetWidth);
+				
+				if(n>3)n=3;
+				x=-n*aDl[0].offsetWidth;
+				oDiv.style.WebkitTransition='.4s all ease';
+				oDiv.style.WebkitTransform='translateX('+x+'px)';
+				document.title=x;	
+			}
+			
+			bDir='';	
+		}
+		oDiv.addEventListener('touchmove',fnMove,false);
+		oDiv.addEventListener('touchend',fnEnd,false);
+		
+		ev.preventDefault();
+	},false);
+},false);
+</script>
+</head>
+
+<body>
+<div id="page">
+	<header>header</header>
+    <section>
+    	<div class="news">
+        	<dl>
+            	<dt>体育新闻</dt>
+                <dd>1111111</dd>
+                <dd>2222222</dd>
+                <dd>33333333</dd>
+                <dd>444444444</dd>
+                <dd>55555</dd>
+                <dd>666666666</dd>
+                <dd>7777</dd>
+                <dd>888888888</dd>
+                <dd>99999</dd><dd>1111111</dd>
+                <dd>2222222</dd>
+                <dd>33333333</dd>
+                <dd>444444444</dd>
+                <dd>55555</dd>
+                <dd>666666666</dd>
+                <dd>7777</dd>
+                <dd>888888888</dd>
+                <dd>99999</dd>
+            </dl>
+            <dl>
+            	<dt>娱乐新闻</dt>
+                <dd>1111111</dd>
+                <dd>2222222</dd>
+                <dd>33333333</dd>
+                <dd>444444444</dd>
+                <dd>55555</dd>
+                <dd>666666666</dd>
+                <dd>7777</dd>
+                <dd>888888888</dd>
+                <dd>99999</dd><dd>1111111</dd>
+                <dd>2222222</dd>
+                <dd>33333333</dd>
+                <dd>444444444</dd>
+                <dd>55555</dd>
+                <dd>666666666</dd>
+                <dd>7777</dd>
+                <dd>888888888</dd>
+                <dd>99999</dd>
+            </dl>
+            <dl>
+            	<dt>八卦新闻</dt>
+                <dd>1111111</dd>
+                <dd>2222222</dd>
+                <dd>33333333</dd>
+                <dd>444444444</dd>
+                <dd>55555</dd>
+                <dd>666666666</dd>
+                <dd>7777</dd>
+                <dd>888888888</dd>
+                <dd>99999</dd><dd>1111111</dd>
+                <dd>2222222</dd>
+                <dd>33333333</dd>
+                <dd>444444444</dd>
+                <dd>55555</dd>
+                <dd>666666666</dd>
+                <dd>7777</dd>
+                <dd>888888888</dd>
+                <dd>99999</dd>
+            </dl>
+            <dl>
+            	<dt>政治新闻</dt>
+                <dd>1111111</dd>
+                <dd>2222222</dd>
+                <dd>33333333</dd>
+                <dd>444444444</dd>
+                <dd>55555</dd>
+                <dd>666666666</dd>
+                <dd>7777</dd>
+                <dd>888888888</dd>
+                <dd>99999</dd><dd>1111111</dd>
+                <dd>2222222</dd>
+                <dd>33333333</dd>
+                <dd>444444444</dd>
+                <dd>55555</dd>
+                <dd>666666666</dd>
+                <dd>7777</dd>
+                <dd>888888888</dd>
+                <dd>99999</dd>
+            </dl>
+        </div>
+    </section>
+    <footer>footer</footer>
+</div>
+</body>
+</html>
