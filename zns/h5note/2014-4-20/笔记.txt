@@ -1,0 +1,157 @@
+文件编辑器：
+1. 打开文件系统
+2. 打开文件
+3. 读、写
+
+fs.root
+
+chrome：
+webkitRequestFileSystem(PERSISTENT,2*1024*1024,fnSucc,error);
+
+function fnSucc(fs){
+    fs.root.getFile('a.txt',{create:true},fileOpenSucc,error);
+}
+
+function fileOpenSucc(fileEntry){
+     fileEntry.createWriter(writerSucc,error);
+}
+
+function writerSucc(writer){
+     writer.onwriteend=function(){}
+     writer.write(new Blob(['abcde']));
+}
+
+读文件：
+fileEntry.file(function(file){
+     var reader=new FileReader();
+    
+});
+
+文件管理：
+1. 创建文件夹
+2. 删除
+
+移动端布局：width:320px;  
+
+
+删除文件:  file.remove(成功，失败);
+
+------------------------------------------
+通讯录：
+var person=navigator.contacts.create();
+
+person.save(fnSucc,error);
+
+phoneNumbers
+
+photos
+
+id、name、emails、addrsses、ims、organizations、birthday、note、categories、urls
+
+var options=new ContactFindOptions();
+options.filter='zhang';
+
+navigator.contacts.find([],fnSucc,error,options)
+
+person[0].remove(fnSucc, error);
+
+
+displayName:'Zhang san'
+nickName:'Zhang san'
+
+------------------------------------------
+
+var oM=new Media(src,fnSucc,error);
+src：  必须用绝对路径
+fnSucc: 播放完毕的时候
+
+oM.play();
+oM.pause();
+oM.stop();
+
+oM.getCurrentPosition(fnSucc, error)
+
+oM.getDuration();
+
+oM.seekTo(1000*60);  毫秒
+------------------------------------------
+
+通知：
+navigator.notification.alert('内容内容',function(){
+	alert('成功了');	
+},'标题','按钮');
+
+navigator.notification.confirm
+
+蜂鸣：
+navigator.notification.beep(2);
+
+往根目录：beep.wav
+
+震动：
+navigator.notification.vibrate(1000)  毫秒
+-------------------------------------------------
+navigator.globalization
+
+getPreferredLanguage
+dateToString
+
+
+
+getFirstDayOfWeek
+
+numberToString
+stringToNumber
+
+http://docs.phonegap.com/en/2.2.0/index.html
+
+
+<meta name="viewport" content="width=device-width">
+
+
+===========================================
+
+1. canvas
+2. svg vml
+3. webgl
+4. 游戏
+
+面向对象
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

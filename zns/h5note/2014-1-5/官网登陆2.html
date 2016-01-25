@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+html,body{ overflow:hidden;}
+#box{ width:300px; height:300px; border:1px solid #000; position:absolute; left:50%; top:50%; margin-left:-150px; margin-top:-150px; background:#ccc; -webkit-transform:scale(5); opacity:0; display:none; -webkit-transition:.43s all ease;}
+#box span{ position:absolute; right:0; top:0;}
+</style>
+<script>
+window.onload=function(){
+	var oBtn=document.getElementById('btn1');
+	var oBox=document.getElementById('box');
+	var oClose=document.querySelector('#box .close');
+	
+	oBtn.onclick=function(){
+		oBox.style.display='block';
+		
+		setTimeout(function(){  //为了有时间渲染
+			oBox.style.opacity=1;
+			oBox.style.WebkitTransform='scale(1)';
+		},0);	
+	}
+	
+	oClose.onclick=function(){
+		oBox.style.opacity=0;
+		oBox.style.WebkitTransform='scale(5)';
+		//oBox.style.display='none';
+		setTimeout(function(){
+			oBox.style.display='none';
+		},500);	
+	}	
+}
+</script>
+</head>
+
+<body>
+<input type="button" value="登陆" id="btn1">
+<div id="box">
+	<span class="close">×</span>
+	user：<input type="text">
+</div>
+</body>
+</html>

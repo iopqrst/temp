@@ -1,0 +1,7 @@
+{
+	"fish1":	{"src": "img/fish1.png", "x": 0, "y": 0, "w": 55, "h": 37},
+	"fish2":	{"src": "img/fish2.png", "x": 0, "y": 0, "w": 78, "h": 64},
+	"fish3":	{"src": "img/fish3.png", "x": 0, "y": 0, "w": 72, "h": 56},
+	"fish4":	{"src": "img/fish4.png", "x": 0, "y": 0, "w": 77, "h": 59},
+	"fish5":	{"src": "img/fish5.png", "x": 0, "y": 0, "w": 107, "h": 122}
+}

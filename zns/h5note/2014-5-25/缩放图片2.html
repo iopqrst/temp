@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+body {margin:0; padding:0;}
+#div1 {width:400px; height:300px; background:#CCC;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oDiv=document.getElementById('div1');
+	
+	window.onresize=function ()
+	{
+		var cw=document.documentElement.clientWidth;
+		var ch=document.documentElement.clientHeight;
+		
+		if((cw/ch)>(4/3))
+		{
+			//高
+			oDiv.style.height=ch+'px';
+			oDiv.style.width=oDiv.offsetHeight*4/3+'px';
+		}
+		else
+		{
+			//宽
+			oDiv.style.width=cw+'px';
+			oDiv.style.height=oDiv.offsetWidth*3/4+'px';
+		}
+	};
+	
+	window.onresize();
+};
+</script>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>

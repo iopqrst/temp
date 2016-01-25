@@ -1,0 +1,9 @@
+{
+	"cannon1":	{"src": "img/cannon1.png", "x": 0, "y": 0, "w": 74, "h": 74},
+	"cannon2":	{"src": "img/cannon2.png", "x": 0, "y": 0, "w": 74, "h": 76},
+	"cannon3":	{"src": "img/cannon3.png", "x": 0, "y": 0, "w": 74, "h": 76},
+	"cannon4":	{"src": "img/cannon4.png", "x": 0, "y": 0, "w": 74, "h": 83},
+	"cannon5":	{"src": "img/cannon5.png", "x": 0, "y": 0, "w": 74, "h": 85},
+	"cannon6":	{"src": "img/cannon6.png", "x": 0, "y": 0, "w": 74, "h": 90},
+	"cannon7":	{"src": "img/cannon7.png", "x": 0, "y": 0, "w": 74, "h": 94}
+}

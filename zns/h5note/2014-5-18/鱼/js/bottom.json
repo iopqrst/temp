@@ -1,0 +1,7 @@
+{
+	"bottom":			{"src": "img/bottom.png", "x": 0, "y": 0, "w": 765, "h": 71},
+	"btn_plus_down":	{"src": "img/bottom.png", "x": 0, "y": 72, "w": 44, "h": 32},
+	"btn_plus_up":		{"src": "img/bottom.png", "x": 44, "y": 72, "w": 44, "h": 32},
+	"btn_minus_down":	{"src": "img/bottom.png", "x": 88, "y": 72, "w": 44, "h": 32},
+	"btn_minus_up":		{"src": "img/bottom.png", "x": 132, "y": 72, "w": 44, "h": 32}
+}

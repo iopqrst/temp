@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+* {margin:0; padding:0;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oR=document.getElementById('r1');
+	
+	//xxx
+	//alert(getComputedStyle(oR, false)['strokeWidth']);
+	//alert(oR.getAttribute('strokeWidth'));
+	
+	var value=oR.getAttribute('width')||getComputedStyle(oR, false)['width'];
+	
+	alert(value);
+};
+</script>
+</head>
+
+<body>
+<svg width="800" height="600">
+	<rect id="r1" x="100" y="100" width="300" height="200" style="fill:yellow; stroke:black; stroke-width:10;" />
+</svg>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

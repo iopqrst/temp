@@ -1,0 +1,46 @@
+盒模型：width=width+padding+border
+
+border-box
+
+弹性布局：
+父级：display:-webkit-box;
+子级：-webkit-box-flex:1;   （子级必须是块级元素）
+
+
+拖拽：（绑定来加）
+touchstart 
+touchmove
+touchend
+
+多点
+
+手势识别：
+
+
+弧度转角度
+
+360=2*PI
+
+180=PI
+180/PI=1
+
+
+角度转弧度
+
+180=PI
+
+1=PI/180
+
+
+旋转： rotate
+缩放： scale
+平移： translateX translateY  translate(x,y)
+
+
+
+
+
+
+
+
+

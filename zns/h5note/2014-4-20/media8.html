@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html lang="en-US"><head>
+<meta charset="UTF-8">
+<title>智能社测试项目</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<style>
+*{ margin:0; padding:0; list-style:none;}
+#box{ width:100%; height:200px; background:#ccc;}
+</style>
+<script src="cordova-2.2.0.js"></script>
+<script>
+document.addEventListener('deviceready',function(){
+	
+	var oBtn=document.getElementById('btn1');
+	var oBtn2=document.getElementById('btn2');
+	var oBtn3=document.getElementById('btn3');
+	var oH3=document.querySelector('#box h3');
+	var oSpan=document.querySelector('#box span');
+	var oBtn4=document.getElementById('btn4');
+	
+	var oM=new Media('/android_asset/www/mp3/1.mp3',function(){
+		alert('成功');
+	},function(){
+		alert('播放失败');	
+	});
+	
+	oBtn.onclick=function(){
+		oM.play();
+		
+		
+		
+		//获取时间
+		setInterval(function(){
+			var allTime=oM.getDuration();
+			
+			oM.getCurrentPosition(function(time){
+				oH3.innerHTML='当前播放的时间：'+time;
+			},function(){
+				oH3.innerHTML='失败';	
+			});
+			
+			if(allTime>0){
+				oSpan.innerHTML='总时间：'+allTime;	
+			}	
+		},100);
+		
+	}
+	
+	oBtn2.onclick=function(){
+		oM.pause();	
+	}
+	
+	oBtn3.onclick=function(){
+		oM.stop();	
+	}
+	
+	oBtn4.onclick=function(){
+		oM.seekTo(1000*60);	
+	}
+	
+},false);
+</script>
+</head>
+
+<body>
+<input type="button" value="播放" id="btn1">
+<input type="button" value="暂停" id="btn2">
+<input type="button" value="停止" id="btn3">
+<input type="button" value="跳到高潮" id="btn4">
+<div id="box">
+	<h3>当前播放的时间：</h3>
+    <span>总时间:</span>
+</div>
+</body>
+</html>

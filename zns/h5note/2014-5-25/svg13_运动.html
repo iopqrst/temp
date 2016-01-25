@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<style>
+* {margin:0; padding:0;}
+</style>
+<script>
+window.onload=function ()
+{
+	var oR=document.getElementById('r1');
+	
+	oR.onmouseover=function ()
+	{
+		startMoveSVG(this, {width: 500, height: 100, strokeWidth: 60});
+	};
+	oR.onmouseout=function ()
+	{
+		startMoveSVG(this, {width: 300, height: 200, strokeWidth: 10});
+	};
+};
+
+function startMoveSVG(obj, json)
+{
+	clearInterval(obj.timer);
+	obj.timer=setInterval(function (){
+		var bStop=true;
+		for(var name in json)
+		{
+			var cur=parseInt(obj.getAttribute(name)||getComputedStyle(obj, false)[name]);
+			
+			var speed=(json[name]-cur)/6;
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			
+			cur+=speed;
+			
+			obj.setAttribute(name, cur);
+			obj.style[name]=cur;
+			
+			if(cur!=json[name])
+			{
+				bStop=false;
+			}
+		}
+		
+		if(bStop)
+		{
+			clearInterval(obj.timer);
+		}
+	}, 30);
+}
+</script>
+</head>
+
+<body>
+<svg width="800" height="600">
+	<rect id="r1" x="100" y="100" width="300" height="200" style="fill:yellow; stroke:black; stroke-width:10;" />
+</svg>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

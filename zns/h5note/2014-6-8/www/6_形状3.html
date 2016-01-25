@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<title>智能社 - www.zhinengshe.com</title>
+<script src="three.js"></script>
+<script>
+function a2d(n)
+{
+	return n*180/Math.PI;
+}
+
+function d2a(n)
+{
+	return n*Math.PI/180;
+}
+
+window.onload=function ()
+{
+	var W=800;
+	var H=600;
+	
+	//1.场景
+	var scene=new THREE.Scene();
+	
+	//2.灯光
+	//DirectionalLight(颜色, 强度);
+	var light=new THREE.DirectionalLight(0xffffff, 1);
+	
+	light.position.set(200,600,200);
+	light.lookAt(new THREE.Vector3(0,0,0));
+	light.castShadow=true;
+	
+	scene.add(light);
+	
+	
+	//3.摄像机
+	//PerspectiveCamera(取景角度, 宽高比
+	var camera=new THREE.PerspectiveCamera(45, W/H, 0.1, 10000);
+	
+	camera.position.set(300,300,500);
+	camera.lookAt(new THREE.Vector3(0,0,0));
+	
+	scene.add(camera);
+	
+	//4.物体
+	var 形状=new THREE.SphereGeometry(100,20,20,0,d2a(360),0,d2a(360));
+	//var 材质=new THREE.MeshLambertMaterial({color: 0xffffff, wireframe: false});
+	var 材质=new THREE.MeshLambertMaterial({color: 0x000000, wireframe: true});
+	var 物体=new THREE.Mesh(形状, 材质);
+	scene.add(物体);
+	
+	物体.castShadow=true;
+	
+	//地板
+	var ground=new THREE.Mesh(
+		new THREE.CubeGeometry(3000,10,3000,1,1,1),
+		new THREE.MeshLambertMaterial({color: 0xffffff})
+	);
+	ground.position.y=-350;
+	ground.receiveShadow=true;
+	scene.add(ground);
+	
+	//5.渲染器
+	var render=new THREE.WebGLRenderer({antialias: true, precision: 'lowp'});
+	render.setSize(W, H);
+	
+	
+	//最重要
+	document.body.appendChild(render.domElement);
+	
+	render.shadowMapEnabled=true;
+	render.render(scene, camera);
+	
+	setInterval(function (){
+		//物体.position.z++;
+		物体.rotation.y+=d2a(0.3);
+		render.render(scene, camera);
+	}, 30);
+};
+</script>
+</head>
+
+<body>
+
+</body>
+</html>
