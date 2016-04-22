@@ -14,10 +14,9 @@ M2_HOME ： C:\java-dev\apache-maven-3.2.5
 
 ```
 
-![maven 环境变量1](https://github.com/iopqrst/temp/blob/master/maven/enveriment-var-1.png)
-![maven 环境变量2](https://github.com/iopqrst/temp/blob/master/maven/enveriment-var-2.png)
+![maven 环境变量1](https://github.com/iopqrst/temp/blob/master/java/maven/enveriment-var-1.png)
+![maven 环境变量2](https://github.com/iopqrst/temp/blob/master/java/maven/enveriment-var-2.png)
  
-
 
 ## maven 配置 
 
