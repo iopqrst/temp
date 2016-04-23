@@ -4,6 +4,7 @@
 [- Maven 的 单模块 / 多模块 之 Spring MVC + Spring + Mybatis 项目讲解（基于 IntelliJ IDEA）](http://code.youmeek.com/2016/03/22/2016/03/Single-Module-SSM-Share/)
 [- maven2中profile的介绍与使用](http://www.mzone.cc/article/282.html)
 [- 孔浩maven视频教程](http://www.konghao.org/videos/22)
+[- 7天学会Maven（第一天——了解 Maven）](http://www.cnblogs.com/haippy/archive/2012/07/04/2576453.html)
 
 
 ## IntelliJ idea 简单配置
