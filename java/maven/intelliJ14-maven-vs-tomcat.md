@@ -8,6 +8,8 @@
 
 [- Maven之pom中文详解](http://blog.csdn.net/sxyx2008/article/details/8725220)
 
+[-  Intellij IDEA使用指南（持续更新）](http://blog.csdn.net/a910626/article/details/45314457)
+
 
 ## IntelliJ idea 简单配置
 
