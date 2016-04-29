@@ -2,11 +2,6 @@
 
 ## 说明
 
-> d
-> d
-> d
-> d
-
 ## 1、Java命名规范
 
 
@@ -167,6 +162,155 @@ private int index;
 ## 3、代码注释
 
 
++ 【重要】一般情况下，源程序有效注释量必须在30％以上。注释的原则是有助于对程序的阅读理解，在该加的地方都加了，注释不宜太多也不能太少，注释语言必须准确、易懂、简洁。
+
+> 如何判断该不该写注释？
+ 
+> 1、如果没有注释两个月以后你修改你的代码你能否记得， 如果能看下一条。 
+> 2、如果别人修改你的代码，会不会骂你？ 如果不会，你就可以不写，否则你还是乖乖写注释。
+
+ 
+
+** 修改参数、返回值时要相应的修改对应的注释。添加注释真正意图是帮助开发者理解程序，注释错误很有可能将开发者引向错误的方向 ，这样的注释还不如没有注释，至少不会误导开发者 。**
+
+
+如：
+> cid： 项目中的开发人员都知道的就无需写注释
+
+bad 注释
+
+```java 
+// RandomUtils.java 代码片段
+
+/**
+ * 生成某个范围的随机数
+ * @param start
+ * @param end
+ * @return
+ */
+public static int getRandom(int start, int end) {
+	return (int) Math.round((Math.random() * (end - start) + start));
+}
+``` 
+
+> 虽然添加了相应的注释，但是并没有解释清楚一些细节问题，如传入的参数是： 5，10， 返回的随机数会包含5或者10吗？
+这让人很困惑，除非去看代码才能知道结果，使用者没次使用都会产生疑问，这就是一个bad注释。
+
+good 注释
+
+```java
+/**
+ * 生成某个范围内的随机数
+ * 
+ * @param start
+ * @param end
+ * @return [start, end] 包括开始结束位置
+ */
+public static int getRandom(int start, int end) {
+	return (int) Math.round((Math.random() * (end - start) + start));
+}
+```
+> 虽然注释里并没有解释 start 和 end , 相信使用者不会对着两个参数产生疑问。 同时也添加了使用者可能会产生疑问的注释。
+
+bad 注释
+
+```java
+public String addOrderXXXX(String clientId, String params) {}
+```
+
+> 不加注释谁知道params什么意思，也许项目组成员知道应该是json字符串，但是属性谁又知道呢，想知道就得去看代码。
+> 有时候转换json的pojo属性不一定与params中属性完全匹配，要确定属性及属性值就必须走读完代码，如果是一个复杂的逻辑，如果不是你开发的，如果是你开发的，也许你早已经忘记了。
+
+
+good 注释
+
+``` java
+/**
+ * 创建支付订单
+ * 
+ * <pre>
+ * 1. 充值	
+ * cid=ESd000193eaeeXseoo1&mobile=xxx&params= 
+ * {
+ * 	"pid": 1000,	// 必填 商品Id
+ * 	"payment" : 1,	// 0：必填	支付宝，1：微信 
+ *  "type": 0		// 必填 对应操作 （0.充值
+ * }
+ * 
+ * 2. 升级vip	
+ * cid=ESd000193eaeeXseoo1&mobile=xxx&params= 
+ * {
+ * 	"pid": 1000,	//必填
+ * 	"payment" : 1,	//必填    0：支付宝，1：微信 2:银联（暂无） 3：余额支付
+ *  "type": 1,		//必填
+ *  "redEnvelopId": 111 //可选
+ * }
+ * 
+ * 3. 购买产品	
+ * cid=ESd000193eaeeXseoo1&mobile=xxxx&params= 
+ * {
+ * 	"pid": 1000,
+ * 	"payment" : 1, // 0：支付宝，1：微信 2:银联（暂无） 3：余额支付 ...
+ *  "type": 2
+ * }
+ * </pre>
+ */
+public String addOrderXXXX(String clientId, String params) {}
+
+```
+
+### 文件注释
+
+#### 文件注释写入文件头部，包名之前的位置。说明：注意以 /* 开始避免被 JavaDoc 收集示例：
+
+```java
+/*
+ * 注释内容
+ */
+
+```
+
+#### 类或接口注释, 放在 `package` 关键字之后，`class` 或者 `interface` 关键字之前。
+
+``` java
+/**
+ * 客户分组记录
+ * 
+ * @author hzq
+ */
+```
+
+#### 方法注释，注释主要是一句话功能简述、功能详细描述以及你需要叮嘱自己或者其他开发者的内容。
+
+>【重要】对于难以理解或者容易忘记的参数和返回值需要表明参数的注释及返回值的信息，如果方法有接口，直接将注释写在接口中即可，无需在实现类中再次注释。
+
++ 注释应与其描述的代码相近，对代码的注释应放在其上方或右方（对单条语句的注释）相邻位置，不可放在下面，如放于上方则需与其上面的代码用空行隔开。
+
+如下：
+
+```java
+/**
+ * 修改负责人id
+ */
+public void XXXX1(String client,Integer principalId) {
+	System.out.println("hello world");  //这里输出了一段话
+
+	//这里还输入了一段代码 (这段注释上空了一格）
+	System.out.println("hello java");
+}
+
+```
+
++ 变量的定义和分支语句（条件分支、循环语句等）必须编写注释。
+
+> 这些语句往往是程序实现某一特定功能的关键，对于维护人员来说，**良好的注释帮助更好的理解程序，有时甚至优于看设计文档。**
+
++ 对于switch语句下的case语句，如果因为特殊情况需要处理完一个case后进入下一个case处理，必须在该case语句处理完、下一个case语句前加上明确的注释。
+
+> 这样比较清楚程序编写者的意图，有效防止无故遗漏break语句。
+
++ 【重要】边写代码边注释，修改代码同时修改相应的注释，以保证注释与代码的一致性。不再有用的注释要删除。不在使用的代码要删除，你不删别人更不敢轻易删了。
+
 ## 4、编码规范
 
 + 【重要】明确方法功能，精确（而不是近似）地实现方法设计。一个函数仅完成一件功能，即使简单功能也应该编写方法实现。
@@ -182,9 +326,28 @@ private int index;
 + 【重要】明确类的功能，精确（而不是近似）地实现类的设计。一个类仅实现一组相近的功能。与该类无关的方法，不要放到该类中。
 
 > 划分类的时候，应该尽量把逻辑处理、数据和显示分离，实现类功能的单一性。
-> 示例：1. 数据类不能包含数据处理的逻辑。 2. 用户上传数据的方法uploadMonitoringData() 方法 放到 用户 Service 中虽然可以实现功能，但是放到上传数据对应的 Service 中更合适。 
+> 示例：1. 数据类不能包含数据处理的逻辑。 
 
-具体参考：bad_code.md中的代码说明
+> 2. 用户上传数据的方法uploadMonitoringData() 方法 放到 用户 Service 中虽然可以实现功能，但是放到上传数据对应的 Service 中更合适。
+
+如： 
+
+```java
+/**
+ * 查询用户信息运动数据部分
+ * @param clientId 用户Id
+ * @return 用户运动详情
+ */
+public String queryClientInfoSport(Integer clientId);
+
+/**
+ * 修改用户信息运动数据部分
+ * @param csport 运动实体类 
+ * @return 上传运动结果
+ */
+public String updateClientInfoSport(ClientInfoSport csport);
+
+```
 
 + 【重要】所有的数据类必须重载toString() 方法，返回该类有意义的内容。说明：父类如果实现了比较合理的toString() ，子类可以继承不必再重写。 (注：IDE一般都自带重写的快捷键）
 
@@ -210,6 +373,18 @@ try {
 ```
 
 + 【重要！！】异常捕获后，如果不对该异常进行处理，则应该纪录日志或者ex.printStackTrace()。对于重要的逻辑则需要添加对应的报警处理，如邮件或短信推送（程序已经提供了对外方法）。
+
++ 当一个类有多个构造函数，或是多个同名方法，这些函数 / 方法应该按顺序出现在一起，中间不要放进其它函数 / 方法
+
++ 导入包的时候，import 后面不要使用通配符 * 来代替有些包的导入
+
++ 大括号与 if, else, for, do, while 语句一起使用，即使只有一条语句(或是空)，也应该把大括号写上
+
++ 不要使用组合声明，比如 int a, b;
+
++ 需要时才声明，并尽快进行初始化
+
++ 注解紧跟在文档块后面，应用于类、方法和构造函数，一个注解独占一行
 
 ## 4、其他
 
@@ -297,203 +472,7 @@ public String updateClientInfoSport(ClientInfoSport csport);
 
 
 
-``` java
 
-public String queryUserManageClient(String clientIds) {
-	if (StringUtils.isEmpty(clientIds)) {
-		return "";
-	}
-	// 查询当前管理客户的用户
-	List<ClientVsUserExtend> lstManageUser = clientVsUserDao
-			.queryClientVsUser(clientIds);
-	JSONObject json = new JSONObject();
-	JSONArray manageJa = new JSONArray();
-
-	String[] cidStr = clientIds.split(",");
-
-	// 获取管理健康管理师
-	Integer hmRoleId = Integer.parseInt(CrmURLConfig
-			.getString("role_type_health_manger"));
-	// 获取管理医生
-	Integer docRoleId = Integer.parseInt(CrmURLConfig
-			.getString("role_type_doctor"));
-	// 代理商角色id
-	Integer agentRoleId = Integer.parseInt(CrmURLConfig
-			.getString("role_type_agent"));
-	// 名医
-	Integer fdocRoleId = Integer.parseInt(CrmURLConfig
-			.getString("role_famous_doctor"));
-	// 助理医师
-	Integer medRoleId = Integer.parseInt(CrmURLConfig
-			.getString("role_mediastinus"));
-	// 市场支持
-	Integer msRoleId = Integer.parseInt(CrmURLConfig
-			.getString("role_market_support"));
-	
-	Integer chmRoleId = Integer.parseInt(CrmURLConfig
-			.getString("common_health_manager"));
-	Integer cdocRoleId = Integer.parseInt(CrmURLConfig
-			.getString("common_doctor"));
-	Integer cfdocRoleId = Integer.parseInt(CrmURLConfig
-			.getString("common_famous_doctor"));
-	Integer cmedRoleId = Integer.parseInt(CrmURLConfig
-			.getString("common_mediastinus"));
-	Integer cmsRoleId = Integer.parseInt(CrmURLConfig
-			.getString("common_market_support"));
-
-	if (!CollectionUtils.isEmpty(lstManageUser)) {
-
-		// 查询可以分配管理客户的用户
-		List<UserInfo> lstUser = null;
-		// 医馆部管理员管理
-		int userCount = 0;
-		// 医馆部管理客户信息
-		Map<Integer, String> mapUserClient = new HashMap<Integer, String>();
-
-		// 代理商自己人管理
-		int agentCount = 0;
-		// 代理商自己管理客户信息
-		Map<Integer, String> mapAgentClient = new HashMap<Integer, String>();
-
-		// 自己管理客户的代理商信息
-		List<Integer> lstAgentId = new ArrayList<Integer>();
-		String createUserChain = "";
-
-		List<Integer> lstUserId = new ArrayList<Integer>();
-		for (String clientId : cidStr) {
-			Integer cid = Integer.parseInt(clientId);
-			// 查询是否有代理商
-			ClientVsUserExtend agentUser = new ClientVsUserExtend();
-			for (ClientVsUserExtend user : lstManageUser) {
-				Integer thisCid = user.getClientId();
-				String cname = user.getClientName();
-				String cmobile = user.getClientMobile();
-				if (thisCid.equals(cid)) {
-					Integer roleId = user.getRoleId();
-					Integer userId = user.getUserId();
-
-					if (roleId == agentRoleId) {
-						agentUser = user;
-					} else {
-						if (cidStr.length == 1
-								&& CollectionUtils.isEmpty(lstUserId)
-								|| !CollectionUtils.isEmpty(lstUserId)
-								&& !lstUserId.contains(userId)) {
-
-							JSONObject jo = new JSONObject();
-							jo.put("userId", user.getUserId());
-							jo.put("name", user.getName());
-							jo.put("roleId", user.getRoleId());
-
-							manageJa.add(jo.toString());
-						}
-					}
-					String name = StringUtils.isEmpty(cname) ? cmobile
-							: cname;
-					if (agentUser == null
-							|| (agentUser != null && agentUser
-									.getIsSelfManage() == UserInfo.SELF_MANAGE_NO)) {
-						if (CollectionUtils.isEmpty(mapUserClient)
-								|| (!CollectionUtils.isEmpty(mapUserClient) && !mapUserClient
-										.containsKey(cid))) {
-							userCount += 1;
-							mapUserClient.put(cid, name);
-						}
-					} else {
-						if (CollectionUtils.isEmpty(mapAgentClient)
-								|| (!CollectionUtils
-										.isEmpty(mapAgentClient) && !mapAgentClient
-										.containsKey(cid))) {
-							agentCount += 1;
-							mapAgentClient.put(cid, name);
-							agentCount += 1;
-						}
-
-						Integer agentId = agentUser.getUserId();
-						if (CollectionUtils.isEmpty(lstAgentId)
-								|| (!CollectionUtils.isEmpty(lstAgentId) && !lstAgentId
-										.contains(agentId + ","))) {
-							lstAgentId.add(agentId);
-						}
-						createUserChain = agentUser.getCreateUserChain();
-					}
-				}
-			}
-		}
-
-		json.put("lstManageUser", manageJa.toArray());
-
-		JSONObject jo = new JSONObject();
-		if (userCount > 0 && agentCount > 0) {
-			if (userCount > agentCount) {
-				jo.put("type", 1);
-				jo.put("name", getClientNames(mapUserClient));
-				return jo.toString();
-			} else {
-				jo.put("type", 2);
-				jo.put("name", getClientNames(mapAgentClient));
-				return jo.toString();
-			}
-		} else {
-			if (agentCount > 0) {
-				if (!CollectionUtils.isEmpty(lstAgentId)
-						&& lstAgentId.size() > 1) {
-					jo.put("type", 3);
-					return jo.toString();
-				} else {
-					String roleIds = chmRoleId + "," + cdocRoleId + ","
-							+ cfdocRoleId + "," + cmedRoleId + ","
-							+ cmsRoleId;
-					lstUser = userInfoDao.queryUserInfo(createUserChain,
-							roleIds);
-				}
-			} else {
-				String roleIds = hmRoleId + "," + docRoleId + ","
-						+ fdocRoleId + "," + medRoleId + "," + msRoleId;
-				lstUser = userInfoDao.queryUserInfo(null, roleIds);
-			}
-		}
-		
-		JSONArray hmJa = new JSONArray();
-		JSONArray docJa = new JSONArray();
-		JSONArray fdocJa = new JSONArray();
-		JSONArray medJa = new JSONArray();
-		JSONArray msJa = new JSONArray();
-		
-		if (!CollectionUtils.isEmpty(lstUser)) {
-			for (UserInfo user : lstUser) {
-				JSONObject ujo = new JSONObject();
-				ujo.put("userId", user.getId());
-				ujo.put("name", user.getName());
-				ujo.put("roleId", user.getRoleId());
-				ujo.put("createUserChain", user.getCreateUserChain());
-				Integer roleId = user.getRoleId();
-				
-				if(roleId.equals(hmRoleId) || roleId.equals(chmRoleId)){
-					hmJa.add(ujo.toString());
-				}else if(roleId.equals(docRoleId) || roleId.equals(cdocRoleId)){
-					docJa.add(ujo.toString());
-				}else if(roleId.equals(fdocRoleId) || roleId.equals(cfdocRoleId)){
-					fdocJa.add(ujo.toString());
-				}else if(roleId.equals(medRoleId) || roleId.equals(cmedRoleId)){
-					medJa.add(ujo.toString());
-				}else if(roleId.equals(msRoleId) || roleId.equals(cmsRoleId)){
-					msJa.add(ujo.toString());
-				}
-			}
-			
-			json.put("hmUser", hmJa.toArray());
-			json.put("docUser", docJa.toArray());
-			json.put("fdocUser", fdocJa.toArray());
-			json.put("medUser", medJa.toArray());
-			json.put("msUser", msJa.toArray());
-		}
-	}
-	System.out.println(json.toString());
-	return json.toString();
-}
-
-```
 + 订单
 
 ## 参考文章：
