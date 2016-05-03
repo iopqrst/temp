@@ -2,6 +2,9 @@
 
 ## 说明
 
+> 1. 所有加重标出的地方需要注意
+> 2. 所有未标注“建议”的项的必须严格按照规范执行
+
 ## 1、Java命名规范
 
 
@@ -56,7 +59,7 @@
 
 + **业务层实现类名**：在普通类名的基础上对其命名后加上 ServiceImpl，eg：CategoryServiceImpl
 
-+ 控制层类名：在普通类名的基础上对其命名后加上 Controller，eg：CategoryController、CategoryAction、CategoryActivity
++ **控制层类名**：在普通类名的基础上对其命名后加上 Controller，eg：CategoryController、CategoryAction、CategoryActivity
 
 
 ### 方法命名
@@ -69,7 +72,7 @@
 + junit 方法命名采用 `testXXXX` 形式命名。
 
 
-#### 数据库访问层方法名 (有优先使用以下命名，不能满足对应方法可以使用其他命名）
+#### 数据库访问层方法名 (有优先使用以下命名，不能满足对应方法再使用其他命名）
 
 ```java
 addCategory()
@@ -100,6 +103,8 @@ find...
 initXXXX
 generateXXXXX
 loadingXXXXX
+isExistXXX
+isXXXXX
 ... 
 
 ``` 
@@ -158,6 +163,144 @@ private int index;
 ## 2、排版规范
 
 
++ 程序块要采用缩进风格编写，缩进的空格数为4个。说明：对于由开发工具自动生成的代码可以有不一致。（ide设置tab为4个空格）
+
++ 较长的语句、表达式或参数（>80字符）要分成多行书写，长表达式要在低优先级操作符处划分新行，操作符放在新行之首，划分出的新行要进行适当的缩进，使排版整齐，语句可读。
+
+```java
+if (filename != null 
+    && new File(logPath + filename).length() < fileSize) {
+
+    System.out.println("这里是代码");
+}
+
+``` 
+
++ 不允许把多个短语句写在一行中，即一行只写一条语句示例：如下例子不符合规范。
+
+```java
+String name = null; int age = 0;
+``` 
+应如下书写：
+
+```java
+String name = null; 
+int age = 0;
+```
+
++ if, for, do, while等语句的执行语句无论多少都要加括号{}。
+
+```java
+// 禁止写法
+if (true) 
+	System.out.println("hello java");
+
+// 改为一下写法：
+if (true) {
+	System.out.println("hello java");
+}
+```
+
++ 相对独立的程序块之间、变量说明之后必须加空行。示例：如下例子不符合规范。
+
+```java
+// part 1
+LivenessGroup lg = new LivenessGroup();
+lg.setGroupId(3); // 查询3组
+List<LivenessGroup> lgList = livenessGroupDao.queryGroupList(lg);
+String whichDays = null;
+String howMuchMoney = null;
+Map<String, List<String>> map = new HashMap<String, List<String>>();
+if(true) {
+   System.out.println('逻辑');
+}
+```
+// 改为:
+
+```java
+LivenessGroup lg = new LivenessGroup();
+lg.setGroupId(3); // 查询3组
+List<LivenessGroup> lgList = livenessGroupDao.queryGroupList(lg);
+
+String whichDays = null;
+String howMuchMoney = null;
+Map<String, List<String>> map = new HashMap<String, List<String>>();
+
+if(true) {
+   System.out.println('逻辑');
+}
+
+```
+
+// part 2
+```java
+public void method1(String param1) {
+	//方法体
+	int age = 0;
+	int count = 0;
+	userService.queryUserInfo();
+}
+public void method2() {
+    //方法体
+}
+```
+
+// 改为：
+```java
+public void method1(String param1) {
+	//方法体
+	int age = 0;
+	int count = 0;
+
+	//变量与其他逻辑方法，空行分割
+	userService.queryUserInfo();
+}
+
+// 空行分割
+public void method2() {
+    //方法体
+}
+
+```
+
+**方法与方法之间空行分割，方法内变量与其他逻辑空行分割, 独立的逻辑之间以空行分割（最终目的是方便阅读代码）**
+
++ 在两个以上的关键字、变量、常量进行对等操作时，它们之间的操作符之前、之后或者前后要加空格；进行非对等操作时，如果是关系密切的立即操作符（如.），后不应加空格。
+
+	- 逗号、分号只在后面加空格。
+```java
+int a, b, c; //只为举例，禁止在实际项目中使用该方式声明变量
+```
+	- 比较操作符, 赋值操作符"="、 "+="， 算术操作符"+"、"%"， 逻辑操作符"&&"、"&"，位域操作符"<<"、"^"等双目操作符的前后加空格。
+```java
+if (current_time >= MAX_TIME_VALUE) {
+	a = b + c; 
+	a *= 2; 
+	a = b ^ 2;
+} 
+```
+
+
+
+> 采用这种松散方式编写代码的目的是使代码更加清晰。由于留空格所产生的清晰性是相对的，所以，在已经非常清晰的语句中没有必要再留空格，如果语句已足够清晰则括号内侧(即左括号后面和右括号前面)不需要加空格，多重括号间不必加空格，因为在Java语言中括号已经是最清晰的标志了。在长语句中，如果需要加的空格非常多，那么应该保持整体清晰，而在局部不加空格。给操作符留空格时不要连续留两个以上空格。
+
++ if、for、while、switch等与后面的括号间应加空格，使if等关键字更为突出、明显。
+
++ 类属性和类方法不要交叉放置，不同存取范围的属性或者方法也尽量不要交叉放置。格式：类定义
+
+```java
+public void methodA(String ... params) {
+	// 类的公有属性定义
+	// 类的保护属性定义
+	// 类的私有属性定义
+	// 类的公有方法定义
+	// 类的保护方法定义
+	// 类的私有方法定义
+}
+
+```
+**私有方法放在所有共有方法后面**
+** 虽然 IDE 格式化代码工具基本可以完成一下的排版规范, **
 
 ## 3、代码注释
 
@@ -259,22 +402,13 @@ public String addOrderXXXX(String clientId, String params) {}
 
 ```
 
-### 文件注释
-
-#### 文件注释写入文件头部，包名之前的位置。说明：注意以 /* 开始避免被 JavaDoc 收集示例：
-
-```java
-/*
- * 注释内容
- */
-
-```
-
 #### 类或接口注释, 放在 `package` 关键字之后，`class` 或者 `interface` 关键字之前。
 
 ``` java
 /**
- * 客户分组记录
+ * 客户分组记录 <简单描述，必须尤其一些实体类>
+ *
+ * 如果有详细内容，可以在这里详细描述一下，如果没有可以省略。
  * 
  * @author hzq
  */
@@ -291,12 +425,21 @@ public String addOrderXXXX(String clientId, String params) {}
 ```java
 /**
  * 修改负责人id
+ *
+ * 如果有详细内容，可以在这里详细描述一下，如果没有可以省略。
  */
 public void XXXX1(String client,Integer principalId) {
 	System.out.println("hello world");  //这里输出了一段话
 
-	//这里还输入了一段代码 (这段注释上空了一格）
+	//这里还输入了一段代码 (这段注释上空了一行）
 	System.out.println("hello java");
+
+    /*
+     * 这里是多行注释  (注释上空了一行）
+     * 这里是多行注释
+     * 这里是多行注释
+     */
+    System.out.println("hello javascript");
 }
 
 ```
@@ -341,15 +484,18 @@ if (asyncSucc)
 
 + 【强烈推荐，尤其逻辑复杂的】顺序实现流程的说明使用1、2、3、4在每个实现步骤部分的代码前面进行注释。
 
-> 示例：如下是对设置属性的流程注释
-> // 1、判断输入参数是否有效。
-> // 2、设置本地变量。
+```java
+示例：如下是对设置属性的流程注释
+// 1、判断输入参数是否有效。
+// 2、设置本地变量。
 
-> 示例：这里主要是对闰年算法的说明。	
-> //1. 如果能被4整除，是闰年；	
-> //2. 如果能被100整除，不是闰年；	
-> //3. 如果能被400整除，是闰年。	
-
+示例：这里主要是对闰年算法的说明。	
+//1. 如果能被4整除，是闰年；	
+//   1.1 巴拉巴拉
+//   1.2 叭叭叭叭叭啦
+//2. 如果能被100整除，不是闰年；	
+//3. 如果能被400整除，是闰年。	
+```
 
 ## 4、编码规范
 
@@ -412,7 +558,7 @@ try {
 
 ```
 
-+ 【重要！！】异常捕获后，如果不对该异常进行处理，则应该纪录日志或者ex.printStackTrace()。对于重要的逻辑则需要添加对应的报警处理，如邮件或短信推送（程序已经提供了对外方法）。
++ 【重要！！】异常捕获后，如果不对该异常进行处理，则应该纪录日志或者ex.printStackTrace()。**对于重要的逻辑则需要添加对应的报警处理，如邮件或短信推送（程序已经提供了对外方法）。**
 
 + 当一个类有多个构造函数，或是多个同名方法，这些函数 / 方法应该按顺序出现在一起，中间不要放进其它函数 / 方法
 
@@ -439,13 +585,17 @@ try {
 ```
 + 【建议】含有集合意义的属性命名，尽量包含其复数的意义。示例：customers, orderItems。
 
-## 4、编程实践 （未完成）
++ 在switch 中每个 case 语句都应该包含 break 或者 return 。
 
-+ @Override：能用则用
++ 不要使用空的for 、if 、while 语句。
 
-+ 捕获的异常：不能忽视
++ 在运算中不要减小数据的精度(**所有返回的数字**)。
 
-+ 静态成员：使用类进行调用 
++ switch 语句中的 case 关键字要和后面的常量保持一个空格，switch 语句中不要定义case 之外的无用标签。
+
++ 不要在if 语句中使用等号= 进行赋值操作。
+
++ 静态成员或者方法使用类名访问，不使用句柄访问。
 
 ``` java
 Foo aFoo = ...;
@@ -454,66 +604,20 @@ aFoo.aStaticMethod(); // bad
 somethingThatYieldsAFoo().aStaticMethod(); // very bad
 ```
 
++ 方法重载的时候，一定要注意方法名相同，避免类中使用两个非常相似的方法名。
 
++ 不要定义不会被用到的局部变量、类私有属性、类私有方法和方法参数
 
++ 把 main() 方法放在类的最后。
 
++ 在进行比较的时候，总是把常量放在左边。
 
++ 使用大写'L'表示 long 常量。
 
++ 不要在循环体内定义变量。
 
++ 尽可能的使用局部变量进行运算。
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-不符合规范的注释
-
-```java
-/**查询用户信息运动数据部分**/
-public String queryClientInfoSport(Integer clientId);
-
-/**修改用户信息运动数据部分**/
-public String updateClientInfoSport(ClientInfoSport csport);
-
-```
-
-修改为：
-
-```java
-/**
- * 查询用户信息运动数据部分
- * @param clientId 用户Id
- * @return 用户运动详情
- */
-public String queryClientInfoSport(Integer clientId);
-
-/**
- * 修改用户信息运动数据部分
- * @param csport 运动实体类 
- * @return 上传运动结果
- */
-public String updateClientInfoSport(ClientInfoSport csport);
-
-```
-
-
-
-
-
-+ 订单
 
 ## 参考文章：
 
