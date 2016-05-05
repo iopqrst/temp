@@ -23,7 +23,7 @@ M2_HOME ： C:\java-dev\apache-maven-3.2.5
 ### 修改maven本地仓库的存储位置
 
 ```
-<localRepository>C:/java-dev/maven-repo/repository</localRepository>
+<localRepository>D:/java-dev/maven-repo/repository</localRepository>
 
 ```
 
@@ -75,7 +75,7 @@ M2_HOME ： C:\java-dev\apache-maven-3.2.5
     <repository>
         <id>nexus</id>
         <name>BSK Repository</name>
-        <url>http://192.168.1.114:8888/nexus/content/repositories/central/</url>
+        <url>http://192.168.1.114:8888/nexus/content/groups/public/</url>
         <layout>default</layout>
         <releases>
             <enabled>true</enabled>
@@ -95,14 +95,14 @@ M2_HOME ： C:\java-dev\apache-maven-3.2.5
 
 <server>
   <id>user-snapshots</id>
-  <username>deployment</username>
-  <password>deployment123</password>
+  <username>xxxxx</username>
+  <password>xxxx</password>
 </server>
 
 <server>
   <id>user-releases</id>
-  <username>deployment</username>
-  <password>deployment123</password>
+  <username>xxxxx</username>
+  <password>xxxxx</password>
 </server>
 
 

@@ -10,6 +10,9 @@
 
 [-  Intellij IDEA使用指南（持续更新）](http://blog.csdn.net/a910626/article/details/45314457)
 
+[IntelliJ IDEA 14 注*册*码](http://blog.csdn.net/henren555/article/details/43406479)
+
+> key:huangwei value:97493-G3A41-0SO24-W57LI-Y2UGI-JGTU2
 
 ## IntelliJ idea 简单配置
 
@@ -43,18 +46,33 @@ alt+F7 非常非常频繁使用的一个快捷键，可以帮你找到你的函�
 ## 创建多模块项目
 
 
-
-
 ## 使用tomcat启动项目
-
-
 
 
 ## pom.xml 配置说明
 
+![](https://github.com/iopqrst/temp/blob/master/java/intellij-setting-tomcat/step1.png)
 
+![](https://github.com/iopqrst/temp/blob/master/java/intellij-setting-tomcat/step2.png)
 
+![](https://github.com/iopqrst/temp/blob/master/java/intellij-setting-tomcat/step3.png)
 
+![](https://github.com/iopqrst/temp/blob/master/java/intellij-setting-tomcat/step4.png)
 
+![](https://github.com/iopqrst/temp/blob/master/java/intellij-setting-tomcat/step4-1.png)
 
+![](https://github.com/iopqrst/temp/blob/master/java/intellij-setting-tomcat/step4-2.png)
 
+![](https://github.com/iopqrst/temp/blob/master/java/intellij-setting-tomcat/step4-3.png)
+
+![](https://github.com/iopqrst/temp/blob/master/java/intellij-setting-tomcat/step5-1.png)
+
+![](https://github.com/iopqrst/temp/blob/master/java/intellij-setting-tomcat/step5-2.png)
+
+![](https://github.com/iopqrst/temp/blob/master/java/intellij-setting-tomcat/step5-3.png)
+
+![](https://github.com/iopqrst/temp/blob/master/java/intellij-setting-tomcat/step5-4.png)
+
+![](https://github.com/iopqrst/temp/blob/master/java/intellij-setting-tomcat/step5-5.png)
+
+![](https://github.com/iopqrst/temp/blob/master/java/intellij-setting-tomcat/step5-6.png)
