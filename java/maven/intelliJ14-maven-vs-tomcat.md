@@ -12,6 +12,8 @@
 
 [Maven实战（九）——打包的技巧](http://www.infoq.com/cn/news/2011/06/xxb-maven-9-package/)
 
+[Maven最佳实践：版本管理](http://juvenshun.iteye.com/blog/376422)
+
 [IntelliJ IDEA 14 注*册*码](http://blog.csdn.net/henren555/article/details/43406479)
 
 > key:huangwei value:97493-G3A41-0SO24-W57LI-Y2UGI-JGTU2
