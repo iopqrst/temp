@@ -127,13 +127,22 @@ public List executeNativeQuery(String sql, Map entities, Map scalars,
 
 ## svn 提交规范
 
+### svn 分支命名 
+
+> yyMMdd-[主要功能] 例如: 160525-tyh、160525-red-envelop、160525-red-envelop 或者 160525不带主要功能关键字（不建议）
+  
+### 其他注意事项
+
 + 开发新功能和修改bug禁止直接在trunk上修改
 
 + 提交代码按照模块提交，并写明提交代码修改内容。
 
++ 不再使用的分支不要删除，将分支改为: 分支名称.bak 
+
 > 如： 1. 添加删除用户功能 2. 修改前台不能显示vip bug。
 
 上面的代码最好提交两次，删除用户功能的代码提交一次，修改bug的代码提交一次。
+
 
 ** 为什么要分模块分功能提交？ ** 
 
