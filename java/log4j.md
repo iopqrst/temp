@@ -75,14 +75,6 @@ org.apache.log4j.TTCCLayout（包含日志产生的时间、线程、类别等�
 > Threshold=WARN：指定日志信息的最低输出级别(低于这个级别的不输出），默认为DEBUG。
 
 
-
-
-
-
-
-
-
-
 ## log4j 实例
 ``` 
 log4j.rootLogger=DEBUG,console,D,E
