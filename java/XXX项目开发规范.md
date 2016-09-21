@@ -129,7 +129,8 @@ public List executeNativeQuery(String sql, Map entities, Map scalars,
 
 ### svn 分支命名 
 
-> yyMMdd-[主要功能] 例如: 160525-tyh、160525-red-envelop、160525-red-envelop 或者 160525不带主要功能关键字（不建议）
+> -项目名-yyMMdd[-功能描述(可有可无)] 
+> 例如：mall-160704-api 、doctor-160704-huanxin、doctor-160704等等
   
 ### 其他注意事项
 
