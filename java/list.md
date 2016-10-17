@@ -3,6 +3,7 @@
 `ArrayList` 在尾部添加元素效率高于 `LinkList` , 在集合头部添加元素 `LinkList` 效率高于 `ArrayList` （普通数组在头部添加元素导致所有元素向后移位，而链表结构的`LinkList`结构却不同。）
 
 > 操作100W条数据
+
 ```
 ArrayList: delete tail takes (22) ms
 ArrayList: delete first takes (138793) ms
@@ -69,3 +70,4 @@ for循环耗时:4ms
 ```
 
 > 几次执行结果可以看出，LinkedList的for循环比较费时，ArrayList的3种方式相差无几。（10W条数据）
+> LinkedList 使用 foreach 或 iterator (两者差距不是很大）， ArrayList 使用 for 循环方式效率比较高。（其他的差距也不是很大）
