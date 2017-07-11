@@ -1,2 +1,3 @@
 *.~$lock
 java/bad_code.md
+npm-debug.log
